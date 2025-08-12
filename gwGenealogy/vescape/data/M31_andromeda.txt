@@ -1,0 +1,2 @@
+# https://academic.oup.com/mnras/article/475/3/4043/4797184
+# We determine the escape velocity of M31 to be 470 ± 40 km s−1 at a galactocentric distance of 15 kp
