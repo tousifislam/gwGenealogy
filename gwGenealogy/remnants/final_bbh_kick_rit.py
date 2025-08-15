@@ -103,6 +103,8 @@ def calculate_kick_components(q, chi1, chi2, theta1, theta2, deltaphi, Theta=Non
     # Angle Theta : taken to be random value between 0 and 2pi
     # following https://arxiv.org/pdf/1605.01067
     if Theta is None:
+        # Note that, while we sample to randomly, Gerosa1 & Kesden 2016
+        # fixes the value to zero;
         Theta = np.random.uniform(0, 2*np.pi)
     
     # Symmetric mass ratio
