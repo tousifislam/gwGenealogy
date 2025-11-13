@@ -168,6 +168,8 @@ def sample_beta_1d(n_samples, a=1.4, b=3.6, seed=None, plot=False, bins=50):
     """
     Sample from a Beta distribution
     
+    For spin magnitudes (https://arxiv.org/abs/2111.03634)
+    
     Parameters:
     - n_samples: Number of samples to generate
     - a: Alpha parameter of the Beta distribution (default: 1.4)
@@ -228,6 +230,7 @@ def sample_spins(n_samples, chi_min=0, chi_max=1,
     beta_b : float
         Beta parameter for Beta distribution (default: 3.6)
         Only used when spin_magnitude='beta'
+        Default values are based on https://arxiv.org/abs/2111.03634
         
     Returns:
     --------
