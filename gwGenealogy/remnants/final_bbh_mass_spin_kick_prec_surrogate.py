@@ -108,7 +108,7 @@ def individual_nrsur_remnant_properties(q, chi_primary, chi_secondary,
         return mf, chif, vf
 
 
-def bbh_final_state_precessing_NRSur7dq4Remnant(m1, m2, s1_vec_input, s2_vec_input, bbh='precessing'):
+def bbh_final_state_precessing_NRSur7dq4Remnant(m1, m2, s1_vec_input, s2_vec_input, bbh='precessing', return_errors=False):
     """
     Calculate remnant properties for multiple binary systems using a loop.
     
@@ -174,15 +174,32 @@ def bbh_final_state_precessing_NRSur7dq4Remnant(m1, m2, s1_vec_input, s2_vec_inp
     chif_vals = []
     vf_vals = []
     vf_kms_vals = []
+    if return_errors:
+        mf_err_vals = []
+        chif_err_vals = []
+        vf_kms_err_vals = []
     
     # Loop through each binary system
     for i in range(len(m1)):
-        # Call individual_nrsur_remnant_properties for single system
-        mf, chif, vf = individual_nrsur_remnant_properties(
-            q=q[i], 
-            chi_primary=s1_vec[i], 
-            chi_secondary=s2_vec[i]
-        )
+        
+        if return_errors:
+            # Call individual_nrsur_remnant_properties for single system
+            # Along with GPR errors
+            mf, chif, vf, errs = individual_nrsur_remnant_properties(
+                q=q[i], 
+                chi_primary=s1_vec[i], 
+                chi_secondary=s2_vec[i],
+                return_errors=return_errors
+            )
+            [mf_err, chif_err, vf_err] = errs
+        
+        else:
+            # Call individual_nrsur_remnant_properties for single system
+            mf, chif, vf = individual_nrsur_remnant_properties(
+                q=q[i], 
+                chi_primary=s1_vec[i], 
+                chi_secondary=s2_vec[i]
+            )
         
         # Convert kick to km/s
         vf_kms = np.linalg.norm(vf) * 299792.458
@@ -192,6 +209,13 @@ def bbh_final_state_precessing_NRSur7dq4Remnant(m1, m2, s1_vec_input, s2_vec_inp
         chif_vals.append(chif)
         vf_vals.append(vf)
         vf_kms_vals.append(vf_kms)
+
+        # Store errors
+        if return_errors:
+            vf_err_kms = np.linalg.norm(vf_err) * 299792.458
+            mf_err_vals.append(mf_err)
+            chif_err_vals.append(chif_err)
+            vf_kms_err_vals.append(vf_err_kms)
     
     # Convert to numpy arrays
     mf_vals = np.array(mf_vals)
@@ -201,5 +225,10 @@ def bbh_final_state_precessing_NRSur7dq4Remnant(m1, m2, s1_vec_input, s2_vec_inp
     
     # Convert mass fractions to solar masses
     mf_solar = mf_vals * total_masses
+    if return_errors:
+        mf_err_solar = mf_err_vals * total_masses
     
-    return mf_solar, chif_vals, vf_kms_vals
+    if return_errors:
+        return mf_solar, chif_vals, vf_kms_vals, [mf_err_solar, chif_err_vals, vf_kms_err_vals]
+    else:
+        return mf_solar, chif_vals, vf_kms_vals

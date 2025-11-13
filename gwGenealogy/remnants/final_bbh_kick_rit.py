@@ -4,6 +4,7 @@
 #
 #    FILE: final_bbh_kick_rit.py
 #
+#    Project: gwGenealogy
 #    AUTHOR: Tousif Islam
 #    CREATED: 08-11-2025
 #    LAST MODIFIED: 
@@ -143,7 +144,8 @@ def bbh_final_kick_precessing_CLZM2007(q, chi1, chi2, theta1, theta2, deltaphi, 
            If None, a random value between 0 and 2π is used
     
     Returns:
-    V_kick, Vm, Vs_perp, Vs_parallel, Theta_used
+    V_kick, Vm, Vs_perp, Vs_parallel, Theta_used (if debug is set to True)
+    V_kick (if debug is set to False)
     """
     Vm, Vs_perp, Vs_parallel, used_Theta = calculate_kick_components(
         q, chi1, chi2, theta1, theta2, deltaphi, Theta)
