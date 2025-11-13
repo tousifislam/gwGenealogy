@@ -229,3 +229,47 @@ def calculate_derived_spin_quantities(q, chi1, chi2, theta1, theta2, phi12):
     chi_tilde_perp = np.sqrt(max(0, chi_tilde_perp_sq))
     
     return Delta_parallel, Delta_perp, chi_tilde_parallel, chi_tilde_perp
+
+def angles_to_cartesian(chi1_mag, chi2_mag, cos_theta1, cos_theta2, phi1, phi2):
+    """
+    Convert spin magnitudes and angles to 3D Cartesian vectors.
+    
+    Parameters:
+    -----------
+    chi1_mag : numpy array of shape (n_samples,)
+        Spin magnitudes for primary black hole
+    chi2_mag : numpy array of shape (n_samples,)
+        Spin magnitudes for secondary black hole
+    cos_theta1 : numpy array of shape (n_samples,)
+        Cosine of polar angle for primary black hole
+    cos_theta2 : numpy array of shape (n_samples,)
+        Cosine of polar angle for secondary black hole
+    phi1 : numpy array of shape (n_samples,)
+        Azimuthal angle for primary black hole
+    phi2 : numpy array of shape (n_samples,)
+        Azimuthal angle for secondary black hole
+        
+    Returns:
+    --------
+    chi1 : numpy array of shape (n_samples, 3)
+        3D spin vectors for the primary black hole
+    chi2 : numpy array of shape (n_samples, 3)
+        3D spin vectors for the secondary black hole
+    """
+    # Convert to Cartesian
+    sin_theta1 = np.sqrt(1 - cos_theta1**2)
+    sin_theta2 = np.sqrt(1 - cos_theta2**2)
+    
+    chi1 = np.column_stack([
+        chi1_mag * sin_theta1 * np.cos(phi1),
+        chi1_mag * sin_theta1 * np.sin(phi1),
+        chi1_mag * cos_theta1
+    ])
+    
+    chi2 = np.column_stack([
+        chi2_mag * sin_theta2 * np.cos(phi2),
+        chi2_mag * sin_theta2 * np.sin(phi2),
+        chi2_mag * cos_theta2
+    ])
+    
+    return chi1, chi2
