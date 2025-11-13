@@ -16,9 +16,13 @@ import matplotlib.pyplot as plt
 from matplotlib import rc
 
 plt.rc('figure', figsize=(8, 5))
-plt.rcParams.update({'text.usetex': True,
-                     'text.latex.preamble':r'\usepackage{amsmath}',
-                     'font.family': 'serif',
+try:
+    plt.rcParams.update({'text.usetex': True,
+                         'text.latex.preamble':r'\usepackage{amsmath}',})
+except:
+    plt.rcParams.update({'text.usetex': False})
+    
+plt.rcParams.update({'font.family': 'serif',
                      'font.serif': ['Georgia'],
                      'mathtext.fontset': 'cm',
                      'lines.linewidth': 1.8,
