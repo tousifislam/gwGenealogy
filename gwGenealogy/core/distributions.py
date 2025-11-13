@@ -196,7 +196,6 @@ def sample_beta_1d(n_samples, a=1.4, b=3.6, seed=None, plot=False, bins=50):
     
     return samples
 
-
 def sample_isotropic_spins(n_samples, chi_min=0, chi_max=1):
     """
     Sample spin magnitudes uniformly between chi_min and chi_max for both black holes,

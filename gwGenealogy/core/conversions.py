@@ -154,7 +154,7 @@ def spin_vectors_to_angles(m1, m2, s1_vec, s2_vec):
     else:
         return theta1, theta2, deltaphi, chi_primary, chi_secondary
 
-def angles_to_spin_vectors(theta1, theta2, deltaphi, chi1, chi2, m1, m2):
+def angles_to_spin_vectors(theta1, theta2, deltaphi, chi1, chi2):
     """
     Convert angular parameters back to spin vectors (inverse operation).
     
@@ -162,7 +162,6 @@ def angles_to_spin_vectors(theta1, theta2, deltaphi, chi1, chi2, m1, m2):
     - theta1, theta2: Polar angles (radians)
     - deltaphi: Azimuthal angle difference (radians)
     - chi1, chi2: Dimensionless spin magnitudes
-    - m1, m2: Masses
     
     Returns:
     - s1_vec: Primary spin vector [sx, sy, sz]
@@ -174,8 +173,6 @@ def angles_to_spin_vectors(theta1, theta2, deltaphi, chi1, chi2, m1, m2):
     deltaphi = np.asarray(deltaphi)
     chi1 = np.asarray(chi1)
     chi2 = np.asarray(chi2)
-    m1 = np.asarray(m1)
-    m2 = np.asarray(m2)
     
     # Primary spin vector (φ1 = 0 by convention)
     s1_x = chi1 * m1**2 * np.sin(theta1) * 0  # cos(0)
