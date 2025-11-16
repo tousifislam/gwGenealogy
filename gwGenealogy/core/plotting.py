@@ -2,7 +2,7 @@
 #-*- coding: utf-8 -*-
 #==============================================================================
 #
-#    FILE: conversions.py
+#    FILE: plotting.py
 #
 #    AUTHOR: Tousif Islam
 #    CREATED: 08-11-2025

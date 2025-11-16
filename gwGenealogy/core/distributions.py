@@ -15,7 +15,6 @@ from .rcparams import *
 
 import numpy as np
 import matplotlib.pyplot as plt
-from .conversions import angles_to_cartesian
 
 def sample_uniform_1d(n_samples, low=0.0, high=1.0, seed=None, plot=False, bins=50):
     """
@@ -52,6 +51,54 @@ def sample_uniform_1d(n_samples, low=0.0, high=1.0, seed=None, plot=False, bins=
     
     return samples
 
+def sample_uniform_in_log_1d(n_samples, low=1.0, high=10.0, seed=None, plot=False, bins=50, base=10):
+    """
+    Sample uniformly in log-space (log-uniform distribution)
+    
+    Parameters:
+    - n_samples: Number of samples to generate
+    - low: Lower bound of the distribution (default: 1.0, must be > 0)
+    - high: Upper bound of the distribution (default: 10.0)
+    - seed: Random seed for reproducibility (default: None)
+    - plot: Whether to plot the distribution (default: False)
+    - bins: Number of histogram bins for plotting (default: 50)
+    - base: Logarithm base (default: 10)
+    
+    Returns:
+    - Array of sampled points
+    
+    Note: low must be > 0 for log-uniform sampling
+    
+    Example:
+    samples = sample_uniform_in_log_1d(1000, low=1, high=100, seed=42)
+    """
+    if low <= 0:
+        raise ValueError("low must be > 0 for log-uniform sampling")
+    
+    rng = np.random.default_rng(seed)
+    
+    # Sample uniformly in log-space
+    log_low = np.log(low) / np.log(base)
+    log_high = np.log(high) / np.log(base)
+    log_samples = rng.uniform(log_low, log_high, n_samples)
+    
+    # Transform back to linear space
+    samples = base ** log_samples
+    
+    if plot:
+        plt.figure(figsize=(4,4))
+        plt.hist(samples, bins=bins, density=True, alpha=0.7, histtype='stepfilled', 
+                 color='C4', edgecolor='C4')
+        plt.xlabel('Value', fontsize=14)
+        plt.ylabel('Density', fontsize=14)
+        plt.xticks(fontsize=12)
+        plt.yticks(fontsize=12)
+        plt.grid(True, alpha=0.3)
+        plt.tight_layout()
+        plt.show()
+    
+    return samples
+    
 def sample_gaussian_1d(n_samples, mean=0.0, std=1.0, seed=None, plot=False, bins=50):
     """
     Sample from a Gaussian (normal) distribution
@@ -198,138 +245,3 @@ def sample_beta_1d(n_samples, a=1.4, b=3.6, seed=None, plot=False, bins=50):
         plt.show()
     
     return samples
-
-def sample_spins(n_samples, chi_min=0, chi_max=1, 
-                 spin_magnitude='uniform', spin_angles='isotropic',
-                 beta_a=1.4, beta_b=3.6):
-    """
-    Sample spin vectors for binary black hole systems with flexible distributions.
-    
-    Parameters:
-    -----------
-    n_samples : int
-        Number of spin pairs to generate
-    chi_min : float
-        Minimum dimensionless spin magnitude (default: 0)
-        Used for 'uniform' and 'random' magnitude distributions
-    chi_max : float
-        Maximum dimensionless spin magnitude (default: 1)
-        Used for 'uniform' and 'random' magnitude distributions
-    spin_magnitude : str
-        Distribution for spin magnitudes. Options:
-        - 'uniform': Uniform distribution between chi_min and chi_max
-        - 'random': Scaled uniform distribution: chi_min + (chi_max - chi_min) * U(0,1)
-        - 'beta': Beta distribution with parameters beta_a and beta_b
-    spin_angles : str
-        Distribution for spin orientations. Options:
-        - 'isotropic': Uniform distribution on the sphere (physically motivated)
-        - 'random': Uniform distribution in theta angle
-    beta_a : float
-        Alpha parameter for Beta distribution (default: 1.4)
-        Only used when spin_magnitude='beta'
-    beta_b : float
-        Beta parameter for Beta distribution (default: 3.6)
-        Only used when spin_magnitude='beta'
-        Default values are based on https://arxiv.org/abs/2111.03634
-        
-    Returns:
-    --------
-    chi1 : numpy array of shape (n_samples, 3)
-        3D spin vectors for the primary black hole
-    chi2 : numpy array of shape (n_samples, 3)
-        3D spin vectors for the secondary black hole
-    """
-    # Sample spin magnitudes
-    chi1_mag, chi2_mag = sample_spin_magnitudes(
-        n_samples, chi_min, chi_max, spin_magnitude, beta_a, beta_b
-    )
-    
-    # Sample angles
-    isotropic = (spin_angles == 'isotropic')
-    if spin_angles not in ['isotropic', 'random']:
-        raise ValueError(f"Unknown spin_angles: '{spin_angles}'. "
-                        f"Must be 'isotropic' or 'random'.")
-    
-    cos_theta1, cos_theta2, phi1, phi2 = sample_spin_angles(n_samples, isotropic)
-    
-    # Convert to 3D Cartesian vectors
-    chi1, chi2 = angles_to_cartesian(chi1_mag, chi2_mag, cos_theta1, cos_theta2, phi1, phi2)
-    
-    return chi1, chi2
-
-def sample_spin_magnitudes(n_samples, chi_min, chi_max, spin_magnitude, beta_a, beta_b):
-    """
-    Sample spin magnitudes based on specified distribution.
-    
-    Parameters:
-    -----------
-    n_samples : int
-        Number of samples to generate
-    chi_min : float
-        Minimum spin magnitude
-    chi_max : float
-        Maximum spin magnitude
-    spin_magnitude : str
-        Distribution type: 'uniform', 'random', or 'beta'
-    beta_a : float
-        Alpha parameter for Beta distribution
-    beta_b : float
-        Beta parameter for Beta distribution
-        
-    Returns:
-    --------
-    chi1_mag : numpy array of shape (n_samples,)
-        Spin magnitudes for primary black hole
-    chi2_mag : numpy array of shape (n_samples,)
-        Spin magnitudes for secondary black hole
-    """
-    if spin_magnitude == 'uniform':
-        chi1_mag = np.random.uniform(chi_min, chi_max, n_samples)
-        chi2_mag = np.random.uniform(chi_min, chi_max, n_samples)
-    elif spin_magnitude == 'random':
-        chi1_mag = chi_min + (chi_max - chi_min) * np.random.uniform(size=n_samples)
-        chi2_mag = chi_min + (chi_max - chi_min) * np.random.uniform(size=n_samples)
-    elif spin_magnitude == 'beta':
-        chi1_mag = sample_beta_1d(n_samples, a=beta_a, b=beta_b)
-        chi2_mag = sample_beta_1d(n_samples, a=beta_a, b=beta_b)
-    else:
-        raise ValueError(f"Unknown spin_magnitude: '{spin_magnitude}'. "
-                        f"Must be 'uniform', 'random', or 'beta'.")
-    
-    return chi1_mag, chi2_mag
-
-def sample_spin_angles(n_samples, isotropic):
-    """
-    Sample spin orientation angles.
-    
-    Parameters:
-    -----------
-    n_samples : int
-        Number of samples to generate
-    isotropic : bool
-        If True, use isotropic distribution (uniform on sphere).
-        If False, use uniform distribution in theta.
-        
-    Returns:
-    --------
-    cos_theta1 : numpy array of shape (n_samples,)
-        Cosine of polar angle for primary black hole
-    cos_theta2 : numpy array of shape (n_samples,)
-        Cosine of polar angle for secondary black hole
-    phi1 : numpy array of shape (n_samples,)
-        Azimuthal angle for primary black hole
-    phi2 : numpy array of shape (n_samples,)
-        Azimuthal angle for secondary black hole
-    """
-    if isotropic:
-        cos_theta1 = np.random.uniform(-1, 1, n_samples)
-        cos_theta2 = np.random.uniform(-1, 1, n_samples)
-    else:
-        cos_theta1 = np.cos(np.random.uniform(0, np.pi, n_samples))
-        cos_theta2 = np.cos(np.random.uniform(0, np.pi, n_samples))
-    
-    phi1 = np.random.uniform(0, 2*np.pi, n_samples)
-    phi2 = np.random.uniform(0, 2*np.pi, n_samples)
-    
-    return cos_theta1, cos_theta2, phi1, phi2
-
