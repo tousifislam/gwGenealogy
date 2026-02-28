@@ -169,24 +169,15 @@ def Mrem_SEVNdelayed(M, Z, mass_gap_low=55.0, mass_gap_high=120.0):
     return out
 
 
-def sample_1g_bh_population(n_samples, Z=0.0002, model='F12d',
-                            m_zams_min=10.0, m_zams_max=150.0,
-                            imf='salpeter', imf_alpha=-2.35, seed=None):
+def sample_zams_masses(n_samples, m_zams_min=10.0, m_zams_max=150.0,
+                       imf='salpeter', imf_alpha=-2.35, seed=None):
     """
-    Generate a population of 1st-generation black holes from stellar evolution.
-
-    Samples ZAMS masses from an initial mass function, applies a stellar
-    evolution model to get remnant masses, and filters out mass-gap zeros.
+    Sample zero-age main sequence (ZAMS) masses from an initial mass function.
 
     Parameters:
     -----------
     n_samples : int
-        Number of ZAMS masses to sample (actual BH count will be smaller
-        after filtering mass-gap zeros)
-    Z : float
-        Metallicity (default: 0.0002)
-    model : str
-        Stellar evolution model: 'F12d' or 'SEVNdelayed' (default: 'F12d')
+        Number of ZAMS masses to sample
     m_zams_min : float
         Minimum ZAMS mass in solar masses (default: 10.0)
     m_zams_max : float
@@ -200,34 +191,50 @@ def sample_1g_bh_population(n_samples, Z=0.0002, model='F12d',
 
     Returns:
     --------
-    m_bh : array
-        Array of BH masses in solar masses (mass-gap zeros removed)
+    M_ZAMS : array
+        Array of ZAMS masses in solar masses
     """
     rng = np.random.default_rng(seed)
 
-    # Sample ZAMS masses from IMF
     if imf.lower() == 'uniform':
-        M_ZAMS = rng.uniform(m_zams_min, m_zams_max, n_samples)
+        return rng.uniform(m_zams_min, m_zams_max, n_samples)
     elif imf.lower() == 'salpeter':
-        # Inverse CDF sampling for power-law: p(m) ∝ m^alpha
         alpha = imf_alpha
         g1 = alpha + 1
         u = rng.uniform(0, 1, n_samples)
-        M_ZAMS = (m_zams_min**g1 + u * (m_zams_max**g1 - m_zams_min**g1))**(1.0 / g1)
+        return (m_zams_min**g1 + u * (m_zams_max**g1 - m_zams_min**g1))**(1.0 / g1)
     else:
         raise ValueError(f"Unknown IMF: {imf}. Choose 'salpeter' or 'uniform'.")
 
-    # Apply stellar evolution model
+
+def evolve_stars(M_ZAMS, Z, model='F12d', **kwargs):
+    """
+    Evolve ZAMS masses to remnant masses using a stellar evolution model.
+
+    Parameters:
+    -----------
+    M_ZAMS : float or array
+        ZAMS masses in solar masses
+    Z : float
+        Absolute metallicity
+    model : str
+        Stellar evolution model: 'F12d' or 'SEVNdelayed' (default: 'F12d')
+    **kwargs
+        Additional keyword arguments passed to the underlying model
+        (e.g., mass_gap_low, mass_gap_high)
+
+    Returns:
+    --------
+    M_rem : float or array
+        Remnant masses in solar masses. Returns 0 for objects in the
+        pair-instability mass gap.
+    """
+    M_ZAMS = np.atleast_1d(np.asarray(M_ZAMS, dtype=float))
+
     if model.lower() == 'f12d':
-        m_bh = Mrem_F12d(M_ZAMS, Z)
+        return Mrem_F12d(M_ZAMS, Z, **kwargs)
     elif model.lower() == 'sevndelayed':
-        # SEVN delayed requires M >= 15
         M_ZAMS = np.clip(M_ZAMS, 15.0, 340.0)
-        m_bh = Mrem_SEVNdelayed(M_ZAMS, Z)
+        return Mrem_SEVNdelayed(M_ZAMS, Z, **kwargs)
     else:
         raise ValueError(f"Unknown model: {model}. Choose 'F12d' or 'SEVNdelayed'.")
-
-    # Filter out mass-gap zeros
-    m_bh = m_bh[m_bh > 0]
-
-    return m_bh
