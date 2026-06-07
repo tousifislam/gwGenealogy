@@ -1,2 +1,1 @@
 from .imbh_probability import compute_imbh_probability_grid
-from .model_comparison import compute_jensen_shannon_divergence, compare_kick_models

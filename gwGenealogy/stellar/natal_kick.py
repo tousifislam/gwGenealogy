@@ -21,6 +21,7 @@
 __author__ = "Tousif Islam"
 
 import numpy as np
+from ..core.distributions import sample_maxwellian_1d
 
 
 def sample_maxwellian_kick(sigma, n_samples=1, seed=None):
@@ -57,14 +58,7 @@ def sample_maxwellian_kick(sigma, n_samples=1, seed=None):
     Giacobbo & Mapelli (2018), Eq. 5: https://arxiv.org/abs/1805.11100
     Hobbs et al. (2005): https://arxiv.org/abs/astro-ph/0507584
     """
-    rng = np.random.default_rng(seed)
-
-    # Maxwell distribution: sample 3 independent Gaussian components,
-    # then take the magnitude
-    vx = rng.normal(0, sigma, n_samples)
-    vy = rng.normal(0, sigma, n_samples)
-    vz = rng.normal(0, sigma, n_samples)
-    v_kick = np.sqrt(vx**2 + vy**2 + vz**2)
+    v_kick = sample_maxwellian_1d(n_samples, sigma=sigma, seed=seed)
 
     if n_samples == 1:
         return float(v_kick[0])

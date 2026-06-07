@@ -211,6 +211,48 @@ def sample_powerlaw_1d(n_samples, beta, xmin=1.0, xmax=10.0, seed=None, plot=Fal
     
     return samples
 
+def sample_maxwellian_1d(n_samples, sigma=1.0, seed=None, plot=False, bins=50):
+    """
+    Sample from a Maxwell (speed) distribution.
+
+    The Maxwell distribution describes the magnitude of a 3D isotropic
+    Gaussian velocity vector with per-component dispersion sigma:
+
+        f(v) = sqrt(2/pi) * (v^2 / sigma^3) * exp(-v^2 / (2*sigma^2))
+
+    Mean: sigma * sqrt(8/pi).
+
+    Parameters:
+    - n_samples: Number of samples to generate
+    - sigma: 1D velocity dispersion (default: 1.0)
+    - seed: Random seed for reproducibility (default: None)
+    - plot: Whether to plot the distribution (default: False)
+    - bins: Number of histogram bins for plotting (default: 50)
+
+    Returns:
+    - Array of sampled speeds (>= 0)
+    """
+    rng = np.random.default_rng(seed)
+    vx = rng.normal(0, sigma, n_samples)
+    vy = rng.normal(0, sigma, n_samples)
+    vz = rng.normal(0, sigma, n_samples)
+    samples = np.sqrt(vx**2 + vy**2 + vz**2)
+
+    if plot:
+        plt.figure(figsize=(4,4))
+        plt.hist(samples, bins=bins, density=True, alpha=0.7, histtype='stepfilled',
+                 color='C5', edgecolor='C5')
+        plt.xlabel('Value', fontsize=14)
+        plt.ylabel('Density', fontsize=14)
+        plt.xticks(fontsize=12)
+        plt.yticks(fontsize=12)
+        plt.grid(True, alpha=0.3)
+        plt.tight_layout()
+        plt.show()
+
+    return samples
+
+
 def sample_beta_1d(n_samples, a=1.4, b=3.6, seed=None, plot=False, bins=50):
     """
     Sample from a Beta distribution

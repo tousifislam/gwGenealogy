@@ -24,7 +24,7 @@ def _get_default_remnant_spin_fn():
 def _get_default_kick_fn():
     from ..remnants.final_bbh_kick_rit import bbh_final_kick_precessing_CLZM2007
     return bbh_final_kick_precessing_CLZM2007
-from ..core.pairing import select_from_pool, sample_1g_masses
+from ..misc import select_from_pool, sample_1g_masses
 
 
 def _sample_isotropic_angles(rng):

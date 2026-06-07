@@ -12,57 +12,7 @@
 __author__ = "Tousif Islam"
 
 import numpy as np
-
-
-def compute_jensen_shannon_divergence(samples_a, samples_b, n_bins=100):
-    """
-    Compute the Jensen-Shannon divergence between two sets of samples.
-
-    JSD is a symmetric, bounded measure of the similarity between two
-    probability distributions, based on the KL divergence.
-
-    Parameters:
-    -----------
-    samples_a : array
-        First set of samples
-    samples_b : array
-        Second set of samples
-    n_bins : int
-        Number of histogram bins (default: 100)
-
-    Returns:
-    --------
-    jsd : float
-        Jensen-Shannon divergence (0 = identical, ln(2) = maximally different)
-    """
-    samples_a = np.asarray(samples_a)
-    samples_b = np.asarray(samples_b)
-
-    # Common bin edges
-    all_samples = np.concatenate([samples_a, samples_b])
-    edges = np.linspace(all_samples.min(), all_samples.max(), n_bins + 1)
-
-    # Histograms -> probability distributions
-    p, _ = np.histogram(samples_a, bins=edges, density=True)
-    q, _ = np.histogram(samples_b, bins=edges, density=True)
-
-    # Add small epsilon to avoid log(0)
-    eps = 1e-12
-    p = p + eps
-    q = q + eps
-
-    # Normalize
-    p = p / p.sum()
-    q = q / q.sum()
-
-    # Mixture distribution
-    m = 0.5 * (p + q)
-
-    # JSD = 0.5 * KL(P||M) + 0.5 * KL(Q||M)
-    kl_pm = np.sum(p * np.log(p / m))
-    kl_qm = np.sum(q * np.log(q / m))
-
-    return 0.5 * kl_pm + 0.5 * kl_qm
+from ..core.statistics import compute_jensen_shannon_divergence
 
 
 def compare_kick_models(model_a_fn, model_b_fn, q_values, chi_max=1.0,
@@ -78,7 +28,7 @@ def compare_kick_models(model_a_fn, model_b_fn, q_values, chi_max=1.0,
     model_b_fn : callable
         Second kick model with same signature
     q_values : array
-        Mass ratio values to compare at (q <= 1)
+        Mass ratio values to compare at (q = m1/m2 >= 1)
     chi_max : float
         Maximum spin magnitude (default: 1.0)
     n_samples : int

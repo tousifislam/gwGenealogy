@@ -4,8 +4,7 @@
 #
 #    FILE: stellar_evolution.py
 #
-#    Rewritten from Rapster code by Konstantinos Kritos
-#    https://github.com/Kkritos/Rapster/
+#    High-level stellar evolution convenience functions.
 #
 #    AUTHOR: Tousif Islam
 #    CREATED: 02-28-2026
@@ -14,159 +13,90 @@
 #==============================================================================
 __author__ = "Tousif Islam"
 
-import os
 import numpy as np
-from scipy import interpolate
-
-_DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
-
-# Lazy-loaded interpolators (initialized on first call)
-_MremInterpol_F12d = None
-_MremInterpol_SEVNdelayed = None
+from .collapse import compute_Mrem_Fryer12_delayed_rapster, compute_Mrem_SEVN_delayed_rapster
 
 
-def _load_F12d_interpolator():
-    """Load the Fryer 2012 delayed interpolator on first use."""
-    global _MremInterpol_F12d
-    if _MremInterpol_F12d is not None:
-        return _MremInterpol_F12d
-
-    N_grid = 700
-    M_grid = np.linspace(10, 340, N_grid)
-    Z_grid = np.logspace(np.log10(1e-4), np.log10(2e-2), N_grid)
-
-    data_path = os.path.join(_DATA_DIR, 'MzamsMrem_F12d.txt')
-    Mremnants_F12d = np.loadtxt(data_path, unpack=True)
-
-    _MremInterpol_F12d = interpolate.RegularGridInterpolator(
-        (M_grid, Z_grid), Mremnants_F12d, method='linear', bounds_error=True
-    )
-    return _MremInterpol_F12d
-
-
-def _load_SEVNdelayed_interpolator():
-    """Load the SEVN delayed interpolator on first use."""
-    global _MremInterpol_SEVNdelayed
-    if _MremInterpol_SEVNdelayed is not None:
-        return _MremInterpol_SEVNdelayed
-
-    # Load 12 metallicity files
-    Mrem_delayed_list = []
-    for i in range(1, 13):
-        fpath = os.path.join(_DATA_DIR, f'MzamsMrem{i}_delayed.npz')
-        data = np.load(fpath)
-        Mrem_delayed_list.append(data[f'Mrem{i}'])
-
-    # Stack: shape (Npoints, 12) — ZAMS x metallicity
-    Mrem_delayed = np.array(Mrem_delayed_list).T
-
-    # Metallicity grid
-    Zvalues = np.array([1.0e-4, 2.0e-4, 5.0e-4, 1.0e-3, 2.0e-3, 4.0e-3,
-                        6.0e-3, 8.0e-3, 1.0e-2, 1.4e-2, 1.7e-2, 2.0e-2])
-
-    # ZAMS mass grid
-    Npoints = 500
-    Mzams = np.linspace(15, 340, Npoints)
-
-    _MremInterpol_SEVNdelayed = interpolate.RegularGridInterpolator(
-        (Mzams, Zvalues), Mrem_delayed, method='linear', bounds_error=True
-    )
-    return _MremInterpol_SEVNdelayed
-
-
-def Mrem_F12d(M, Z, mass_gap_low=45.0, mass_gap_high=120.0):
+def IMF_kroupa(m, alpha3=-2.3):
     """
-    Fryer et al. (2012) delayed remnant mass prescription model.
+    Kroupa (2002) initial mass function (broken power law).
 
-    Uses RAPSTER stellar evolution data interpolated on a regular grid.
+    Parameters
+    ----------
+    m : float or array
+        Stellar mass in solar masses
+    alpha3 : float
+        High-mass spectral index (default: -2.3)
 
-    Parameters:
-    -----------
-    M : float or array
-        ZAMS mass in solar masses (valid range: [10, 340])
-    Z : float or array
-        Absolute metallicity (valid range: [1e-4, 2e-2])
-    mass_gap_low : float
-        Lower edge of the upper mass gap in solar masses (default: 45.0)
-    mass_gap_high : float
-        Upper edge of the upper mass gap in solar masses (default: 120.0)
-
-    Returns:
-    --------
+    Returns
+    -------
     float or array
-        Remnant mass in solar masses. Returns 0 for BHs in the mass gap.
+        dN/dm in units of 1/Msun
 
-    References:
-    -----------
-    Fryer et al. (2012): https://arxiv.org/abs/1110.1726
+    References
+    ----------
+    Kroupa (2002): https://arxiv.org/abs/astro-ph/0201098
     """
-    interp = _load_F12d_interpolator()
+    m = np.asarray(m, dtype=float)
+    scalar_input = (m.ndim == 0)
+    m = np.atleast_1d(m)
 
-    M = np.atleast_1d(np.asarray(M, dtype=float))
-    Z = np.atleast_1d(np.asarray(Z, dtype=float))
+    m1, m2, m3 = 0.08, 0.50, 1.00
+    a0, a1, a2, a3 = -0.3, -1.3, -2.3, alpha3
 
-    # Broadcast Z to match M if Z is scalar
-    if Z.size == 1:
-        Z = np.full_like(M, Z[0])
+    c1 = m1**(a0 - a1)
+    c2 = c1 * m2**(a1 - a2)
+    c3 = c2 * m3**(a2 - a3)
 
-    points = np.column_stack((M, Z))
-    Mrem = interp(points)
+    out = np.piecewise(m, [
+        m <= m1,
+        (m > m1) & (m <= m2),
+        (m > m2) & (m <= m3),
+        m > m3,
+    ], [
+        lambda x: x**a0,
+        lambda x: c1 * x**a1,
+        lambda x: c2 * x**a2,
+        lambda x: c3 * x**a3,
+    ])
 
-    # Apply pair-instability mass gap
-    out = Mrem * (np.heaviside(mass_gap_low - Mrem, 0)
-                  + np.heaviside(Mrem - mass_gap_high, 0))
-
-    if out.size == 1:
-        return float(out[0])
-    return out
+    return float(out[0]) if scalar_input else out
 
 
-def Mrem_SEVNdelayed(M, Z, mass_gap_low=55.0, mass_gap_high=120.0):
+def sample_kroupa_masses(n_samples, m_min=0.08, m_max=150.0, alpha3=-2.3,
+                         seed=None):
     """
-    SEVN delayed SN engine remnant mass prescription.
+    Sample masses from the Kroupa (2002) IMF via inverse CDF on a fine grid.
 
-    Uses RAPSTER SEVN data interpolated on a regular grid across
-    12 metallicity values.
+    Parameters
+    ----------
+    n_samples : int
+        Number of masses to draw
+    m_min : float
+        Minimum mass in solar masses (default: 0.08)
+    m_max : float
+        Maximum mass in solar masses (default: 150.0)
+    alpha3 : float
+        High-mass spectral index (default: -2.3)
+    seed : int or None
+        Random seed for reproducibility
 
-    Parameters:
-    -----------
-    M : float or array
-        ZAMS mass in solar masses (valid range: [15, 340])
-    Z : float or array
-        Absolute metallicity (valid range: [1e-4, 2e-2])
-    mass_gap_low : float
-        Lower edge of the upper mass gap in solar masses (default: 55.0)
-    mass_gap_high : float
-        Upper edge of the upper mass gap in solar masses (default: 120.0)
-
-    Returns:
-    --------
-    float or array
-        Remnant mass in solar masses. Returns 0 for BHs in the mass gap.
-
-    References:
-    -----------
-    Spera & Mapelli (2017) — SEVN code
+    Returns
+    -------
+    array
+        Sampled masses in solar masses
     """
-    interp = _load_SEVNdelayed_interpolator()
+    rng = np.random.default_rng(seed)
 
-    M = np.atleast_1d(np.asarray(M, dtype=float))
-    Z = np.atleast_1d(np.asarray(Z, dtype=float))
+    n_grid = 10000
+    m_grid = np.linspace(m_min, m_max, n_grid)
+    pdf = IMF_kroupa(m_grid, alpha3=alpha3)
 
-    # Broadcast Z to match M if Z is scalar
-    if Z.size == 1:
-        Z = np.full_like(M, Z[0])
+    cdf = np.cumsum(pdf)
+    cdf = cdf / cdf[-1]
 
-    points = np.column_stack((M, Z))
-    Mrem = interp(points)
-
-    # Apply pair-instability mass gap
-    out = Mrem * (np.heaviside(mass_gap_low - Mrem, 0)
-                  + np.heaviside(Mrem - mass_gap_high, 0))
-
-    if out.size == 1:
-        return float(out[0])
-    return out
+    u = rng.uniform(0, 1, n_samples)
+    return np.interp(u, cdf, m_grid)
 
 
 def sample_zams_masses(n_samples, m_zams_min=10.0, m_zams_max=150.0,
@@ -183,9 +113,11 @@ def sample_zams_masses(n_samples, m_zams_min=10.0, m_zams_max=150.0,
     m_zams_max : float
         Maximum ZAMS mass in solar masses (default: 150.0)
     imf : str
-        Initial mass function: 'salpeter' or 'uniform' (default: 'salpeter')
+        Initial mass function: 'salpeter', 'kroupa', or 'uniform'
+        (default: 'salpeter')
     imf_alpha : float
-        Power-law index for Salpeter IMF (default: -2.35)
+        Power-law index for Salpeter IMF (default: -2.35), or high-mass
+        slope alpha3 for Kroupa IMF (default: -2.3 if not specified)
     seed : int or None
         Random seed for reproducibility
 
@@ -203,11 +135,15 @@ def sample_zams_masses(n_samples, m_zams_min=10.0, m_zams_max=150.0,
         g1 = alpha + 1
         u = rng.uniform(0, 1, n_samples)
         return (m_zams_min**g1 + u * (m_zams_max**g1 - m_zams_min**g1))**(1.0 / g1)
+    elif imf.lower() == 'kroupa':
+        alpha3 = imf_alpha if imf_alpha != -2.35 else -2.3
+        return sample_kroupa_masses(n_samples, m_min=m_zams_min, m_max=m_zams_max,
+                                    alpha3=alpha3, seed=seed)
     else:
-        raise ValueError(f"Unknown IMF: {imf}. Choose 'salpeter' or 'uniform'.")
+        raise ValueError(f"Unknown IMF: {imf}. Choose 'salpeter', 'kroupa', or 'uniform'.")
 
 
-def evolve_stars(M_ZAMS, Z, model='F12d', **kwargs):
+def evolve_stars(M_ZAMS, Z, model='Fryer12_delayed', **kwargs):
     """
     Evolve ZAMS masses to remnant masses using a stellar evolution model.
 
@@ -218,7 +154,8 @@ def evolve_stars(M_ZAMS, Z, model='F12d', **kwargs):
     Z : float
         Absolute metallicity
     model : str
-        Stellar evolution model: 'F12d' or 'SEVNdelayed' (default: 'F12d')
+        Stellar evolution model: 'Fryer12_delayed' or 'SEVN_delayed'
+        (default: 'Fryer12_delayed')
     **kwargs
         Additional keyword arguments passed to the underlying model
         (e.g., mass_gap_low, mass_gap_high)
@@ -231,10 +168,59 @@ def evolve_stars(M_ZAMS, Z, model='F12d', **kwargs):
     """
     M_ZAMS = np.atleast_1d(np.asarray(M_ZAMS, dtype=float))
 
-    if model.lower() == 'f12d':
-        return Mrem_F12d(M_ZAMS, Z, **kwargs)
-    elif model.lower() == 'sevndelayed':
+    if model.lower() == 'fryer12_delayed':
+        return compute_Mrem_Fryer12_delayed_rapster(M_ZAMS, Z, **kwargs)
+    elif model.lower() == 'sevn_delayed':
         M_ZAMS = np.clip(M_ZAMS, 15.0, 340.0)
-        return Mrem_SEVNdelayed(M_ZAMS, Z, **kwargs)
+        return compute_Mrem_SEVN_delayed_rapster(M_ZAMS, Z, **kwargs)
     else:
-        raise ValueError(f"Unknown model: {model}. Choose 'F12d' or 'SEVNdelayed'.")
+        raise ValueError(f"Unknown model: {model}. Choose 'Fryer12_delayed' or 'SEVN_delayed'.")
+
+
+def sample_1g_bh_masses_from_stellar_collapse(n_samples, Z=0.0002,
+                                              model='Fryer12_delayed',
+                                              m_zams_min=10.0, m_zams_max=150.0,
+                                              imf='salpeter', imf_alpha=-2.35,
+                                              seed=None, **kwargs):
+    """
+    Generate a population of 1st-generation black holes from stellar evolution.
+
+    Convenience function that chains sample_zams_masses -> evolve_stars ->
+    filter mass-gap zeros.
+
+    Parameters:
+    -----------
+    n_samples : int
+        Number of ZAMS masses to sample (actual BH count will be smaller
+        after filtering mass-gap zeros)
+    Z : float
+        Metallicity (default: 0.0002)
+    model : str
+        Stellar evolution model: 'Fryer12_delayed' or 'SEVN_delayed'
+        (default: 'Fryer12_delayed')
+    m_zams_min : float
+        Minimum ZAMS mass in solar masses (default: 10.0)
+    m_zams_max : float
+        Maximum ZAMS mass in solar masses (default: 150.0)
+    imf : str
+        Initial mass function: 'salpeter', 'kroupa', or 'uniform'
+        (default: 'salpeter')
+    imf_alpha : float
+        Power-law index for Salpeter IMF (default: -2.35)
+    seed : int or None
+        Random seed for reproducibility
+    **kwargs
+        Additional keyword arguments passed to evolve_stars
+        (e.g., mass_gap_low, mass_gap_high)
+
+    Returns:
+    --------
+    m_bh : array
+        Array of BH masses in solar masses (mass-gap zeros removed)
+    """
+    M_ZAMS = sample_zams_masses(n_samples, m_zams_min=m_zams_min,
+                                m_zams_max=m_zams_max, imf=imf,
+                                imf_alpha=imf_alpha, seed=seed)
+    m_rem = evolve_stars(M_ZAMS, Z, model=model, **kwargs)
+    m_rem = np.atleast_1d(m_rem)
+    return m_rem[m_rem > 0]

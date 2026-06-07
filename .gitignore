@@ -3,5 +3,6 @@ idea
 .env
 __pycache__/
 .ipynb_checkpoints/
-.h5
-.json
+
+# Large GWTC population data files
+gwGenealogy/binaries/data/

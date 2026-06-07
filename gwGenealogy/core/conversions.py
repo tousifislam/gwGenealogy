@@ -53,6 +53,48 @@ def m1_m2_to_eta(m1, m2):
     return (m1 * m2) / (m1 + m2)**2
 
 
+def source_frame_to_detector_frame_mass(m_source, z):
+    """
+    Convert source-frame mass to detector-frame mass.
+
+    m_detector = (1 + z) * m_source
+
+    Parameters
+    ----------
+    m_source : float or array
+        Source-frame mass in solar masses
+    z : float or array
+        Redshift
+
+    Returns
+    -------
+    float or array
+        Detector-frame mass in solar masses
+    """
+    return (1 + z) * m_source
+
+
+def detector_frame_to_source_frame_mass(m_detector, z):
+    """
+    Convert detector-frame mass to source-frame mass.
+
+    m_source = m_detector / (1 + z)
+
+    Parameters
+    ----------
+    m_detector : float or array
+        Detector-frame mass in solar masses
+    z : float or array
+        Redshift
+
+    Returns
+    -------
+    float or array
+        Source-frame mass in solar masses
+    """
+    return m_detector / (1 + z)
+
+
 # ---- Derived spin quantities (all use q = m1/m2 >= 1) ----
 
 def chi_eff(q, chi1z, chi2z):
