@@ -11,10 +11,10 @@
 #==============================================================================
 __author__ = "Tousif Islam"
 
-from .rcparams import *
-
 import numpy as np
 import matplotlib.pyplot as plt
+
+from .rcparams import set_rcparams
 
 def sample_uniform_1d(n_samples, low=0.0, high=1.0, seed=None, plot=False, bins=50):
     """
@@ -51,7 +51,7 @@ def sample_uniform_1d(n_samples, low=0.0, high=1.0, seed=None, plot=False, bins=
     
     return samples
 
-def sample_uniform_in_log_1d(n_samples, low=1.0, high=10.0, seed=None, plot=False, bins=50, base=10):
+def sample_loguniform_1d(n_samples, low=1.0, high=10.0, seed=None, plot=False, bins=50, base=10):
     """
     Sample uniformly in log-space (log-uniform distribution)
     
@@ -70,7 +70,7 @@ def sample_uniform_in_log_1d(n_samples, low=1.0, high=10.0, seed=None, plot=Fals
     Note: low must be > 0 for log-uniform sampling
     
     Example:
-    samples = sample_uniform_in_log_1d(1000, low=1, high=100, seed=42)
+    samples = sample_loguniform_1d(1000, low=1, high=100, seed=42)
     """
     if low <= 0:
         raise ValueError("low must be > 0 for log-uniform sampling")
