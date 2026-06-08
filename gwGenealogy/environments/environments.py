@@ -158,27 +158,3 @@ def compute_multi_environment_cumulative_retention(v_kick, environments=None):
         environments = ENVIRONMENTS
     return {name: compute_environment_cumulative_retention(v_kick, env)
             for name, env in environments.items()}
-
-
-def summarize_retention(p_ret, percentiles=(5, 50, 95)):
-    """Percentile summary from per-kick p_ret samples.
-
-    Parameters
-    ----------
-    p_ret : array
-        Per-kick retention probabilities from ``compute_environment_retention``
-    percentiles : tuple of floats
-        Percentiles to compute (default: 5th, 50th, 95th)
-
-    Returns
-    -------
-    dict
-        'median', and 'p{X}' for each requested percentile
-    """
-    p_ret = np.asarray(p_ret)
-    result = {}
-    pvals = np.percentile(p_ret, percentiles)
-    for pct, val in zip(percentiles, pvals):
-        key = f'p{int(pct)}' if pct == int(pct) else f'p{pct}'
-        result[key] = float(val)
-    return result
