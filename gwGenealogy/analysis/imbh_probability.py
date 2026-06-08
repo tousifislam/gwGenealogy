@@ -12,7 +12,7 @@
 __author__ = "Tousif Islam"
 
 import numpy as np
-from ..clusters.generations import run_hierarchical_merger_mc
+from .generations import run_hierarchical_merger_mc
 
 
 def compute_imbh_probability_grid(seed_mass_values, chi_max_values, v_esc_values,
