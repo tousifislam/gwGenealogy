@@ -4,13 +4,18 @@
 #
 #    FILE: star_clusters.py
 #
-#    Star cluster property sampling for different cluster flavours.
+#    Star cluster property sampling and escape velocity formulas.
 #
-#    Mapelli et al. (2021) Sec 2.5:
+#    Escape velocity formulas:
+#      Mcl_rh_to_vescape: virial theorem, v_esc = 2 sqrt(0.4 G M / r_h)
+#        Reference: https://arxiv.org/pdf/2210.10055, Equation 1
+#      Mcl_rho_to_vescape: mass-density scaling relation,
+#        v_esc = 40 km/s (M/1e5)^(1/3) (rho/1e5)^(1/6)
+#        References: Georgiev et al. (2009a,b), Fragione & Silk (2020)
+#
+#    Cluster sampling (Mapelli et al. 2021, Sec 2.5):
 #      Three cluster flavours — NSC, GC, YSC — each defined by
 #      log-normal M_cluster and rho distributions, plus t_SC and f_bin.
-#      Escape velocity from Georgiev et al. (2009), Fragione & Silk (2020):
-#        v_esc = 40 km/s (M_cluster/1e5 Msun)^(1/3) (rho/1e5 Msun pc^-3)^(1/6)
 #      Core density rho_c = 20 * rho.
 #
 #    References:
@@ -26,7 +31,59 @@
 __author__ = "Tousif Islam"
 
 import numpy as np
-from .escape_velocity import Mcl_rh_to_vescape, Mcl_rho_to_vescape
+
+G_SI = 6.67430e-11
+M_SUN_KG = 1.98892e30
+PC_TO_M = 3.08567758149137e16
+
+
+def Mcl_rh_to_vescape(Mcl, r_h):
+    """Escape velocity from cluster mass and half-mass radius (virial theorem).
+
+    v_esc = 2 * sqrt(0.4 G M_cl / r_h)
+
+    Parameters
+    ----------
+    Mcl : float or array
+        Total cluster mass [Msun]
+    r_h : float or array
+        Half-mass radius [pc]
+
+    Returns
+    -------
+    v_esc : float or array
+        Escape velocity [km/s]
+
+    Reference: https://arxiv.org/pdf/2210.10055, Equation 1
+    """
+    Mcl_kg = np.asarray(Mcl, dtype=float) * M_SUN_KG
+    r_h_m = np.asarray(r_h, dtype=float) * PC_TO_M
+    v_rms = np.sqrt(0.4 * G_SI * Mcl_kg / r_h_m)
+    return 2.0 * v_rms / 1000.0
+
+
+def Mcl_rho_to_vescape(Mcl, rho):
+    """Escape velocity from cluster mass and half-mass density (scaling relation).
+
+    v_esc = 40 km/s * (M_tot / 1e5 Msun)^(1/3) * (rho / 1e5 Msun pc^-3)^(1/6)
+
+    Parameters
+    ----------
+    Mcl : float or array
+        Total cluster mass [Msun]
+    rho : float or array
+        Density at the half-mass radius [Msun pc^-3]
+
+    Returns
+    -------
+    v_esc : float or array
+        Escape velocity [km/s]
+
+    References: Georgiev et al. (2009a,b), Fragione & Silk (2020),
+    https://arxiv.org/pdf/2103.05016 Equation 22
+    """
+    return 40.0 * (np.asarray(Mcl, dtype=float) / 1e5)**(1.0/3.0) * (np.asarray(rho, dtype=float) / 1e5)**(1.0/6.0)
+
 
 _STAR_CLUSTER_PARAMS = {
     'NSC': {'log_M_mean': 6.18, 'log_rho_mean': 5.0, 't_SC': 13.6, 'f_bin': 0.01},

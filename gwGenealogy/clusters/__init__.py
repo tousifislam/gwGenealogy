@@ -17,3 +17,4 @@ __author__ = "Tousif Islam"
 
 from .generations import *
 from .plotting import *
+from .plummer import *
