@@ -39,7 +39,7 @@
 __author__ = "Tousif Islam"
 
 import numpy as np
-from ..core.distributions import sample_beta_1d, sample_uniform_1d, sample_loguniform_1d
+from ..utils.distributions import sample_beta_1d, sample_uniform_1d, sample_loguniform_1d
 from .bbh_spins import sample_spin_angles
 
 # Beta distribution parameters for spin magnitude: p(chi) = Beta(chi; a, b)

@@ -21,7 +21,7 @@
 __author__ = "Tousif Islam"
 
 import numpy as np
-from ..core.distributions import sample_maxwellian_1d
+from ..utils.distributions import sample_maxwellian_1d
 
 
 def sample_maxwellian_kick(sigma, n_samples=1, seed=None):

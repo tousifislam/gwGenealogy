@@ -40,7 +40,7 @@ from gwModels.remnants import (
 )
 import gwModels.remnants.IW2025_kick_precessing as _iw2025_mod
 
-from ..core.coordinates import spins_polar_to_cartesian_vectors
+from ..utils.coordinates import spins_polar_to_cartesian_vectors
 
 try:
     import surfinBH

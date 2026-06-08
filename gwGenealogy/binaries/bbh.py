@@ -20,11 +20,11 @@
 __author__ = "Tousif Islam"
 
 import numpy as np
-from ..core.conversions import (m1_m2_to_mchirp, m1_m2_to_q, m1_m2_to_eta,
+from ..utils.conversions import (m1_m2_to_mchirp, m1_m2_to_q, m1_m2_to_eta,
                                 chi_eff, chi_p,
                                 delta_parallel, delta_perp,
                                 chi_tilde_parallel, chi_tilde_perp)
-from ..core.coordinates import (spins_polar_to_cartesian_vectors,
+from ..utils.coordinates import (spins_polar_to_cartesian_vectors,
                                 polar_to_cartesian)
 
 

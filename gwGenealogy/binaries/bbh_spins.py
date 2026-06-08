@@ -12,8 +12,8 @@
 __author__ = "Tousif Islam"
 
 import numpy as np
-from ..core.coordinates import spins_polar_to_cartesian_vectors
-from ..core.distributions import sample_uniform_1d, sample_beta_1d
+from ..utils.coordinates import spins_polar_to_cartesian_vectors
+from ..utils.distributions import sample_uniform_1d, sample_beta_1d
 
 
 def sample_spins(n_samples, chi_min=0, chi_max=1,

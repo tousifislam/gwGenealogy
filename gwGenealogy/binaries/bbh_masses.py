@@ -14,7 +14,7 @@
 __author__ = "Tousif Islam"
 
 import numpy as np
-from ..core.distributions import (sample_uniform_1d, sample_loguniform_1d,
+from ..utils.distributions import (sample_uniform_1d, sample_loguniform_1d,
                                   sample_powerlaw_1d)
 
 
