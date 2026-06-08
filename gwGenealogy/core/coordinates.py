@@ -75,17 +75,17 @@ def cartesian_to_polar(x, y, z):
 
 # ---- Spin-specific coordinate transforms ----
 
-def spins_polar_to_cartesian_vectors(chi1_mag, chi2_mag, theta_1, theta_2, phi_1, phi_2):
+def spins_polar_to_cartesian_vectors(a1, a2, theta1, theta2, phi1, phi2):
     """
     Convert spin magnitudes and angles to 3D Cartesian spin vectors.
 
     Parameters
     ----------
-    chi1_mag, chi2_mag : array
+    a1, a2 : array
         Dimensionless spin magnitudes
-    theta_1, theta_2 : array
+    theta1, theta2 : array
         Polar (tilt) angles in radians
-    phi_1, phi_2 : array
+    phi1, phi2 : array
         Azimuthal angles in radians
 
     Returns
@@ -95,8 +95,8 @@ def spins_polar_to_cartesian_vectors(chi1_mag, chi2_mag, theta_1, theta_2, phi_1
     chi2 : array of shape (n_samples, 3)
         3D spin vectors for the secondary black hole
     """
-    x1, y1, z1 = polar_to_cartesian(chi1_mag, theta_1, phi_1)
-    x2, y2, z2 = polar_to_cartesian(chi2_mag, theta_2, phi_2)
+    x1, y1, z1 = polar_to_cartesian(a1, theta1, phi1)
+    x2, y2, z2 = polar_to_cartesian(a2, theta2, phi2)
 
     chi1 = np.column_stack([x1, y1, z1])
     chi2 = np.column_stack([x2, y2, z2])
@@ -116,17 +116,17 @@ def spins_cartesian_vectors_to_polar(chi1_vec, chi2_vec):
 
     Returns
     -------
-    chi1_mag, chi2_mag : array
+    a1, a2 : array
         Dimensionless spin magnitudes
-    theta_1, theta_2 : array
+    theta1, theta2 : array
         Polar (tilt) angles in radians
-    phi_1, phi_2 : array
+    phi1, phi2 : array
         Azimuthal angles in radians
     """
     chi1_vec = np.atleast_2d(chi1_vec)
     chi2_vec = np.atleast_2d(chi2_vec)
 
-    chi1_mag, theta_1, phi_1 = cartesian_to_polar(chi1_vec[:, 0], chi1_vec[:, 1], chi1_vec[:, 2])
-    chi2_mag, theta_2, phi_2 = cartesian_to_polar(chi2_vec[:, 0], chi2_vec[:, 1], chi2_vec[:, 2])
+    a1, theta1, phi1 = cartesian_to_polar(chi1_vec[:, 0], chi1_vec[:, 1], chi1_vec[:, 2])
+    a2, theta2, phi2 = cartesian_to_polar(chi2_vec[:, 0], chi2_vec[:, 1], chi2_vec[:, 2])
 
-    return chi1_mag, chi2_mag, theta_1, theta_2, phi_1, phi_2
+    return a1, a2, theta1, theta2, phi1, phi2

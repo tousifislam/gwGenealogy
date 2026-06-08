@@ -38,10 +38,10 @@
 #      where Z(m1) normalises over small_q in [0, 1].
 #      Marginal p(small_q) = integral over m1 of p(m1) * p(small_q|m1).
 #
-#    Spin magnitude (iid for chi1_mag, chi2_mag):
+#    Spin magnitude (iid for a1, a2):
 #      p(chi) = TruncatedNormal(chi; mu_chi, sigma_chi, [0, amax])
 #
-#    Spin tilt (iid for cos_theta_1, cos_theta_2):
+#    Spin tilt (iid for cos_theta1, cos_theta2):
 #      p(cos_theta) = xi * TruncatedNormal(cos_theta; mu_spin, sigma_spin, [-1, 1])
 #                     + (1 - xi) * 1/2
 #      where mu_spin is FREE (not fixed at +1, unlike GWTC-3).
@@ -62,14 +62,14 @@
 #    Mass ratio p(small_q | m1), where small_q = m2/m1 in [0, 1]:
 #      p(small_q | m1) = small_q^beta * S(small_q*m1 | mmin, delta_m) / Z(m1)
 #
-#    Spin magnitude (iid for chi1_mag, chi2_mag):
+#    Spin magnitude (iid for a1, a2):
 #      p(chi) = Beta(chi/amax; alpha_chi, beta_chi) / amax
 #      where (alpha_chi, beta_chi) are derived from (mu_chi, sigma_chi=variance):
 #        mu' = mu_chi / amax,  var' = sigma_chi / amax^2
 #        alpha_chi = mu' * [mu'(1-mu')/var' - 1]
 #        beta_chi  = (1-mu') * [mu'(1-mu')/var' - 1]
 #
-#    Spin tilt (iid for cos_theta_1, cos_theta_2):
+#    Spin tilt (iid for cos_theta1, cos_theta2):
 #      p(cos_theta) = xi * TruncatedNormal(cos_theta; mu=+1, sigma_spin, [-1, 1])
 #                     + (1 - xi) * 1/2
 #      NOTE: mu is FIXED at +1 (not free like GWTC-4/5).
@@ -233,7 +233,7 @@ def _massratio_pdf(q, m1grid, p):
 
 
 def _spinmag_pdf(a, p):
-    """GWTC-4/5 spin magnitude PDF (iid for chi1_mag, chi2_mag).
+    """GWTC-4/5 spin magnitude PDF (iid for a1, a2).
 
     p(chi) = TruncatedNormal(chi; mu_chi, sigma_chi, [0, amax])
     """
@@ -243,7 +243,7 @@ def _spinmag_pdf(a, p):
 
 
 def _costilt_pdf(c, p):
-    """GWTC-4/5 spin tilt PDF (iid for cos_theta_1, cos_theta_2).
+    """GWTC-4/5 spin tilt PDF (iid for cos_theta1, cos_theta2).
 
     p(cos_theta) = xi * TruncatedNormal(cos_theta; mu_spin, sigma_spin, [-1, 1])
                    + (1 - xi) * 1/2
@@ -291,7 +291,7 @@ def _mu_var_to_alpha_beta(mu, var, amax=1.0):
 
 
 def _spinmag_pdf_beta(a, alpha_chi, beta_chi, amax=1.0, eps=1e-6):
-    """GWTC-3 spin magnitude PDF (iid for chi1_mag, chi2_mag).
+    """GWTC-3 spin magnitude PDF (iid for a1, a2).
 
     p(chi) = Beta(chi/amax; alpha_chi, beta_chi) / amax
 
@@ -304,7 +304,7 @@ def _spinmag_pdf_beta(a, alpha_chi, beta_chi, amax=1.0, eps=1e-6):
 
 
 def _costilt_pdf_gwtc3(c, xi_spin, sigma_spin):
-    """GWTC-3 spin tilt PDF (iid for cos_theta_1, cos_theta_2).
+    """GWTC-3 spin tilt PDF (iid for cos_theta1, cos_theta2).
 
     p(cos_theta) = xi * TruncatedNormal(cos_theta; mu=+1, sigma_spin, [-1, 1])
                    + (1 - xi) * 1/2
@@ -590,9 +590,9 @@ def _sample_from_grids(grids, n, mode="ppd", seed=None):
 
     Derived quantities computed after sampling:
       m2 = small_q * m1
-      chi_eff = (chi1_mag*cos_theta_1 + small_q*chi2_mag*cos_theta_2) / (1 + small_q)
-      chi_p = max(chi1_mag*sin_theta_1,
-                  [(3+4*small_q)/(4+3*small_q)] * small_q * chi2_mag * sin_theta_2)
+      chi_eff = (a1*cos_theta1 + small_q*a2*cos_theta2) / (1 + small_q)
+      chi_p = max(a1*sin_theta1,
+                  [(3+4*small_q)/(4+3*small_q)] * small_q * a2 * sin_theta2)
 
     Convention: small_q = m2/m1 in [0, 1].
     """
@@ -617,23 +617,23 @@ def _sample_from_grids(grids, n, mode="ppd", seed=None):
 
     m1 = draw("mass_1")
     small_q = draw("mass_ratio")
-    chi1_mag, chi2_mag = draw("a_1"), draw("a_2")
-    cos_theta_1, cos_theta_2 = draw("cos_tilt_1"), draw("cos_tilt_2")
+    a1, a2 = draw("a_1"), draw("a_2")
+    cos_theta1, cos_theta2 = draw("cos_tilt_1"), draw("cos_tilt_2")
     z = draw("redshift")
 
     # Derived quantities
     m2 = small_q * m1
-    chi_eff = (chi1_mag * cos_theta_1 + small_q * chi2_mag * cos_theta_2) / (1.0 + small_q)
-    sin_theta_1 = np.sqrt(1 - cos_theta_1**2)
-    sin_theta_2 = np.sqrt(1 - cos_theta_2**2)
-    chi_p = np.maximum(chi1_mag * sin_theta_1,
-                       ((3 + 4*small_q) / (4 + 3*small_q)) * small_q * chi2_mag * sin_theta_2)
+    chi_eff = (a1 * cos_theta1 + small_q * a2 * cos_theta2) / (1.0 + small_q)
+    sin_theta1 = np.sqrt(1 - cos_theta1**2)
+    sin_theta2 = np.sqrt(1 - cos_theta2**2)
+    chi_p = np.maximum(a1 * sin_theta1,
+                       ((3 + 4*small_q) / (4 + 3*small_q)) * small_q * a2 * sin_theta2)
 
     out = {
         "mass_1": m1, "mass_2": m2, "q": 1.0 / small_q, "small_q": small_q,
-        "chi1_mag": chi1_mag, "chi2_mag": chi2_mag,
-        "cos_theta_1": cos_theta_1, "cos_theta_2": cos_theta_2,
-        "theta_1": np.arccos(cos_theta_1), "theta_2": np.arccos(cos_theta_2),
+        "a1": a1, "a2": a2,
+        "cos_theta1": cos_theta1, "cos_theta2": cos_theta2,
+        "theta1": np.arccos(cos_theta1), "theta2": np.arccos(cos_theta2),
         "redshift": z,
         "chi_eff": chi_eff, "chi_p": chi_p,
     }
@@ -700,7 +700,7 @@ def sample_gwtc_population(n_samples, catalog="gwtc5", source="posterior",
     -------
     dict
         Dictionary with keys: mass_1, mass_2, q (=m1/m2 >= 1), small_q (=m2/m1),
-        chi1_mag, chi2_mag, cos_theta_1, cos_theta_2, theta_1, theta_2,
+        a1, a2, cos_theta1, cos_theta2, theta1, theta2,
         redshift, chi_eff, chi_p (and hyper_draw_index if mode != 'mean')
     """
     catalog = catalog.lower()

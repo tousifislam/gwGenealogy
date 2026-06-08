@@ -144,11 +144,11 @@ def chi_p(q, chi1_perp, chi2_perp):
     return np.maximum(chi1_perp, coeff * chi2_perp)
 
 
-def delta_parallel(q, chi1, chi2, theta_1, theta_2):
+def delta_parallel(q, chi1, chi2, theta1, theta2):
     """
     Parallel component of the asymmetric spin combination Delta.
 
-    Delta_parallel = |q * chi1 * cos(theta_1) - chi2 * cos(theta_2)| / (1 + q)
+    Delta_parallel = |q * chi1 * cos(theta1) - chi2 * cos(theta2)| / (1 + q)
 
     Parameters
     ----------
@@ -156,7 +156,7 @@ def delta_parallel(q, chi1, chi2, theta_1, theta_2):
         Mass ratio q = m1/m2 >= 1
     chi1, chi2 : float or array
         Dimensionless spin magnitudes
-    theta_1, theta_2 : float or array
+    theta1, theta2 : float or array
         Tilt angles in radians
 
     Returns
@@ -164,10 +164,10 @@ def delta_parallel(q, chi1, chi2, theta_1, theta_2):
     float or array
     """
     q = np.asarray(q, dtype=float)
-    return np.abs(q * chi1 * np.cos(theta_1) - chi2 * np.cos(theta_2)) / (1 + q)
+    return np.abs(q * chi1 * np.cos(theta1) - chi2 * np.cos(theta2)) / (1 + q)
 
 
-def delta_perp(q, chi1, chi2, theta_1, theta_2, deltaphi):
+def delta_perp(q, chi1, chi2, theta1, theta2, delta_phi):
     """
     Perpendicular component of the asymmetric spin combination Delta.
 
@@ -177,28 +177,28 @@ def delta_perp(q, chi1, chi2, theta_1, theta_2, deltaphi):
         Mass ratio q = m1/m2 >= 1
     chi1, chi2 : float or array
         Dimensionless spin magnitudes
-    theta_1, theta_2 : float or array
+    theta1, theta2 : float or array
         Tilt angles in radians
-    deltaphi : float or array
-        Azimuthal angle difference phi_1 - phi_2 in radians
+    delta_phi : float or array
+        Azimuthal angle difference phi1 - phi2 in radians
 
     Returns
     -------
     float or array
     """
     q = np.asarray(q, dtype=float)
-    s1 = np.sin(theta_1)
-    s2 = np.sin(theta_2)
+    s1 = np.sin(theta1)
+    s2 = np.sin(theta2)
     val = (q**2 * chi1**2 * s1**2 + chi2**2 * s2**2
-           - 2 * q * chi1 * chi2 * s1 * s2 * np.cos(deltaphi)) / (1 + q)**2
+           - 2 * q * chi1 * chi2 * s1 * s2 * np.cos(delta_phi)) / (1 + q)**2
     return np.sqrt(np.maximum(0, val))
 
 
-def chi_tilde_parallel(q, chi1, chi2, theta_1, theta_2):
+def chi_tilde_parallel(q, chi1, chi2, theta1, theta2):
     """
     Parallel component of the symmetric spin combination chi-tilde.
 
-    chi_tilde_parallel = (q^2 * chi1 * cos(theta_1) + chi2 * cos(theta_2)) / (1 + q)^2
+    chi_tilde_parallel = (q^2 * chi1 * cos(theta1) + chi2 * cos(theta2)) / (1 + q)^2
 
     Parameters
     ----------
@@ -206,7 +206,7 @@ def chi_tilde_parallel(q, chi1, chi2, theta_1, theta_2):
         Mass ratio q = m1/m2 >= 1
     chi1, chi2 : float or array
         Dimensionless spin magnitudes
-    theta_1, theta_2 : float or array
+    theta1, theta2 : float or array
         Tilt angles in radians
 
     Returns
@@ -214,10 +214,10 @@ def chi_tilde_parallel(q, chi1, chi2, theta_1, theta_2):
     float or array
     """
     q = np.asarray(q, dtype=float)
-    return (q**2 * chi1 * np.cos(theta_1) + chi2 * np.cos(theta_2)) / (1 + q)**2
+    return (q**2 * chi1 * np.cos(theta1) + chi2 * np.cos(theta2)) / (1 + q)**2
 
 
-def chi_tilde_perp(q, chi1, chi2, theta_1, theta_2, deltaphi):
+def chi_tilde_perp(q, chi1, chi2, theta1, theta2, delta_phi):
     """
     Perpendicular component of the symmetric spin combination chi-tilde.
 
@@ -227,18 +227,18 @@ def chi_tilde_perp(q, chi1, chi2, theta_1, theta_2, deltaphi):
         Mass ratio q = m1/m2 >= 1
     chi1, chi2 : float or array
         Dimensionless spin magnitudes
-    theta_1, theta_2 : float or array
+    theta1, theta2 : float or array
         Tilt angles in radians
-    deltaphi : float or array
-        Azimuthal angle difference phi_1 - phi_2 in radians
+    delta_phi : float or array
+        Azimuthal angle difference phi1 - phi2 in radians
 
     Returns
     -------
     float or array
     """
     q = np.asarray(q, dtype=float)
-    s1 = np.sin(theta_1)
-    s2 = np.sin(theta_2)
+    s1 = np.sin(theta1)
+    s2 = np.sin(theta2)
     val = (q**4 * chi1**2 * s1**2 + chi2**2 * s2**2
-           + 2 * q**2 * chi1 * chi2 * s1 * s2 * np.cos(deltaphi)) / (1 + q)**4
+           + 2 * q**2 * chi1 * chi2 * s1 * s2 * np.cos(delta_phi)) / (1 + q)**4
     return np.sqrt(np.maximum(0, val))

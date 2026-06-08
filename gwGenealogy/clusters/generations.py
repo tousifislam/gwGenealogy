@@ -14,15 +14,15 @@ __author__ = "Tousif Islam"
 import numpy as np
 
 def _get_default_remnant_mass_fn():
-    from ..remnants.final_bbh_mass_spin_gk2016 import bbh_final_mass_precessing_GK2016
-    return bbh_final_mass_precessing_GK2016
+    from gwModels.remnants import bbh_final_mass_precessing_BMR2012
+    return bbh_final_mass_precessing_BMR2012
 
 def _get_default_remnant_spin_fn():
-    from ..remnants.final_bbh_mass_spin_gk2016 import bbh_final_spin_precessing_GK2016
-    return bbh_final_spin_precessing_GK2016
+    from gwModels.remnants import bbh_final_spin_precessing_HBR2016
+    return bbh_final_spin_precessing_HBR2016
 
 def _get_default_kick_fn():
-    from ..remnants.final_bbh_kick_rit import bbh_final_kick_precessing_CLZM2007
+    from gwModels.remnants import bbh_final_kick_precessing_CLZM2007
     return bbh_final_kick_precessing_CLZM2007
 
 
@@ -37,16 +37,16 @@ def _sample_isotropic_angles(rng):
 
     Returns:
     --------
-    theta1, theta2, deltaphi, Theta : float
+    theta1, theta2, delta_phi, Theta : float
         Spin tilt angles, azimuthal difference, and orbital-plane angle (all radians)
     """
     theta1 = np.arccos(rng.uniform(-1, 1))
     theta2 = np.arccos(rng.uniform(-1, 1))
     phi1 = rng.uniform(0, 2 * np.pi)
     phi2 = rng.uniform(0, 2 * np.pi)
-    deltaphi = phi1 - phi2
+    delta_phi = phi1 - phi2
     Theta = rng.uniform(0, 2 * np.pi)
-    return theta1, theta2, deltaphi, Theta
+    return theta1, theta2, delta_phi, Theta
 
 
 def run_single_merger_chain(seed_mass, seed_spin, m_pool, v_esc, m_target=100.0,
@@ -89,7 +89,7 @@ def run_single_merger_chain(seed_mass, seed_spin, m_pool, v_esc, m_target=100.0,
         fn(m1, m2, chi1, chi2, theta1, theta2, dPhi) -> chi_rem.
         Default: bbh_final_spin_precessing_GK2016
     kick_fn : callable or None
-        fn(q, chi1, chi2, theta1, theta2, deltaphi, Theta) -> v_kick (km/s).
+        fn(q, chi1, chi2, theta1, theta2, delta_phi, Theta) -> v_kick (km/s).
         Default: bbh_final_kick_precessing_CLZM2007
     seed : int or None
         Random seed for reproducibility
@@ -126,7 +126,7 @@ def run_single_merger_chain(seed_mass, seed_spin, m_pool, v_esc, m_target=100.0,
         chi2 = rng.uniform(0, chi_max_secondary)
 
         # Isotropic angles
-        theta1, theta2, deltaphi, Theta = _sample_isotropic_angles(rng)
+        theta1, theta2, delta_phi, Theta = _sample_isotropic_angles(rng)
 
         # Ensure q <= 1 for kick formula
         m1_ord = max(m_current, m2)
@@ -141,13 +141,13 @@ def run_single_merger_chain(seed_mass, seed_spin, m_pool, v_esc, m_target=100.0,
 
         # Remnant mass and spin (these handle m1>=m2 swap internally)
         m_rem = remnant_mass_fn(m_current, m2, chi_current, chi2,
-                                theta1, theta2, deltaphi)
+                                theta1, theta2, delta_phi)
         chi_rem = remnant_spin_fn(m_current, m2, chi_current, chi2,
-                                  theta1, theta2, deltaphi)
+                                  theta1, theta2, delta_phi)
 
         # Kick velocity
         v_kick = kick_fn(q, chi1_ord, chi2_ord, theta1=theta1, theta2=theta2,
-                         deltaphi=deltaphi, Theta=Theta)
+                         delta_phi=delta_phi, Theta=Theta)
 
         if store_history:
             history.append({
@@ -423,16 +423,16 @@ def run_population_mergers(n_samples, chi_max, merge_fn=None, m_pool=None,
         theta2 = np.arccos(rng.uniform(-1, 1, n))
         phi1 = rng.uniform(0, 2 * np.pi, n)
         phi2 = rng.uniform(0, 2 * np.pi, n)
-        deltaphi = phi1 - phi2
+        delta_phi = phi1 - phi2
         Theta = rng.uniform(0, 2 * np.pi, n)
 
         # Remnant properties
-        mf = remnant_mass_fn(m1_f, m2_f, spin1_f, spin2_f, theta1, theta2, deltaphi)
-        chif = remnant_spin_fn(m1_f, m2_f, spin1_f, spin2_f, theta1, theta2, deltaphi)
+        mf = remnant_mass_fn(m1_f, m2_f, spin1_f, spin2_f, theta1, theta2, delta_phi)
+        chif = remnant_spin_fn(m1_f, m2_f, spin1_f, spin2_f, theta1, theta2, delta_phi)
 
         # Kick velocity
         vk = kick_fn(q, spin1_f, spin2_f, theta1=theta1, theta2=theta2,
-                     deltaphi=deltaphi, Theta=Theta)
+                     delta_phi=delta_phi, Theta=Theta)
 
         retained_mask = vk < v_esc
         return mf, chif, q, retained_mask
@@ -541,12 +541,12 @@ def compute_retention_probability(q_values, chi_max_values, v_esc_values,
             theta2 = np.arccos(rng.uniform(-1, 1, n_samples))
             phi1 = rng.uniform(0, 2 * np.pi, n_samples)
             phi2 = rng.uniform(0, 2 * np.pi, n_samples)
-            deltaphi = phi1 - phi2
+            delta_phi = phi1 - phi2
             Theta = rng.uniform(0, 2 * np.pi, n_samples)
 
             # Compute kicks
             vk = kick_fn(q, chi1, chi2, theta1=theta1, theta2=theta2,
-                         deltaphi=deltaphi, Theta=Theta)
+                         delta_phi=delta_phi, Theta=Theta)
 
             for k, v_esc in enumerate(v_esc_values):
                 p_ret[i, j, k] = (vk < v_esc).mean()

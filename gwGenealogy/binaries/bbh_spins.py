@@ -67,17 +67,17 @@ def sample_spins(n_samples, chi_min=0, chi_max=1,
     seed_mag = int(rng.integers(0, 2**31))
     seed_ang = int(rng.integers(0, 2**31))
 
-    chi1_mag, chi2_mag = sample_spin_magnitudes(
+    a1, a2 = sample_spin_magnitudes(
         n_samples, chi_min, chi_max, spin_magnitude, beta_a, beta_b, seed=seed_mag
     )
 
-    theta_1, theta_2, phi_1, phi_2 = sample_spin_angles(
+    theta1, theta2, phi1, phi2 = sample_spin_angles(
         n_samples, spin_angles, tilt_beta_a=tilt_beta_a,
         tilt_beta_b=tilt_beta_b, seed=seed_ang
     )
 
     chi1, chi2 = spins_polar_to_cartesian_vectors(
-        chi1_mag, chi2_mag, theta_1, theta_2, phi_1, phi_2
+        a1, a2, theta1, theta2, phi1, phi2
     )
 
     return chi1, chi2
@@ -107,9 +107,9 @@ def sample_spin_magnitudes(n_samples, chi_min, chi_max, spin_magnitude,
 
     Returns:
     --------
-    chi1_mag : numpy array of shape (n_samples,)
+    a1 : numpy array of shape (n_samples,)
         Spin magnitudes for primary black hole
-    chi2_mag : numpy array of shape (n_samples,)
+    a2 : numpy array of shape (n_samples,)
         Spin magnitudes for secondary black hole
     """
     rng = np.random.default_rng(seed)
@@ -117,16 +117,16 @@ def sample_spin_magnitudes(n_samples, chi_min, chi_max, spin_magnitude,
     seed2 = int(rng.integers(0, 2**31))
 
     if spin_magnitude == 'uniform':
-        chi1_mag = sample_uniform_1d(n_samples, low=chi_min, high=chi_max, seed=seed1)
-        chi2_mag = sample_uniform_1d(n_samples, low=chi_min, high=chi_max, seed=seed2)
+        a1 = sample_uniform_1d(n_samples, low=chi_min, high=chi_max, seed=seed1)
+        a2 = sample_uniform_1d(n_samples, low=chi_min, high=chi_max, seed=seed2)
     elif spin_magnitude == 'beta':
-        chi1_mag = sample_beta_1d(n_samples, a=beta_a, b=beta_b, seed=seed1)
-        chi2_mag = sample_beta_1d(n_samples, a=beta_a, b=beta_b, seed=seed2)
+        a1 = sample_beta_1d(n_samples, a=beta_a, b=beta_b, seed=seed1)
+        a2 = sample_beta_1d(n_samples, a=beta_a, b=beta_b, seed=seed2)
     else:
         raise ValueError(f"Unknown spin_magnitude: '{spin_magnitude}'. "
                         f"Must be 'uniform' or 'beta'.")
 
-    return chi1_mag, chi2_mag
+    return a1, a2
 
 
 def sample_spin_angles(n_samples, spin_angles='isotropic',
@@ -152,32 +152,32 @@ def sample_spin_angles(n_samples, spin_angles='isotropic',
 
     Returns:
     --------
-    theta_1, theta_2 : numpy array of shape (n_samples,)
+    theta1, theta2 : numpy array of shape (n_samples,)
         Polar (tilt) angles in radians
-    phi_1, phi_2 : numpy array of shape (n_samples,)
+    phi1, phi2 : numpy array of shape (n_samples,)
         Azimuthal angles in radians
     """
     rng = np.random.default_rng(seed)
     s1, s2, s3, s4 = (int(rng.integers(0, 2**31)) for _ in range(4))
 
     if spin_angles == 'isotropic':
-        theta_1 = np.arccos(sample_uniform_1d(n_samples, low=-1, high=1, seed=s1))
-        theta_2 = np.arccos(sample_uniform_1d(n_samples, low=-1, high=1, seed=s2))
+        theta1 = np.arccos(sample_uniform_1d(n_samples, low=-1, high=1, seed=s1))
+        theta2 = np.arccos(sample_uniform_1d(n_samples, low=-1, high=1, seed=s2))
     elif spin_angles == 'uniform':
-        theta_1 = sample_uniform_1d(n_samples, low=0, high=np.pi, seed=s1)
-        theta_2 = sample_uniform_1d(n_samples, low=0, high=np.pi, seed=s2)
+        theta1 = sample_uniform_1d(n_samples, low=0, high=np.pi, seed=s1)
+        theta2 = sample_uniform_1d(n_samples, low=0, high=np.pi, seed=s2)
     elif spin_angles == 'beta':
         if tilt_beta_a is None or tilt_beta_b is None:
             raise ValueError("tilt_beta_a and tilt_beta_b are required "
                              "when spin_angles='beta'")
-        theta_1 = sample_beta_1d(n_samples, a=tilt_beta_a, b=tilt_beta_b, seed=s1)
-        theta_2 = sample_beta_1d(n_samples, a=tilt_beta_a, b=tilt_beta_b, seed=s2)
+        theta1 = sample_beta_1d(n_samples, a=tilt_beta_a, b=tilt_beta_b, seed=s1)
+        theta2 = sample_beta_1d(n_samples, a=tilt_beta_a, b=tilt_beta_b, seed=s2)
     else:
         raise ValueError(f"Unknown spin_angles: '{spin_angles}'. "
                         f"Must be 'isotropic', 'uniform', or 'beta'.")
 
-    phi_1 = sample_uniform_1d(n_samples, low=0, high=2*np.pi, seed=s3)
-    phi_2 = sample_uniform_1d(n_samples, low=0, high=2*np.pi, seed=s4)
+    phi1 = sample_uniform_1d(n_samples, low=0, high=2*np.pi, seed=s3)
+    phi2 = sample_uniform_1d(n_samples, low=0, high=2*np.pi, seed=s4)
 
-    return theta_1, theta_2, phi_1, phi_2
+    return theta1, theta2, phi1, phi2
 

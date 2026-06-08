@@ -26,13 +26,13 @@
 #        cold:    a=5.935,   b=1.856    (very high spins, peaked ~0.8)
 #        dry:     a=10.5868, b=4.66884  (moderate, narrow, peaked ~0.7)
 #
-#    Spin tilt theta_1, theta_2:
+#    Spin tilt theta1, theta2:
 #      agnostic: isotropic, theta = arccos(U(-1, 1))   (random orientations)
 #      hot:     Beta(2.018, 5.244) on [0, 1] radian   (preferentially aligned)
 #      cold:    Beta(2.544, 19.527) on [0, 1] radian   (strongly aligned)
 #      dry:     isotropic, theta = arccos(U(-1, 1))    (random orientations)
 #
-#    Azimuthal angles phi_1, phi_2:
+#    Azimuthal angles phi1, phi2:
 #      Uniform on [0, 2*pi]
 #
 #==================================================================================
@@ -86,13 +86,13 @@ def sample_smbbh(n_samples, accretion="hot",
         - mass_2:    secondary mass in Msun
         - q:         mass ratio m1/m2 >= 1
         - small_q:   mass ratio m2/m1 in (0, 1]
-        - chi1_mag:  primary spin magnitude
-        - chi2_mag:  secondary spin magnitude
-        - theta_1:   primary spin tilt angle (rad)
-        - theta_2:   secondary spin tilt angle (rad)
-        - cos_theta_1, cos_theta_2: cosines of tilt angles
-        - phi_1:     primary azimuthal angle (rad)
-        - phi_2:     secondary azimuthal angle (rad)
+        - a1:  primary spin magnitude
+        - a2:  secondary spin magnitude
+        - theta1:   primary spin tilt angle (rad)
+        - theta2:   secondary spin tilt angle (rad)
+        - cos_theta1, cos_theta2: cosines of tilt angles
+        - phi1:     primary azimuthal angle (rad)
+        - phi2:     secondary azimuthal angle (rad)
     """
     accretion = accretion.lower()
     if accretion not in _SPIN_MAG_PARAMS:
@@ -124,26 +124,26 @@ def sample_smbbh(n_samples, accretion="hot",
     mag_params = _SPIN_MAG_PARAMS[accretion]
     if mag_params is None:
         # agnostic: uniform on [0, 1]
-        chi1_mag = sample_uniform_1d(n_samples, low=0, high=1, seed=seeds[1])
-        chi2_mag = sample_uniform_1d(n_samples, low=0, high=1, seed=seeds[2])
+        a1 = sample_uniform_1d(n_samples, low=0, high=1, seed=seeds[1])
+        a2 = sample_uniform_1d(n_samples, low=0, high=1, seed=seeds[2])
     else:
         # p(chi) = Beta(chi; a, b)
         a_mag, b_mag = mag_params
-        chi1_mag = sample_beta_1d(n_samples, a=a_mag, b=b_mag, seed=seeds[1])
-        chi2_mag = sample_beta_1d(n_samples, a=a_mag, b=b_mag, seed=seeds[2])
+        a1 = sample_beta_1d(n_samples, a=a_mag, b=b_mag, seed=seeds[1])
+        a2 = sample_beta_1d(n_samples, a=a_mag, b=b_mag, seed=seeds[2])
 
     # Spin tilts and azimuthal angles
     if accretion in ("dry", "agnostic"):
-        theta_1, theta_2, phi_1, phi_2 = sample_spin_angles(n_samples, spin_angles='isotropic', 
+        theta1, theta2, phi1, phi2 = sample_spin_angles(n_samples, spin_angles='isotropic', 
                                                             seed=seeds[3])
     else:
         a_tilt, b_tilt = _SPIN_TILT_PARAMS[accretion]
-        theta_1, theta_2, phi_1, phi_2 = sample_spin_angles(n_samples, spin_angles='beta',
+        theta1, theta2, phi1, phi2 = sample_spin_angles(n_samples, spin_angles='beta',
                                                             tilt_beta_a=a_tilt, tilt_beta_b=b_tilt, 
                                                             seed=seeds[3])
 
-    cos_theta_1 = np.cos(theta_1)
-    cos_theta_2 = np.cos(theta_2)
+    cos_theta1 = np.cos(theta1)
+    cos_theta2 = np.cos(theta2)
 
     return {
         "m_total": m_total,
@@ -151,12 +151,12 @@ def sample_smbbh(n_samples, accretion="hot",
         "mass_2": mass_2,
         "q": q,
         "small_q": small_q,
-        "chi1_mag": chi1_mag,
-        "chi2_mag": chi2_mag,
-        "theta_1": theta_1,
-        "theta_2": theta_2,
-        "cos_theta_1": cos_theta_1,
-        "cos_theta_2": cos_theta_2,
-        "phi_1": phi_1,
-        "phi_2": phi_2,
+        "a1": a1,
+        "a2": a2,
+        "theta1": theta1,
+        "theta2": theta2,
+        "cos_theta1": cos_theta1,
+        "cos_theta2": cos_theta2,
+        "phi1": phi1,
+        "phi2": phi2,
     }

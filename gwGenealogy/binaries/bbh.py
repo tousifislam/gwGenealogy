@@ -43,30 +43,30 @@ class BBHs:
         Mass ratio m1/m2 >= 1.
     small_q : float or array, optional
         Mass ratio m2/m1 in (0, 1].
-    chi1_mag : float or array
+    a1 : float or array
         Primary dimensionless spin magnitude.
-    chi2_mag : float or array
+    a2 : float or array
         Secondary dimensionless spin magnitude.
-    theta_1 : float or array
+    theta1 : float or array
         Primary spin tilt angle [rad].
-    theta_2 : float or array
+    theta2 : float or array
         Secondary spin tilt angle [rad].
-    phi_1 : float or array
+    phi1 : float or array
         Primary azimuthal spin angle [rad].
-    phi_2 : float or array
+    phi2 : float or array
         Secondary azimuthal spin angle [rad].
     z : float or array, optional
         Redshift.
     """
 
     def __init__(self, m1=None, m2=None, M=None, q=None, small_q=None,
-                 chi1_mag=0.0, chi2_mag=0.0,
-                 theta_1=0.0, theta_2=0.0,
-                 phi_1=0.0, phi_2=0.0,
+                 a1=0.0, a2=0.0,
+                 theta1=0.0, theta2=0.0,
+                 phi1=0.0, phi2=0.0,
                  z=None):
 
         self._resolve_masses(m1, m2, M, q, small_q)
-        self._set_spins(chi1_mag, chi2_mag, theta_1, theta_2, phi_1, phi_2)
+        self._set_spins(a1, a2, theta1, theta2, phi1, phi2)
         self._compute_derived_spins()
 
         self.z = np.asarray(z, dtype=float) if z is not None else None
@@ -93,41 +93,41 @@ class BBHs:
         self.eta = m1_m2_to_eta(self.m1, self.m2)
         self.mchirp = m1_m2_to_mchirp(self.m1, self.m2)
 
-    def _set_spins(self, chi1_mag, chi2_mag, theta_1, theta_2, phi_1, phi_2):
+    def _set_spins(self, a1, a2, theta1, theta2, phi1, phi2):
         """Store spin magnitudes and angles, build Cartesian vectors."""
-        self.chi1_mag = np.asarray(chi1_mag, dtype=float)
-        self.chi2_mag = np.asarray(chi2_mag, dtype=float)
-        self.theta_1 = np.asarray(theta_1, dtype=float)
-        self.theta_2 = np.asarray(theta_2, dtype=float)
-        self.phi_1 = np.asarray(phi_1, dtype=float)
-        self.phi_2 = np.asarray(phi_2, dtype=float)
+        self.a1 = np.asarray(a1, dtype=float)
+        self.a2 = np.asarray(a2, dtype=float)
+        self.theta1 = np.asarray(theta1, dtype=float)
+        self.theta2 = np.asarray(theta2, dtype=float)
+        self.phi1 = np.asarray(phi1, dtype=float)
+        self.phi2 = np.asarray(phi2, dtype=float)
 
-        self.cos_theta_1 = np.cos(self.theta_1)
-        self.cos_theta_2 = np.cos(self.theta_2)
+        self.cos_theta1 = np.cos(self.theta1)
+        self.cos_theta2 = np.cos(self.theta2)
 
-        chi1x, chi1y, chi1z = polar_to_cartesian(self.chi1_mag, self.theta_1, self.phi_1)
-        chi2x, chi2y, chi2z = polar_to_cartesian(self.chi2_mag, self.theta_2, self.phi_2)
+        chi1x, chi1y, chi1z = polar_to_cartesian(self.a1, self.theta1, self.phi1)
+        chi2x, chi2y, chi2z = polar_to_cartesian(self.a2, self.theta2, self.phi2)
 
         self.chi1z = chi1z
         self.chi2z = chi2z
-        self.chi1_perp = np.sqrt(chi1x**2 + chi1y**2)
-        self.chi2_perp = np.sqrt(chi2x**2 + chi2y**2)
+        self.a1_perp = np.sqrt(chi1x**2 + chi1y**2)
+        self.a2_perp = np.sqrt(chi2x**2 + chi2y**2)
         self.chi1_vec = np.stack([chi1x, chi1y, chi1z], axis=-1)
         self.chi2_vec = np.stack([chi2x, chi2y, chi2z], axis=-1)
 
     def _compute_derived_spins(self):
         """Compute chi_eff, chi_p, delta, chi_tilde from stored parameters."""
         self.chi_eff = chi_eff(self.q, self.chi1z, self.chi2z)
-        self.chi_p = chi_p(self.q, self.chi1_perp, self.chi2_perp)
+        self.chi_p = chi_p(self.q, self.a1_perp, self.a2_perp)
 
-        self.deltaphi = self.phi_1 - self.phi_2
+        self.delta_phi = self.phi1 - self.phi2
 
         self.delta_parallel = delta_parallel(
-            self.q, self.chi1_mag, self.chi2_mag, self.theta_1, self.theta_2)
+            self.q, self.a1, self.a2, self.theta1, self.theta2)
         self.delta_perp = delta_perp(
-            self.q, self.chi1_mag, self.chi2_mag, self.theta_1, self.theta_2, self.deltaphi)
+            self.q, self.a1, self.a2, self.theta1, self.theta2, self.delta_phi)
 
         self.chi_tilde_parallel = chi_tilde_parallel(
-            self.q, self.chi1_mag, self.chi2_mag, self.theta_1, self.theta_2)
+            self.q, self.a1, self.a2, self.theta1, self.theta2)
         self.chi_tilde_perp = chi_tilde_perp(
-            self.q, self.chi1_mag, self.chi2_mag, self.theta_1, self.theta_2, self.deltaphi)
+            self.q, self.a1, self.a2, self.theta1, self.theta2, self.delta_phi)
