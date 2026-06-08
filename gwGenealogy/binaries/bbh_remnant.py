@@ -10,7 +10,7 @@
 #
 #    Precessing models:
 #      mass/spin: 'hbr' (default), 'sur7dq4remnant', 'sur7dq4emri'
-#      kick:      'gwmodel' (default), 'hlz', 'sur7dq4remnant'
+#      kick:      'gwmodel' (default), 'hlz' (-> CLZM2007), 'sur7dq4remnant'
 #
 #    Nonprecessing models:
 #      mass/spin: 'uib' (default), 'hbr', 'sur7dq4remnant', 'sur7dq4emri'
@@ -34,6 +34,7 @@ from gwModels.remnants import (
     bbh_final_spin_precessing_HBR2016,
     bbh_final_mass_non_precessing_UIB2016,
     bbh_final_spin_non_precessing_UIB2016,
+    bbh_final_kick_precessing_CLZM2007,
     bbh_final_kick_nonprecessing_HLZ2014,
     gwModel_kick_q200,
     gwModel_kick_prec_flow,
@@ -96,8 +97,8 @@ class BBHRemnant:
         Nonprecessing: 'uib' (default), 'hbr', 'sur7dq4remnant', 'sur7dq4emri'
     kick_model : str or None
         Model for kick velocity. None uses the default.
-        Precessing: 'gwmodel' (default), 'hlz', 'sur7dq4remnant'
-        Nonprecessing: 'gwmodel_kick_q200' (default), 'hlz', 'sur3dq8remnant'
+        Precessing: 'gwmodel' (default), 'hlz' (-> CLZM2007), 'sur7dq4remnant'
+        Nonprecessing: 'gwmodel_kick_q200' (default), 'hlz' (-> HLZ2014), 'sur3dq8remnant'
 
     Attributes (after construction)
     ----------
@@ -292,9 +293,18 @@ class BBHRemnant:
         self.vkick = gwModel_kick_q200(self.q, self.chi1z, self.chi2z)
 
     def _kick_hlz(self):
-        """Compute vkick using the HLZ2014 nonprecessing kick formula."""
-        self.vkick = bbh_final_kick_nonprecessing_HLZ2014(
-            self.q, self.chi1z, self.chi2z)
+        """Compute vkick using the HLZ kick formula.
+
+        Dispatches to the precessing CLZM2007 formula when precessing=True,
+        or the nonprecessing HLZ2014 formula when precessing=False.
+        """
+        if self.precessing:
+            self.vkick = bbh_final_kick_precessing_CLZM2007(
+                self.q, self.a1, self.a2,
+                self.theta1, self.theta2, self.delta_phi)
+        else:
+            self.vkick = bbh_final_kick_nonprecessing_HLZ2014(
+                self.q, self.chi1z, self.chi2z)
 
     def __repr__(self):
         s = (f"BBHRemnant(n={len(self.m1)}, precessing={self.precessing}, "

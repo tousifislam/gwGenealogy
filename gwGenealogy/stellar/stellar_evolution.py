@@ -169,10 +169,18 @@ def evolve_stars(M_ZAMS, Z, model='Fryer12_delayed', **kwargs):
     M_ZAMS = np.atleast_1d(np.asarray(M_ZAMS, dtype=float))
 
     if model.lower() == 'fryer12_delayed':
-        return compute_Mrem_Fryer12_delayed_rapster(M_ZAMS, Z, **kwargs)
+        # Interpolator valid for ZAMS ∈ [10, 340]; stars below don't form BHs
+        mask = (M_ZAMS >= 10.0) & (M_ZAMS <= 340.0)
+        out = np.zeros_like(M_ZAMS)
+        if mask.any():
+            out[mask] = compute_Mrem_Fryer12_delayed_rapster(M_ZAMS[mask], Z, **kwargs)
+        return out
     elif model.lower() == 'sevn_delayed':
-        M_ZAMS = np.clip(M_ZAMS, 15.0, 340.0)
-        return compute_Mrem_SEVN_delayed_rapster(M_ZAMS, Z, **kwargs)
+        mask = (M_ZAMS >= 15.0) & (M_ZAMS <= 340.0)
+        out = np.zeros_like(M_ZAMS)
+        if mask.any():
+            out[mask] = compute_Mrem_SEVN_delayed_rapster(M_ZAMS[mask], Z, **kwargs)
+        return out
     else:
         raise ValueError(f"Unknown model: {model}. Choose 'Fryer12_delayed' or 'SEVN_delayed'.")
 
