@@ -1,0 +1,543 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gwGenealogy.hosts.host_retention &mdash; gwGenealogy 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            gwGenealogy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#from-source">From source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#building-the-documentation">Building the documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#sample-a-bbh-population">Sample a BBH population</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#compute-remnant-properties">Compute remnant properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#hierarchical-mergers">Hierarchical mergers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#bh-seed-growth">BH seed growth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#retention-probability-grids">Retention probability grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#gwtc-population-sampling">GWTC population sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#host-environment-retention">Host environment retention</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/utils.html">Utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.distributions.sample_uniform_1d"><code class="docutils literal notranslate"><span class="pre">sample_uniform_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.distributions.sample_loguniform_1d"><code class="docutils literal notranslate"><span class="pre">sample_loguniform_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.distributions.sample_gaussian_1d"><code class="docutils literal notranslate"><span class="pre">sample_gaussian_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.distributions.sample_lognormal_1d"><code class="docutils literal notranslate"><span class="pre">sample_lognormal_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.distributions.sample_powerlaw_1d"><code class="docutils literal notranslate"><span class="pre">sample_powerlaw_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.distributions.sample_maxwellian_1d"><code class="docutils literal notranslate"><span class="pre">sample_maxwellian_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.distributions.sample_beta_1d"><code class="docutils literal notranslate"><span class="pre">sample_beta_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.m1_m2_to_mchirp"><code class="docutils literal notranslate"><span class="pre">m1_m2_to_mchirp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.m1_m2_to_q"><code class="docutils literal notranslate"><span class="pre">m1_m2_to_q()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.m1_m2_to_eta"><code class="docutils literal notranslate"><span class="pre">m1_m2_to_eta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.source_frame_to_detector_frame_mass"><code class="docutils literal notranslate"><span class="pre">source_frame_to_detector_frame_mass()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.detector_frame_to_source_frame_mass"><code class="docutils literal notranslate"><span class="pre">detector_frame_to_source_frame_mass()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.chi_eff"><code class="docutils literal notranslate"><span class="pre">chi_eff()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.chi_p"><code class="docutils literal notranslate"><span class="pre">chi_p()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.delta_parallel"><code class="docutils literal notranslate"><span class="pre">delta_parallel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.delta_perp"><code class="docutils literal notranslate"><span class="pre">delta_perp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.chi_tilde_parallel"><code class="docutils literal notranslate"><span class="pre">chi_tilde_parallel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.chi_tilde_perp"><code class="docutils literal notranslate"><span class="pre">chi_tilde_perp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.coordinates.polar_to_cartesian"><code class="docutils literal notranslate"><span class="pre">polar_to_cartesian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.coordinates.cartesian_to_polar"><code class="docutils literal notranslate"><span class="pre">cartesian_to_polar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.coordinates.spins_polar_to_cartesian_vectors"><code class="docutils literal notranslate"><span class="pre">spins_polar_to_cartesian_vectors()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.coordinates.spins_cartesian_vectors_to_polar"><code class="docutils literal notranslate"><span class="pre">spins_cartesian_vectors_to_polar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.statistics.compute_kullback_leibler_divergence"><code class="docutils literal notranslate"><span class="pre">compute_kullback_leibler_divergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.statistics.compute_jensen_shannon_divergence"><code class="docutils literal notranslate"><span class="pre">compute_jensen_shannon_divergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.rcparams.set_rcparams"><code class="docutils literal notranslate"><span class="pre">set_rcparams()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/binaries.html">Binaries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh.BBHs"><code class="docutils literal notranslate"><span class="pre">BBHs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_masses.sample_masses"><code class="docutils literal notranslate"><span class="pre">sample_masses()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_spins.sample_spins"><code class="docutils literal notranslate"><span class="pre">sample_spins()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_spins.sample_spin_magnitudes"><code class="docutils literal notranslate"><span class="pre">sample_spin_magnitudes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_spins.sample_spin_angles"><code class="docutils literal notranslate"><span class="pre">sample_spin_angles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.E"><code class="docutils literal notranslate"><span class="pre">E()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.comoving_volume_element"><code class="docutils literal notranslate"><span class="pre">comoving_volume_element()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.luminosity_distance"><code class="docutils literal notranslate"><span class="pre">luminosity_distance()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.redshift_probability_density"><code class="docutils literal notranslate"><span class="pre">redshift_probability_density()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.sample_redshift"><code class="docutils literal notranslate"><span class="pre">sample_redshift()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.powerlaw_redshift_pdf"><code class="docutils literal notranslate"><span class="pre">powerlaw_redshift_pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.sample_redshift_powerlaw"><code class="docutils literal notranslate"><span class="pre">sample_redshift_powerlaw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.madau_dickinson_redshift_pdf"><code class="docutils literal notranslate"><span class="pre">madau_dickinson_redshift_pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.sample_redshift_madau_dickinson"><code class="docutils literal notranslate"><span class="pre">sample_redshift_madau_dickinson()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_remnant.BBHRemnant"><code class="docutils literal notranslate"><span class="pre">BBHRemnant</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_gwtc.sample_gwtc_population"><code class="docutils literal notranslate"><span class="pre">sample_gwtc_population()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_gwtc.available_catalogs"><code class="docutils literal notranslate"><span class="pre">available_catalogs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.smbbh.sample_smbbh"><code class="docutils literal notranslate"><span class="pre">sample_smbbh()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/stellar.html">Stellar</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.stellar_evolution.IMF_kroupa"><code class="docutils literal notranslate"><span class="pre">IMF_kroupa()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.stellar_evolution.sample_kroupa_masses"><code class="docutils literal notranslate"><span class="pre">sample_kroupa_masses()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.stellar_evolution.sample_zams_masses"><code class="docutils literal notranslate"><span class="pre">sample_zams_masses()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.stellar_evolution.evolve_stars"><code class="docutils literal notranslate"><span class="pre">evolve_stars()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.stellar_evolution.sample_1g_bh_masses_from_stellar_collapse"><code class="docutils literal notranslate"><span class="pre">sample_1g_bh_masses_from_stellar_collapse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.collapse.compute_Mrem_Fryer12_delayed_rapster"><code class="docutils literal notranslate"><span class="pre">compute_Mrem_Fryer12_delayed_rapster()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.collapse.compute_Mrem_SEVN_delayed_rapster"><code class="docutils literal notranslate"><span class="pre">compute_Mrem_SEVN_delayed_rapster()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.natal_kick.sample_maxwellian_kick"><code class="docutils literal notranslate"><span class="pre">sample_maxwellian_kick()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/hosts.html">Hosts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster"><code class="docutils literal notranslate"><span class="pre">PlummerCluster</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.potential"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.potential()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.density"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.density()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.sigma"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.sigma()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.merger_analysis"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.merger_analysis()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_scale_radius"><code class="docutils literal notranslate"><span class="pre">plummer_scale_radius()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_potential"><code class="docutils literal notranslate"><span class="pre">plummer_potential()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_density"><code class="docutils literal notranslate"><span class="pre">plummer_density()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_velocity_dispersion"><code class="docutils literal notranslate"><span class="pre">plummer_velocity_dispersion()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_escape_speed"><code class="docutils literal notranslate"><span class="pre">plummer_escape_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_core_speed"><code class="docutils literal notranslate"><span class="pre">plummer_core_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_tidal_radius"><code class="docutils literal notranslate"><span class="pre">plummer_tidal_radius()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_apocentre"><code class="docutils literal notranslate"><span class="pre">plummer_apocentre()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.chandrasekhar_F"><code class="docutils literal notranslate"><span class="pre">chandrasekhar_F()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.orbit_shape_factor"><code class="docutils literal notranslate"><span class="pre">orbit_shape_factor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.dynamical_friction_time"><code class="docutils literal notranslate"><span class="pre">dynamical_friction_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.retained_mask"><code class="docutils literal notranslate"><span class="pre">retained_mask()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.star_clusters.Mcl_rh_to_vescape"><code class="docutils literal notranslate"><span class="pre">Mcl_rh_to_vescape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.star_clusters.Mcl_rho_to_vescape"><code class="docutils literal notranslate"><span class="pre">Mcl_rho_to_vescape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.star_clusters.sample_star_clusters_mapelli2021"><code class="docutils literal notranslate"><span class="pre">sample_star_clusters_mapelli2021()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.star_clusters.sample_star_clusters"><code class="docutils literal notranslate"><span class="pre">sample_star_clusters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.sample_escape_speed"><code class="docutils literal notranslate"><span class="pre">sample_escape_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.sample_multi_escape_speed"><code class="docutils literal notranslate"><span class="pre">sample_multi_escape_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.escape_speed_cdf"><code class="docutils literal notranslate"><span class="pre">escape_speed_cdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.compute_environment_retention"><code class="docutils literal notranslate"><span class="pre">compute_environment_retention()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.compute_multi_environment_retention"><code class="docutils literal notranslate"><span class="pre">compute_multi_environment_retention()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.retention_curve"><code class="docutils literal notranslate"><span class="pre">retention_curve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.compute_environment_cumulative_retention"><code class="docutils literal notranslate"><span class="pre">compute_environment_cumulative_retention()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.compute_multi_environment_cumulative_retention"><code class="docutils literal notranslate"><span class="pre">compute_multi_environment_cumulative_retention()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/core.html">Core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.hierarchical.HierarchicalMergersInClusters"><code class="docutils literal notranslate"><span class="pre">HierarchicalMergersInClusters</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.hierarchical.HierarchicalMergersInClusters.simulate"><code class="docutils literal notranslate"><span class="pre">HierarchicalMergersInClusters.simulate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.hierarchical.HierarchicalMergersInClusters.plot_generations"><code class="docutils literal notranslate"><span class="pre">HierarchicalMergersInClusters.plot_generations()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.seed_growth.MonteCarloBHSeedGrowth"><code class="docutils literal notranslate"><span class="pre">MonteCarloBHSeedGrowth</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.seed_growth.MonteCarloBHSeedGrowth.simulate"><code class="docutils literal notranslate"><span class="pre">MonteCarloBHSeedGrowth.simulate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.seed_growth.MonteCarloBHSeedGrowth.simulate_grid"><code class="docutils literal notranslate"><span class="pre">MonteCarloBHSeedGrowth.simulate_grid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability.compute"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability.compute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability.plot_heatmap"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability.plot_heatmap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability.plot_heatmap_all_vesc"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability.plot_heatmap_all_vesc()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G.compute"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G.compute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G.plot_heatmap"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G.plot_heatmap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G.plot_heatmap_all_vesc"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G.plot_heatmap_all_vesc()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notebooks/index.html">Tutorials</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citation.html">Citation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../citation.html#papers-using-gwgenealogy">Papers using gwGenealogy</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">gwGenealogy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">gwGenealogy.hosts.host_retention</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for gwGenealogy.hosts.host_retention</h1><div class="highlight"><pre>
+<span></span><span class="ch">#! /usr/bin/env python</span>
+<span class="c1">#-*- coding: utf-8 -*-</span>
+<span class="c1">#==============================================================================</span>
+<span class="c1">#</span>
+<span class="c1">#    FILE: host_retention.py</span>
+<span class="c1">#</span>
+<span class="c1">#    Environment escape-speed distributions for retention analysis.</span>
+<span class="c1">#    Provides escape-speed CDFs for common astrophysical environments</span>
+<span class="c1">#    and a generic interface for computing environment-marginalised</span>
+<span class="c1">#    retention fractions from kick samples.</span>
+<span class="c1">#</span>
+<span class="c1">#    Predefined environment presets:</span>
+<span class="c1">#      GC:  log-normal v_esc with mu=1.5, sig=0.30 (base-10)</span>
+<span class="c1">#           from Antonini &amp; Rasio (2016), Mapelli et al. (2021)</span>
+<span class="c1">#      NSC: log-normal v_esc with mu=2.2, sig=0.36 (base-10)</span>
+<span class="c1">#           from Antonini &amp; Rasio (2016), Mapelli et al. (2021)</span>
+<span class="c1">#      EG:  uniform v_esc in [400, 2500] km/s (early-type galaxies)</span>
+<span class="c1">#      DG:  uniform v_esc in [100, 250] km/s (dwarf galaxies)</span>
+<span class="c1">#      MW:  Gaussian v_esc with mean=497, std=8 km/s</span>
+<span class="c1">#           from Koppelman &amp; Helmi (2021)</span>
+<span class="c1">#      M31: Gaussian v_esc with mean=470, std=40 km/s</span>
+<span class="c1">#           from Kafle et al. (2018)</span>
+<span class="c1">#</span>
+<span class="c1">#    References:</span>
+<span class="c1">#      Antonini &amp; Rasio (2016): https://arxiv.org/abs/1606.04889</span>
+<span class="c1">#      Mapelli et al. (2021): https://arxiv.org/abs/2106.07179</span>
+<span class="c1">#      Koppelman &amp; Helmi (2021): https://arxiv.org/abs/2006.16283</span>
+<span class="c1">#      Kafle et al. (2018): https://doi.org/10.1093/mnras/sty082</span>
+<span class="c1">#</span>
+<span class="c1">#    AUTHOR: Tousif Islam</span>
+<span class="c1">#    CREATED: 06-06-2026</span>
+<span class="c1">#    LAST MODIFIED:</span>
+<span class="c1">#    REVISION: ---</span>
+<span class="c1">#==============================================================================</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Tousif Islam&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">lognorm</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">gaussian_kde</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">trapezoid</span>
+
+<span class="n">GC_ENVIRONMENT</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;kind&#39;</span><span class="p">:</span> <span class="s1">&#39;lognormal&#39;</span><span class="p">,</span> <span class="s1">&#39;mu&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s1">&#39;sig&#39;</span><span class="p">:</span> <span class="mf">0.30</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;GCs&#39;</span><span class="p">}</span>
+<span class="n">NSC_ENVIRONMENT</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;kind&#39;</span><span class="p">:</span> <span class="s1">&#39;lognormal&#39;</span><span class="p">,</span> <span class="s1">&#39;mu&#39;</span><span class="p">:</span> <span class="mf">2.2</span><span class="p">,</span> <span class="s1">&#39;sig&#39;</span><span class="p">:</span> <span class="mf">0.36</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;NSCs&#39;</span><span class="p">}</span>
+<span class="n">EG_ENVIRONMENT</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;kind&#39;</span><span class="p">:</span> <span class="s1">&#39;uniform&#39;</span><span class="p">,</span> <span class="s1">&#39;vmin&#39;</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span> <span class="s1">&#39;vmax&#39;</span><span class="p">:</span> <span class="mi">2500</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;EGs&#39;</span><span class="p">}</span>
+<span class="n">DG_ENVIRONMENT</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;kind&#39;</span><span class="p">:</span> <span class="s1">&#39;uniform&#39;</span><span class="p">,</span> <span class="s1">&#39;vmin&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;vmax&#39;</span><span class="p">:</span> <span class="mi">250</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;DGs&#39;</span><span class="p">}</span>
+<span class="n">MW_ENVIRONMENT</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;kind&#39;</span><span class="p">:</span> <span class="s1">&#39;gaussian&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="mi">497</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;MW&#39;</span><span class="p">}</span>
+<span class="n">M31_ENVIRONMENT</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;kind&#39;</span><span class="p">:</span> <span class="s1">&#39;gaussian&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="mi">470</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;M31&#39;</span><span class="p">}</span>
+
+<span class="n">ENVIRONMENTS</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;GC&#39;</span><span class="p">:</span> <span class="n">GC_ENVIRONMENT</span><span class="p">,</span> <span class="s1">&#39;NSC&#39;</span><span class="p">:</span> <span class="n">NSC_ENVIRONMENT</span><span class="p">,</span>
+                <span class="s1">&#39;EG&#39;</span><span class="p">:</span> <span class="n">EG_ENVIRONMENT</span><span class="p">,</span> <span class="s1">&#39;DG&#39;</span><span class="p">:</span> <span class="n">DG_ENVIRONMENT</span><span class="p">,</span>
+                <span class="s1">&#39;MW&#39;</span><span class="p">:</span> <span class="n">MW_ENVIRONMENT</span><span class="p">,</span> <span class="s1">&#39;M31&#39;</span><span class="p">:</span> <span class="n">M31_ENVIRONMENT</span><span class="p">}</span>
+
+
+<div class="viewcode-block" id="sample_escape_speed">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.sample_escape_speed">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sample_escape_speed</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">environment</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Draw escape velocity samples from an environment&#39;s distribution.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    n_samples : int</span>
+<span class="sd">        Number of samples to draw.</span>
+<span class="sd">    environment : dict</span>
+<span class="sd">        Environment specification (see ``escape_speed_cdf``).</span>
+<span class="sd">    seed : int or None</span>
+<span class="sd">        Random seed.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    v_esc : numpy array</span>
+<span class="sd">        Escape velocity samples [km/s]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">kind</span> <span class="o">=</span> <span class="n">environment</span><span class="p">[</span><span class="s1">&#39;kind&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;lognormal&#39;</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">environment</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">environment</span><span class="p">[</span><span class="s1">&#39;mu&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">lognorm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;uniform&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">environment</span><span class="p">[</span><span class="s1">&#39;vmin&#39;</span><span class="p">],</span> <span class="n">environment</span><span class="p">[</span><span class="s1">&#39;vmax&#39;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;gaussian&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">environment</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">],</span> <span class="n">environment</span><span class="p">[</span><span class="s1">&#39;std&#39;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown environment kind: </span><span class="si">{</span><span class="n">kind</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="sample_multi_escape_speed">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.sample_multi_escape_speed">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sample_multi_escape_speed</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">environments</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Draw escape velocity samples for multiple environments.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    n_samples : int</span>
+<span class="sd">        Number of samples per environment.</span>
+<span class="sd">    environments : dict of {name: environment_dict}, optional</span>
+<span class="sd">        Defaults to all predefined environments.</span>
+<span class="sd">    seed : int or None</span>
+<span class="sd">        Random seed.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict of {name: numpy array of v_esc}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">environments</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">environments</span> <span class="o">=</span> <span class="n">ENVIRONMENTS</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">sample_escape_speed</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span>
+            <span class="n">seed</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="mi">31</span><span class="p">)))</span>
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">env</span> <span class="ow">in</span> <span class="n">environments</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span></div>
+
+
+
+<div class="viewcode-block" id="escape_speed_cdf">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.escape_speed_cdf">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">escape_speed_cdf</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">environment</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;CDF of the escape-speed distribution for a given environment.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    v : float or array</span>
+<span class="sd">        Escape speed value(s) [km/s]</span>
+<span class="sd">    environment : dict</span>
+<span class="sd">        Environment specification with &#39;kind&#39; key:</span>
+
+<span class="sd">        - ``{&#39;kind&#39;: &#39;lognormal&#39;, &#39;mu&#39;: float, &#39;sig&#39;: float}``</span>
+<span class="sd">          mu and sig are base-10 log mean and std dev</span>
+<span class="sd">          (v_esc ~ 10^N(mu, sig))</span>
+<span class="sd">        - ``{&#39;kind&#39;: &#39;uniform&#39;, &#39;vmin&#39;: float, &#39;vmax&#39;: float}``</span>
+<span class="sd">        - ``{&#39;kind&#39;: &#39;gaussian&#39;, &#39;mean&#39;: float, &#39;std&#39;: float}``</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    cdf : float or array</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">kind</span> <span class="o">=</span> <span class="n">environment</span><span class="p">[</span><span class="s1">&#39;kind&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;lognormal&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">lognorm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">environment</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+                           <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">environment</span><span class="p">[</span><span class="s1">&#39;mu&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">)))</span>
+    <span class="k">elif</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;uniform&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="o">-</span> <span class="n">environment</span><span class="p">[</span><span class="s1">&#39;vmin&#39;</span><span class="p">])</span>
+            <span class="o">/</span> <span class="p">(</span><span class="n">environment</span><span class="p">[</span><span class="s1">&#39;vmax&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">environment</span><span class="p">[</span><span class="s1">&#39;vmin&#39;</span><span class="p">]),</span>
+            <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;gaussian&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">environment</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">],</span> <span class="n">scale</span><span class="o">=</span><span class="n">environment</span><span class="p">[</span><span class="s1">&#39;std&#39;</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown environment kind: </span><span class="si">{</span><span class="n">kind</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="compute_environment_retention">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.compute_environment_retention">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_environment_retention</span><span class="p">(</span><span class="n">v_kick</span><span class="p">,</span> <span class="n">environment</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Per-kick retention probability for a given environment.</span>
+
+<span class="sd">    p_ret_i = 1 - CDF(v_kick_i)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    v_kick : array</span>
+<span class="sd">        Kick velocity samples [km/s]</span>
+<span class="sd">    environment : dict</span>
+<span class="sd">        Environment specification (see ``escape_speed_cdf``)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    p_ret : numpy array</span>
+<span class="sd">        Individual retention probability for each kick sample</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">p_ret</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">escape_speed_cdf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v_kick</span><span class="p">),</span> <span class="n">environment</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">p_ret</span></div>
+
+
+
+<div class="viewcode-block" id="compute_multi_environment_retention">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.compute_multi_environment_retention">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_multi_environment_retention</span><span class="p">(</span><span class="n">v_kick</span><span class="p">,</span> <span class="n">environments</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Per-kick retention probabilities across multiple environments.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    v_kick : array</span>
+<span class="sd">        Kick velocity samples [km/s]</span>
+<span class="sd">    environments : dict of {name: environment_dict}, optional</span>
+<span class="sd">        Defaults to all predefined environments (GC, NSC, EG, DG)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict of {name: numpy array of p_ret}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">environments</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">environments</span> <span class="o">=</span> <span class="n">ENVIRONMENTS</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">compute_environment_retention</span><span class="p">(</span><span class="n">v_kick</span><span class="p">,</span> <span class="n">env</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">env</span> <span class="ow">in</span> <span class="n">environments</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span></div>
+
+
+
+<div class="viewcode-block" id="retention_curve">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.retention_curve">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">retention_curve</span><span class="p">(</span><span class="n">v_kick</span><span class="p">,</span> <span class="n">v_esc_array</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retention probability as a function of escape speed.</span>
+
+<span class="sd">    p_ret(v_esc) = P(v_kick &lt; v_esc), the empirical CDF of kick samples</span>
+<span class="sd">    evaluated on v_esc_array.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    v_kick : array</span>
+<span class="sd">        Kick velocity samples [km/s]</span>
+<span class="sd">    v_esc_array : array</span>
+<span class="sd">        Escape speed values at which to evaluate retention [km/s]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    p_ret : numpy array</span>
+<span class="sd">        Retention probability at each v_esc value</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">v_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v_kick</span><span class="p">))</span>
+    <span class="n">cdf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">v_sorted</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">v_sorted</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">v_esc_array</span><span class="p">,</span> <span class="n">v_sorted</span><span class="p">,</span> <span class="n">cdf</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="compute_environment_cumulative_retention">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.compute_environment_cumulative_retention">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_environment_cumulative_retention</span><span class="p">(</span><span class="n">v_kick</span><span class="p">,</span> <span class="n">environment</span><span class="p">,</span>
+                                             <span class="n">method</span><span class="o">=</span><span class="s1">&#39;kde&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">5000.0</span><span class="p">,</span> <span class="n">ngrid</span><span class="o">=</span><span class="mi">5000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Integrated retention fraction P_ret for a given environment.</span>
+
+<span class="sd">    P_ret = ∫ p_kick(v) [1 - CDF_esc(v)] dv</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    v_kick : array</span>
+<span class="sd">        Kick velocity samples [km/s]</span>
+<span class="sd">    environment : dict</span>
+<span class="sd">        Environment specification (see ``escape_speed_cdf``)</span>
+<span class="sd">    method : str</span>
+<span class="sd">        &#39;kde&#39; (default): fit a KDE to the kick samples and integrate</span>
+<span class="sd">        analytically. More accurate for posterior/MCMC samples.</span>
+<span class="sd">        &#39;mc&#39;: Monte Carlo mean (1/N) Σ p_ret_i. Exact when samples</span>
+<span class="sd">        are iid draws from the kick distribution.</span>
+<span class="sd">    vmax : float</span>
+<span class="sd">        Upper integration limit for KDE method [km/s] (default: 5000).</span>
+<span class="sd">    ngrid : int</span>
+<span class="sd">        Number of grid points for KDE integration (default: 5000).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    P_ret : float</span>
+<span class="sd">        Integrated retention fraction</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">v_kick</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v_kick</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;kde&#39;</span><span class="p">:</span>
+        <span class="n">kde</span> <span class="o">=</span> <span class="n">gaussian_kde</span><span class="p">(</span><span class="n">v_kick</span><span class="p">)</span>
+        <span class="n">v_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">ngrid</span><span class="p">)</span>
+        <span class="n">p_kick</span> <span class="o">=</span> <span class="n">kde</span><span class="p">(</span><span class="n">v_grid</span><span class="p">)</span>
+        <span class="n">survival</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">escape_speed_cdf</span><span class="p">(</span><span class="n">v_grid</span><span class="p">,</span> <span class="n">environment</span><span class="p">)</span>
+        <span class="n">P_ret</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">p_kick</span> <span class="o">*</span> <span class="n">survival</span><span class="p">,</span> <span class="n">v_grid</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;mc&#39;</span><span class="p">:</span>
+        <span class="n">p_ret</span> <span class="o">=</span> <span class="n">compute_environment_retention</span><span class="p">(</span><span class="n">v_kick</span><span class="p">,</span> <span class="n">environment</span><span class="p">)</span>
+        <span class="n">P_ret</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">p_ret</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown method: &#39;</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&#39;. Choose &#39;kde&#39; or &#39;mc&#39;.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">P_ret</span></div>
+
+
+
+<div class="viewcode-block" id="compute_multi_environment_cumulative_retention">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.compute_multi_environment_cumulative_retention">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_multi_environment_cumulative_retention</span><span class="p">(</span><span class="n">v_kick</span><span class="p">,</span> <span class="n">environments</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                                   <span class="n">method</span><span class="o">=</span><span class="s1">&#39;kde&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Integrated retention fraction P_ret across multiple environments.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    v_kick : array</span>
+<span class="sd">        Kick velocity samples [km/s]</span>
+<span class="sd">    environments : dict of {name: environment_dict}, optional</span>
+<span class="sd">        Defaults to all predefined environments.</span>
+<span class="sd">    method : str</span>
+<span class="sd">        &#39;kde&#39; (default) or &#39;mc&#39;. See ``compute_environment_cumulative_retention``.</span>
+<span class="sd">    **kwargs</span>
+<span class="sd">        Additional keyword arguments passed to</span>
+<span class="sd">        ``compute_environment_cumulative_retention`` (vmax, ngrid).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict of {name: P_ret}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">environments</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">environments</span> <span class="o">=</span> <span class="n">ENVIRONMENTS</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">compute_environment_cumulative_retention</span><span class="p">(</span><span class="n">v_kick</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span>
+            <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">env</span> <span class="ow">in</span> <span class="n">environments</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Tousif Islam.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

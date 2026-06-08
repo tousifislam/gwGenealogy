@@ -1,0 +1,710 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gwGenealogy.hosts.plummer &mdash; gwGenealogy 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            gwGenealogy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#from-source">From source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#building-the-documentation">Building the documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#sample-a-bbh-population">Sample a BBH population</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#compute-remnant-properties">Compute remnant properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#hierarchical-mergers">Hierarchical mergers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#bh-seed-growth">BH seed growth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#retention-probability-grids">Retention probability grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#gwtc-population-sampling">GWTC population sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#host-environment-retention">Host environment retention</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/utils.html">Utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.distributions.sample_uniform_1d"><code class="docutils literal notranslate"><span class="pre">sample_uniform_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.distributions.sample_loguniform_1d"><code class="docutils literal notranslate"><span class="pre">sample_loguniform_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.distributions.sample_gaussian_1d"><code class="docutils literal notranslate"><span class="pre">sample_gaussian_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.distributions.sample_lognormal_1d"><code class="docutils literal notranslate"><span class="pre">sample_lognormal_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.distributions.sample_powerlaw_1d"><code class="docutils literal notranslate"><span class="pre">sample_powerlaw_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.distributions.sample_maxwellian_1d"><code class="docutils literal notranslate"><span class="pre">sample_maxwellian_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.distributions.sample_beta_1d"><code class="docutils literal notranslate"><span class="pre">sample_beta_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.m1_m2_to_mchirp"><code class="docutils literal notranslate"><span class="pre">m1_m2_to_mchirp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.m1_m2_to_q"><code class="docutils literal notranslate"><span class="pre">m1_m2_to_q()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.m1_m2_to_eta"><code class="docutils literal notranslate"><span class="pre">m1_m2_to_eta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.source_frame_to_detector_frame_mass"><code class="docutils literal notranslate"><span class="pre">source_frame_to_detector_frame_mass()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.detector_frame_to_source_frame_mass"><code class="docutils literal notranslate"><span class="pre">detector_frame_to_source_frame_mass()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.chi_eff"><code class="docutils literal notranslate"><span class="pre">chi_eff()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.chi_p"><code class="docutils literal notranslate"><span class="pre">chi_p()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.delta_parallel"><code class="docutils literal notranslate"><span class="pre">delta_parallel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.delta_perp"><code class="docutils literal notranslate"><span class="pre">delta_perp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.chi_tilde_parallel"><code class="docutils literal notranslate"><span class="pre">chi_tilde_parallel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.chi_tilde_perp"><code class="docutils literal notranslate"><span class="pre">chi_tilde_perp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.coordinates.polar_to_cartesian"><code class="docutils literal notranslate"><span class="pre">polar_to_cartesian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.coordinates.cartesian_to_polar"><code class="docutils literal notranslate"><span class="pre">cartesian_to_polar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.coordinates.spins_polar_to_cartesian_vectors"><code class="docutils literal notranslate"><span class="pre">spins_polar_to_cartesian_vectors()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.coordinates.spins_cartesian_vectors_to_polar"><code class="docutils literal notranslate"><span class="pre">spins_cartesian_vectors_to_polar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.statistics.compute_kullback_leibler_divergence"><code class="docutils literal notranslate"><span class="pre">compute_kullback_leibler_divergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.statistics.compute_jensen_shannon_divergence"><code class="docutils literal notranslate"><span class="pre">compute_jensen_shannon_divergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.rcparams.set_rcparams"><code class="docutils literal notranslate"><span class="pre">set_rcparams()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/binaries.html">Binaries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh.BBHs"><code class="docutils literal notranslate"><span class="pre">BBHs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_masses.sample_masses"><code class="docutils literal notranslate"><span class="pre">sample_masses()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_spins.sample_spins"><code class="docutils literal notranslate"><span class="pre">sample_spins()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_spins.sample_spin_magnitudes"><code class="docutils literal notranslate"><span class="pre">sample_spin_magnitudes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_spins.sample_spin_angles"><code class="docutils literal notranslate"><span class="pre">sample_spin_angles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.E"><code class="docutils literal notranslate"><span class="pre">E()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.comoving_volume_element"><code class="docutils literal notranslate"><span class="pre">comoving_volume_element()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.luminosity_distance"><code class="docutils literal notranslate"><span class="pre">luminosity_distance()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.redshift_probability_density"><code class="docutils literal notranslate"><span class="pre">redshift_probability_density()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.sample_redshift"><code class="docutils literal notranslate"><span class="pre">sample_redshift()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.powerlaw_redshift_pdf"><code class="docutils literal notranslate"><span class="pre">powerlaw_redshift_pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.sample_redshift_powerlaw"><code class="docutils literal notranslate"><span class="pre">sample_redshift_powerlaw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.madau_dickinson_redshift_pdf"><code class="docutils literal notranslate"><span class="pre">madau_dickinson_redshift_pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.sample_redshift_madau_dickinson"><code class="docutils literal notranslate"><span class="pre">sample_redshift_madau_dickinson()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_remnant.BBHRemnant"><code class="docutils literal notranslate"><span class="pre">BBHRemnant</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_gwtc.sample_gwtc_population"><code class="docutils literal notranslate"><span class="pre">sample_gwtc_population()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_gwtc.available_catalogs"><code class="docutils literal notranslate"><span class="pre">available_catalogs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.smbbh.sample_smbbh"><code class="docutils literal notranslate"><span class="pre">sample_smbbh()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/stellar.html">Stellar</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.stellar_evolution.IMF_kroupa"><code class="docutils literal notranslate"><span class="pre">IMF_kroupa()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.stellar_evolution.sample_kroupa_masses"><code class="docutils literal notranslate"><span class="pre">sample_kroupa_masses()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.stellar_evolution.sample_zams_masses"><code class="docutils literal notranslate"><span class="pre">sample_zams_masses()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.stellar_evolution.evolve_stars"><code class="docutils literal notranslate"><span class="pre">evolve_stars()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.stellar_evolution.sample_1g_bh_masses_from_stellar_collapse"><code class="docutils literal notranslate"><span class="pre">sample_1g_bh_masses_from_stellar_collapse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.collapse.compute_Mrem_Fryer12_delayed_rapster"><code class="docutils literal notranslate"><span class="pre">compute_Mrem_Fryer12_delayed_rapster()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.collapse.compute_Mrem_SEVN_delayed_rapster"><code class="docutils literal notranslate"><span class="pre">compute_Mrem_SEVN_delayed_rapster()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.natal_kick.sample_maxwellian_kick"><code class="docutils literal notranslate"><span class="pre">sample_maxwellian_kick()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/hosts.html">Hosts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster"><code class="docutils literal notranslate"><span class="pre">PlummerCluster</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.potential"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.potential()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.density"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.density()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.sigma"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.sigma()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.merger_analysis"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.merger_analysis()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_scale_radius"><code class="docutils literal notranslate"><span class="pre">plummer_scale_radius()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_potential"><code class="docutils literal notranslate"><span class="pre">plummer_potential()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_density"><code class="docutils literal notranslate"><span class="pre">plummer_density()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_velocity_dispersion"><code class="docutils literal notranslate"><span class="pre">plummer_velocity_dispersion()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_escape_speed"><code class="docutils literal notranslate"><span class="pre">plummer_escape_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_core_speed"><code class="docutils literal notranslate"><span class="pre">plummer_core_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_tidal_radius"><code class="docutils literal notranslate"><span class="pre">plummer_tidal_radius()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_apocentre"><code class="docutils literal notranslate"><span class="pre">plummer_apocentre()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.chandrasekhar_F"><code class="docutils literal notranslate"><span class="pre">chandrasekhar_F()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.orbit_shape_factor"><code class="docutils literal notranslate"><span class="pre">orbit_shape_factor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.dynamical_friction_time"><code class="docutils literal notranslate"><span class="pre">dynamical_friction_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.retained_mask"><code class="docutils literal notranslate"><span class="pre">retained_mask()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.star_clusters.Mcl_rh_to_vescape"><code class="docutils literal notranslate"><span class="pre">Mcl_rh_to_vescape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.star_clusters.Mcl_rho_to_vescape"><code class="docutils literal notranslate"><span class="pre">Mcl_rho_to_vescape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.star_clusters.sample_star_clusters_mapelli2021"><code class="docutils literal notranslate"><span class="pre">sample_star_clusters_mapelli2021()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.star_clusters.sample_star_clusters"><code class="docutils literal notranslate"><span class="pre">sample_star_clusters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.sample_escape_speed"><code class="docutils literal notranslate"><span class="pre">sample_escape_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.sample_multi_escape_speed"><code class="docutils literal notranslate"><span class="pre">sample_multi_escape_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.escape_speed_cdf"><code class="docutils literal notranslate"><span class="pre">escape_speed_cdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.compute_environment_retention"><code class="docutils literal notranslate"><span class="pre">compute_environment_retention()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.compute_multi_environment_retention"><code class="docutils literal notranslate"><span class="pre">compute_multi_environment_retention()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.retention_curve"><code class="docutils literal notranslate"><span class="pre">retention_curve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.compute_environment_cumulative_retention"><code class="docutils literal notranslate"><span class="pre">compute_environment_cumulative_retention()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.compute_multi_environment_cumulative_retention"><code class="docutils literal notranslate"><span class="pre">compute_multi_environment_cumulative_retention()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/core.html">Core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.hierarchical.HierarchicalMergersInClusters"><code class="docutils literal notranslate"><span class="pre">HierarchicalMergersInClusters</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.hierarchical.HierarchicalMergersInClusters.simulate"><code class="docutils literal notranslate"><span class="pre">HierarchicalMergersInClusters.simulate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.hierarchical.HierarchicalMergersInClusters.plot_generations"><code class="docutils literal notranslate"><span class="pre">HierarchicalMergersInClusters.plot_generations()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.seed_growth.MonteCarloBHSeedGrowth"><code class="docutils literal notranslate"><span class="pre">MonteCarloBHSeedGrowth</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.seed_growth.MonteCarloBHSeedGrowth.simulate"><code class="docutils literal notranslate"><span class="pre">MonteCarloBHSeedGrowth.simulate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.seed_growth.MonteCarloBHSeedGrowth.simulate_grid"><code class="docutils literal notranslate"><span class="pre">MonteCarloBHSeedGrowth.simulate_grid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability.compute"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability.compute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability.plot_heatmap"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability.plot_heatmap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability.plot_heatmap_all_vesc"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability.plot_heatmap_all_vesc()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G.compute"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G.compute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G.plot_heatmap"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G.plot_heatmap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G.plot_heatmap_all_vesc"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G.plot_heatmap_all_vesc()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notebooks/index.html">Tutorials</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citation.html">Citation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../citation.html#papers-using-gwgenealogy">Papers using gwGenealogy</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">gwGenealogy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">gwGenealogy.hosts.plummer</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for gwGenealogy.hosts.plummer</h1><div class="highlight"><pre>
+<span></span><span class="ch">#! /usr/bin/env python</span>
+<span class="c1">#-*- coding: utf-8 -*-</span>
+<span class="c1">#==============================================================================</span>
+<span class="c1">#</span>
+<span class="c1">#    FILE: plummer.py</span>
+<span class="c1">#</span>
+<span class="c1">#    Plummer sphere cluster model and merger retention analysis.</span>
+<span class="c1">#</span>
+<span class="c1">#    PlummerCluster class: initialize with (Mcl, r_h, cluster_type) to get</span>
+<span class="c1">#    all structural quantities (scale radius, escape speed, core speed,</span>
+<span class="c1">#    tidal radius, potential, density, velocity dispersion). Then call</span>
+<span class="c1">#    merger_analysis(v_kick, M_bh) to compute per-kick retention, apocentre,</span>
+<span class="c1">#    dynamical friction time, P_ret, P_core, P_hier.</span>
+<span class="c1">#</span>
+<span class="c1">#    Standalone functions are also available for use outside the class.</span>
+<span class="c1">#</span>
+<span class="c1">#    Cluster type presets (epsilon, tau_gyr for hierarchical mergers):</span>
+<span class="c1">#      GC:  epsilon=0.2, tau_gyr=0.3</span>
+<span class="c1">#      NSC: epsilon=0.4, tau_gyr=0.5</span>
+<span class="c1">#</span>
+<span class="c1">#    AUTHOR: Tousif Islam</span>
+<span class="c1">#    CREATED: 06-06-2026</span>
+<span class="c1">#    LAST MODIFIED:</span>
+<span class="c1">#    REVISION: ---</span>
+<span class="c1">#==============================================================================</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Tousif Islam&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.special</span><span class="w"> </span><span class="kn">import</span> <span class="n">erf</span>
+
+<span class="n">G_PC</span> <span class="o">=</span> <span class="mf">4.302e-3</span>
+<span class="n">PC_KMS_TO_MYR</span> <span class="o">=</span> <span class="mf">0.978</span>
+
+<span class="n">_CLUSTER_TYPE_DEFAULTS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;GC&#39;</span><span class="p">:</span>  <span class="p">{</span><span class="s1">&#39;epsilon&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;tau_gyr&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;rt_over_rh&#39;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">},</span>
+    <span class="s1">&#39;NSC&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;epsilon&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span> <span class="s1">&#39;tau_gyr&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;rt_over_rh&#39;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">},</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="PlummerCluster">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PlummerCluster</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plummer sphere cluster model with merger retention analysis.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Mcl : float</span>
+<span class="sd">        Cluster mass [Msun]</span>
+<span class="sd">    r_h : float</span>
+<span class="sd">        Half-mass radius [pc]</span>
+<span class="sd">    cluster_type : str, optional</span>
+<span class="sd">        &#39;GC&#39; or &#39;NSC&#39;. Sets epsilon, tau_gyr, rt_over_rh defaults.</span>
+<span class="sd">    epsilon : float, optional</span>
+<span class="sd">        Repeat-merger efficiency. Overrides cluster_type default.</span>
+<span class="sd">    tau_gyr : float, optional</span>
+<span class="sd">        Repeat-merger timescale [Gyr]. Overrides cluster_type default.</span>
+<span class="sd">    rt_over_rh : float, optional</span>
+<span class="sd">        Tidal radius in units of r_h. Overrides cluster_type default.</span>
+<span class="sd">    ln_lambda : float</span>
+<span class="sd">        Coulomb logarithm (default: 2.5)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Mcl</span><span class="p">,</span> <span class="n">r_h</span><span class="p">,</span> <span class="n">cluster_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">epsilon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tau_gyr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rt_over_rh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ln_lambda</span><span class="o">=</span><span class="mf">2.5</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Mcl</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">Mcl</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r_h</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">r_h</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ln_lambda</span> <span class="o">=</span> <span class="n">ln_lambda</span>
+
+        <span class="n">defaults</span> <span class="o">=</span> <span class="n">_CLUSTER_TYPE_DEFAULTS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cluster_type</span><span class="p">,</span> <span class="p">{})</span> <span class="k">if</span> <span class="n">cluster_type</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cluster_type</span> <span class="o">=</span> <span class="n">cluster_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="n">epsilon</span> <span class="k">if</span> <span class="n">epsilon</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">defaults</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;epsilon&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tau_gyr</span> <span class="o">=</span> <span class="n">tau_gyr</span> <span class="k">if</span> <span class="n">tau_gyr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">defaults</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tau_gyr&#39;</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+        <span class="n">rt_rh</span> <span class="o">=</span> <span class="n">rt_over_rh</span> <span class="k">if</span> <span class="n">rt_over_rh</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">defaults</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;rt_over_rh&#39;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">plummer_scale_radius</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">r_h</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r_c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v_esc</span> <span class="o">=</span> <span class="n">plummer_escape_speed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Mcl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v_core</span> <span class="o">=</span> <span class="n">plummer_core_speed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Mcl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r_t</span> <span class="o">=</span> <span class="n">plummer_tidal_radius</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">r_h</span><span class="p">,</span> <span class="n">rt_rh</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PlummerCluster.potential">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.potential">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">potential</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gravitational potential at distance r [pc]. Returns (km/s)^2.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">plummer_potential</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Mcl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PlummerCluster.density">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.density">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">density</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Density at distance r [pc]. Returns Msun/pc^3.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">plummer_density</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Mcl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PlummerCluster.sigma">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.sigma">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sigma</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;1-D velocity dispersion at distance r [pc]. Returns km/s.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">plummer_velocity_dispersion</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Mcl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PlummerCluster.merger_analysis">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.merger_analysis">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">merger_analysis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v_kick</span><span class="p">,</span> <span class="n">M_bh</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run full merger retention analysis for a set of kicks.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        v_kick : array</span>
+<span class="sd">            Kick velocity samples [km/s]</span>
+<span class="sd">        M_bh : array (same length as v_kick)</span>
+<span class="sd">            Remnant BH masses [Msun]</span>
+
+<span class="sd">        Sets attributes</span>
+<span class="sd">        ---------------</span>
+<span class="sd">        v_kick : array</span>
+<span class="sd">        M_bh : array</span>
+<span class="sd">        retained : boolean array</span>
+<span class="sd">        r_max : array (NaN for unbound kicks)</span>
+<span class="sd">        t_df : array (NaN for ejected kicks) [Myr]</span>
+<span class="sd">        P_ret : float</span>
+<span class="sd">        P_core : float</span>
+<span class="sd">        P_hier : float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v_kick</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v_kick</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">M_bh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">M_bh</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">retained</span> <span class="o">=</span> <span class="n">retained_mask</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">v_kick</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_esc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">r_t</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">r_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">v_kick</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="n">bound</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_kick</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_esc</span>
+        <span class="k">if</span> <span class="n">bound</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">r_max</span><span class="p">[</span><span class="n">bound</span><span class="p">]</span> <span class="o">=</span> <span class="n">plummer_apocentre</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">v_kick</span><span class="p">[</span><span class="n">bound</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_esc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">t_df</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">v_kick</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">retained</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="n">M_ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">M_bh</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">retained</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">M_bh</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">M_bh</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">t_df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">retained</span><span class="p">]</span> <span class="o">=</span> <span class="n">dynamical_friction_time</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">v_kick</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">retained</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_esc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Mcl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">,</span>
+                <span class="n">M_ret</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ln_lambda</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">P_ret</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">retained</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">P_core</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">v_kick</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_core</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">retained</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="n">tdf_gyr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">retained</span><span class="p">]</span> <span class="o">/</span> <span class="mf">1000.0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">P_hier</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">tdf_gyr</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">tau_gyr</span><span class="p">))</span>
+                                <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">v_kick</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">P_hier</span> <span class="o">=</span> <span class="mf">0.0</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PlummerCluster(Mcl=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">Mcl</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">, r_h=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">r_h</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, &quot;</span>
+             <span class="sa">f</span><span class="s2">&quot;a=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, v_esc=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">v_esc</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> km/s, &quot;</span>
+             <span class="sa">f</span><span class="s2">&quot;v_core=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">v_core</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> km/s, r_t=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">r_t</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> pc&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cluster_type</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;, type=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">cluster_type</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;P_ret&#39;</span><span class="p">):</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;, P_ret=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">P_ret</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, P_core=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">P_core</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, P_hier=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">P_hier</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="n">s</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="plummer_scale_radius">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_scale_radius">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">plummer_scale_radius</span><span class="p">(</span><span class="n">r_h</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert half-mass radius to Plummer scale radius: a = r_h / 1.305.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    r_h : float or array</span>
+<span class="sd">        Half-mass radius [pc]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    a : float or array</span>
+<span class="sd">        Scale radius [pc]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">r_h</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1.305</span></div>
+
+
+
+<div class="viewcode-block" id="plummer_potential">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_potential">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">plummer_potential</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Mcl</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plummer gravitational potential Phi(r).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    r : float or array</span>
+<span class="sd">        Radial distance [pc]</span>
+<span class="sd">    Mcl : float</span>
+<span class="sd">        Cluster mass [Msun]</span>
+<span class="sd">    a : float</span>
+<span class="sd">        Scale radius [pc]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Phi : float or array</span>
+<span class="sd">        Potential [(km/s)^2]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">G_PC</span> <span class="o">*</span> <span class="n">Mcl</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">a</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="plummer_density">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_density">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">plummer_density</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Mcl</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plummer density profile rho(r).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    r : float or array</span>
+<span class="sd">        Radial distance [pc]</span>
+<span class="sd">    Mcl : float</span>
+<span class="sd">        Cluster mass [Msun]</span>
+<span class="sd">    a : float</span>
+<span class="sd">        Scale radius [pc]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    rho : float or array</span>
+<span class="sd">        Density [Msun / pc^3]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mf">3.0</span> <span class="o">*</span> <span class="n">Mcl</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">4.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">a</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">2.5</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="plummer_velocity_dispersion">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_velocity_dispersion">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">plummer_velocity_dispersion</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">Mcl</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Isotropic 1-D velocity dispersion sigma(r) for a Plummer sphere.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    r : float or array</span>
+<span class="sd">        Radial distance [pc]</span>
+<span class="sd">    Mcl : float</span>
+<span class="sd">        Cluster mass [Msun]</span>
+<span class="sd">    a : float</span>
+<span class="sd">        Scale radius [pc]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    sigma : float or array</span>
+<span class="sd">        Velocity dispersion [km/s]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">G_PC</span> <span class="o">*</span> <span class="n">Mcl</span> <span class="o">/</span> <span class="p">(</span><span class="mf">6.0</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="plummer_escape_speed">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_escape_speed">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">plummer_escape_speed</span><span class="p">(</span><span class="n">Mcl</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Central escape speed v_esc = sqrt(2 G Mcl / a).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Mcl : float or array</span>
+<span class="sd">        Cluster mass [Msun]</span>
+<span class="sd">    a : float or array</span>
+<span class="sd">        Scale radius [pc]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    v_esc : float or array</span>
+<span class="sd">        Escape speed [km/s]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">G_PC</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">Mcl</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="plummer_core_speed">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_core_speed">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">plummer_core_speed</span><span class="p">(</span><span class="n">Mcl</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Core-crossing speed v_c ~ 0.54 v_esc.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Mcl : float or array</span>
+<span class="sd">        Cluster mass [Msun]</span>
+<span class="sd">    a : float or array</span>
+<span class="sd">        Scale radius [pc]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    v_c : float or array</span>
+<span class="sd">        Core-crossing speed [km/s]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">plummer_escape_speed</span><span class="p">(</span><span class="n">Mcl</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="plummer_tidal_radius">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_tidal_radius">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">plummer_tidal_radius</span><span class="p">(</span><span class="n">r_h</span><span class="p">,</span> <span class="n">rt_over_rh</span><span class="o">=</span><span class="mf">5.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tidal truncation radius r_t = rt_over_rh * r_h.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    r_h : float or array</span>
+<span class="sd">        Half-mass radius [pc]</span>
+<span class="sd">    rt_over_rh : float</span>
+<span class="sd">        Tidal radius in units of r_h (default: 5.0)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    r_t : float or array</span>
+<span class="sd">        Tidal radius [pc]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">rt_over_rh</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">r_h</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="plummer_apocentre">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_apocentre">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">plummer_apocentre</span><span class="p">(</span><span class="n">v_kick</span><span class="p">,</span> <span class="n">v_esc</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Radial-orbit apocentre r_max in a Plummer potential.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    v_kick : float or array</span>
+<span class="sd">        Kick velocity (must be &lt; v_esc for bound orbits) [km/s]</span>
+<span class="sd">    v_esc : float</span>
+<span class="sd">        Central escape speed [km/s]</span>
+<span class="sd">    a : float</span>
+<span class="sd">        Scale radius [pc]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    r_max : float or array</span>
+<span class="sd">        Apocentre distance [pc]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v_kick</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="o">/</span> <span class="n">v_esc</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">u</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="chandrasekhar_F">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.chandrasekhar_F">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">chandrasekhar_F</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Chandrasekhar velocity term F(X) = erf(X) - (2X/sqrt(pi)) exp(-X^2).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : float or array</span>
+<span class="sd">        Velocity ratio v / (sqrt(2) sigma)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    F : float or array</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">series</span> <span class="o">=</span> <span class="p">(</span><span class="mf">4.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">3.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)))</span> <span class="o">*</span> <span class="n">X</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="mf">0.6</span> <span class="o">*</span> <span class="n">X</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="mf">3.0</span> <span class="o">/</span> <span class="mf">14.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">direct</span> <span class="o">=</span> <span class="n">erf</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">X</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">X</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">X</span> <span class="o">&lt;</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">series</span><span class="p">,</span> <span class="n">direct</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="orbit_shape_factor">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.orbit_shape_factor">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">orbit_shape_factor</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">n_xi</span><span class="o">=</span><span class="mi">400</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Dimensionless orbit-shape factor R(u) for a radial Plummer orbit.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    u : float</span>
+<span class="sd">        Ratio v_kick / v_esc (0 &lt; u &lt; 1)</span>
+<span class="sd">    n_xi : int</span>
+<span class="sd">        Number of quadrature points (default: 400)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    R : float</span>
+<span class="sd">        Dimensionless orbit-shape factor</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">s_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">u</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">xi</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_xi</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_xi</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s_max</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">xi</span> <span class="o">-</span> <span class="n">xi</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">dsdxi</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">s_max</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">xi</span><span class="p">)</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">s</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">g</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">),</span> <span class="mf">1e-300</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">6.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">w</span> <span class="o">*</span> <span class="n">g</span><span class="o">**</span><span class="mf">0.25</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">w</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="n">g</span><span class="o">**</span><span class="mf">2.5</span> <span class="o">/</span> <span class="n">chandrasekhar_F</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">integrand</span> <span class="o">=</span> <span class="n">dsdxi</span> <span class="o">/</span> <span class="n">w</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">integrand</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_xi</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">integrand</span> <span class="o">/</span> <span class="n">h</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_xi</span><span class="p">)</span></div>
+
+
+
+<span class="n">_u_grid</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">_R_grid</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_ensure_orbit_grid</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Build the interpolation grid on first use.&quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">_u_grid</span><span class="p">,</span> <span class="n">_R_grid</span>
+    <span class="k">if</span> <span class="n">_u_grid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_u_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="mf">1e-4</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+        <span class="n">_R_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">orbit_shape_factor</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">_u_grid</span><span class="p">])</span>
+
+
+<div class="viewcode-block" id="dynamical_friction_time">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.dynamical_friction_time">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">dynamical_friction_time</span><span class="p">(</span><span class="n">v_kick</span><span class="p">,</span> <span class="n">v_esc</span><span class="p">,</span> <span class="n">Mcl</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">M_bh</span><span class="p">,</span> <span class="n">ln_lambda</span><span class="o">=</span><span class="mf">2.5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Orbit-averaged Chandrasekhar dynamical-friction return time.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    v_kick : float or array</span>
+<span class="sd">        Kick velocities of RETAINED remnants (v_kick &lt; v_esc) [km/s]</span>
+<span class="sd">    v_esc : float</span>
+<span class="sd">        Central escape speed [km/s]</span>
+<span class="sd">    Mcl : float</span>
+<span class="sd">        Cluster mass [Msun]</span>
+<span class="sd">    a : float</span>
+<span class="sd">        Plummer scale radius [pc]</span>
+<span class="sd">    M_bh : float or array (matching v_kick)</span>
+<span class="sd">        Remnant BH mass(es) [Msun]</span>
+<span class="sd">    ln_lambda : float</span>
+<span class="sd">        Coulomb logarithm (default: 2.5)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    t_DF : float or array</span>
+<span class="sd">        Return time [Myr]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_ensure_orbit_grid</span><span class="p">()</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v_kick</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="o">/</span> <span class="n">v_esc</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">_u_grid</span><span class="p">,</span> <span class="n">_R_grid</span><span class="p">)</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.0</span><span class="o">**</span><span class="mf">1.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Mcl</span> <span class="o">*</span> <span class="n">a</span><span class="o">**</span><span class="mi">3</span> <span class="o">/</span> <span class="n">G_PC</span><span class="p">)</span>
+         <span class="o">/</span> <span class="p">(</span><span class="mf">3.0</span> <span class="o">*</span> <span class="n">ln_lambda</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">M_bh</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">))</span> <span class="o">*</span> <span class="n">PC_KMS_TO_MYR</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">K</span> <span class="o">*</span> <span class="n">R</span></div>
+
+
+
+<div class="viewcode-block" id="retained_mask">
+<a class="viewcode-back" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.retained_mask">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">retained_mask</span><span class="p">(</span><span class="n">v_kick</span><span class="p">,</span> <span class="n">v_esc</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">r_t</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Boolean mask: bound (v_kick &lt; v_esc) AND apocentre within tidal radius.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    v_kick : array</span>
+<span class="sd">        Kick velocities [km/s]</span>
+<span class="sd">    v_esc : float</span>
+<span class="sd">        Central escape speed [km/s]</span>
+<span class="sd">    a : float</span>
+<span class="sd">        Plummer scale radius [pc]</span>
+<span class="sd">    r_t : float</span>
+<span class="sd">        Tidal truncation radius [pc]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    mask : boolean array (same shape as v_kick)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">v_kick</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v_kick</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">bound</span> <span class="o">=</span> <span class="n">v_kick</span> <span class="o">&lt;</span> <span class="n">v_esc</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">bound</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">bound</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="n">rmax</span> <span class="o">=</span> <span class="n">plummer_apocentre</span><span class="p">(</span><span class="n">v_kick</span><span class="p">[</span><span class="n">bound</span><span class="p">],</span> <span class="n">v_esc</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">bound</span><span class="p">]</span> <span class="o">=</span> <span class="n">rmax</span> <span class="o">&lt;=</span> <span class="n">r_t</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Tousif Islam.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

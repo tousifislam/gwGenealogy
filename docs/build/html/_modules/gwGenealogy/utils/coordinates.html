@@ -1,0 +1,390 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gwGenealogy.utils.coordinates &mdash; gwGenealogy 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            gwGenealogy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#from-source">From source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#building-the-documentation">Building the documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#sample-a-bbh-population">Sample a BBH population</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#compute-remnant-properties">Compute remnant properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#hierarchical-mergers">Hierarchical mergers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#bh-seed-growth">BH seed growth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#retention-probability-grids">Retention probability grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#gwtc-population-sampling">GWTC population sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#host-environment-retention">Host environment retention</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/utils.html">Utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.distributions.sample_uniform_1d"><code class="docutils literal notranslate"><span class="pre">sample_uniform_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.distributions.sample_loguniform_1d"><code class="docutils literal notranslate"><span class="pre">sample_loguniform_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.distributions.sample_gaussian_1d"><code class="docutils literal notranslate"><span class="pre">sample_gaussian_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.distributions.sample_lognormal_1d"><code class="docutils literal notranslate"><span class="pre">sample_lognormal_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.distributions.sample_powerlaw_1d"><code class="docutils literal notranslate"><span class="pre">sample_powerlaw_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.distributions.sample_maxwellian_1d"><code class="docutils literal notranslate"><span class="pre">sample_maxwellian_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.distributions.sample_beta_1d"><code class="docutils literal notranslate"><span class="pre">sample_beta_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.m1_m2_to_mchirp"><code class="docutils literal notranslate"><span class="pre">m1_m2_to_mchirp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.m1_m2_to_q"><code class="docutils literal notranslate"><span class="pre">m1_m2_to_q()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.m1_m2_to_eta"><code class="docutils literal notranslate"><span class="pre">m1_m2_to_eta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.source_frame_to_detector_frame_mass"><code class="docutils literal notranslate"><span class="pre">source_frame_to_detector_frame_mass()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.detector_frame_to_source_frame_mass"><code class="docutils literal notranslate"><span class="pre">detector_frame_to_source_frame_mass()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.chi_eff"><code class="docutils literal notranslate"><span class="pre">chi_eff()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.chi_p"><code class="docutils literal notranslate"><span class="pre">chi_p()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.delta_parallel"><code class="docutils literal notranslate"><span class="pre">delta_parallel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.delta_perp"><code class="docutils literal notranslate"><span class="pre">delta_perp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.chi_tilde_parallel"><code class="docutils literal notranslate"><span class="pre">chi_tilde_parallel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.conversions.chi_tilde_perp"><code class="docutils literal notranslate"><span class="pre">chi_tilde_perp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.coordinates.polar_to_cartesian"><code class="docutils literal notranslate"><span class="pre">polar_to_cartesian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.coordinates.cartesian_to_polar"><code class="docutils literal notranslate"><span class="pre">cartesian_to_polar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.coordinates.spins_polar_to_cartesian_vectors"><code class="docutils literal notranslate"><span class="pre">spins_polar_to_cartesian_vectors()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.coordinates.spins_cartesian_vectors_to_polar"><code class="docutils literal notranslate"><span class="pre">spins_cartesian_vectors_to_polar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.statistics.compute_kullback_leibler_divergence"><code class="docutils literal notranslate"><span class="pre">compute_kullback_leibler_divergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.statistics.compute_jensen_shannon_divergence"><code class="docutils literal notranslate"><span class="pre">compute_jensen_shannon_divergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/utils.html#gwGenealogy.utils.rcparams.set_rcparams"><code class="docutils literal notranslate"><span class="pre">set_rcparams()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/binaries.html">Binaries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh.BBHs"><code class="docutils literal notranslate"><span class="pre">BBHs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_masses.sample_masses"><code class="docutils literal notranslate"><span class="pre">sample_masses()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_spins.sample_spins"><code class="docutils literal notranslate"><span class="pre">sample_spins()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_spins.sample_spin_magnitudes"><code class="docutils literal notranslate"><span class="pre">sample_spin_magnitudes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_spins.sample_spin_angles"><code class="docutils literal notranslate"><span class="pre">sample_spin_angles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.E"><code class="docutils literal notranslate"><span class="pre">E()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.comoving_volume_element"><code class="docutils literal notranslate"><span class="pre">comoving_volume_element()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.luminosity_distance"><code class="docutils literal notranslate"><span class="pre">luminosity_distance()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.redshift_probability_density"><code class="docutils literal notranslate"><span class="pre">redshift_probability_density()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.sample_redshift"><code class="docutils literal notranslate"><span class="pre">sample_redshift()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.powerlaw_redshift_pdf"><code class="docutils literal notranslate"><span class="pre">powerlaw_redshift_pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.sample_redshift_powerlaw"><code class="docutils literal notranslate"><span class="pre">sample_redshift_powerlaw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.madau_dickinson_redshift_pdf"><code class="docutils literal notranslate"><span class="pre">madau_dickinson_redshift_pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_redshifts.sample_redshift_madau_dickinson"><code class="docutils literal notranslate"><span class="pre">sample_redshift_madau_dickinson()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_remnant.BBHRemnant"><code class="docutils literal notranslate"><span class="pre">BBHRemnant</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_gwtc.sample_gwtc_population"><code class="docutils literal notranslate"><span class="pre">sample_gwtc_population()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.bbh_gwtc.available_catalogs"><code class="docutils literal notranslate"><span class="pre">available_catalogs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/binaries.html#gwGenealogy.binaries.smbbh.sample_smbbh"><code class="docutils literal notranslate"><span class="pre">sample_smbbh()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/stellar.html">Stellar</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.stellar_evolution.IMF_kroupa"><code class="docutils literal notranslate"><span class="pre">IMF_kroupa()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.stellar_evolution.sample_kroupa_masses"><code class="docutils literal notranslate"><span class="pre">sample_kroupa_masses()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.stellar_evolution.sample_zams_masses"><code class="docutils literal notranslate"><span class="pre">sample_zams_masses()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.stellar_evolution.evolve_stars"><code class="docutils literal notranslate"><span class="pre">evolve_stars()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.stellar_evolution.sample_1g_bh_masses_from_stellar_collapse"><code class="docutils literal notranslate"><span class="pre">sample_1g_bh_masses_from_stellar_collapse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.collapse.compute_Mrem_Fryer12_delayed_rapster"><code class="docutils literal notranslate"><span class="pre">compute_Mrem_Fryer12_delayed_rapster()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.collapse.compute_Mrem_SEVN_delayed_rapster"><code class="docutils literal notranslate"><span class="pre">compute_Mrem_SEVN_delayed_rapster()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/stellar.html#gwGenealogy.stellar.natal_kick.sample_maxwellian_kick"><code class="docutils literal notranslate"><span class="pre">sample_maxwellian_kick()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/hosts.html">Hosts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster"><code class="docutils literal notranslate"><span class="pre">PlummerCluster</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.potential"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.potential()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.density"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.density()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.sigma"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.sigma()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.merger_analysis"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.merger_analysis()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_scale_radius"><code class="docutils literal notranslate"><span class="pre">plummer_scale_radius()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_potential"><code class="docutils literal notranslate"><span class="pre">plummer_potential()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_density"><code class="docutils literal notranslate"><span class="pre">plummer_density()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_velocity_dispersion"><code class="docutils literal notranslate"><span class="pre">plummer_velocity_dispersion()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_escape_speed"><code class="docutils literal notranslate"><span class="pre">plummer_escape_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_core_speed"><code class="docutils literal notranslate"><span class="pre">plummer_core_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_tidal_radius"><code class="docutils literal notranslate"><span class="pre">plummer_tidal_radius()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.plummer_apocentre"><code class="docutils literal notranslate"><span class="pre">plummer_apocentre()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.chandrasekhar_F"><code class="docutils literal notranslate"><span class="pre">chandrasekhar_F()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.orbit_shape_factor"><code class="docutils literal notranslate"><span class="pre">orbit_shape_factor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.dynamical_friction_time"><code class="docutils literal notranslate"><span class="pre">dynamical_friction_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.plummer.retained_mask"><code class="docutils literal notranslate"><span class="pre">retained_mask()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.star_clusters.Mcl_rh_to_vescape"><code class="docutils literal notranslate"><span class="pre">Mcl_rh_to_vescape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.star_clusters.Mcl_rho_to_vescape"><code class="docutils literal notranslate"><span class="pre">Mcl_rho_to_vescape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.star_clusters.sample_star_clusters_mapelli2021"><code class="docutils literal notranslate"><span class="pre">sample_star_clusters_mapelli2021()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.star_clusters.sample_star_clusters"><code class="docutils literal notranslate"><span class="pre">sample_star_clusters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.sample_escape_speed"><code class="docutils literal notranslate"><span class="pre">sample_escape_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.sample_multi_escape_speed"><code class="docutils literal notranslate"><span class="pre">sample_multi_escape_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.escape_speed_cdf"><code class="docutils literal notranslate"><span class="pre">escape_speed_cdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.compute_environment_retention"><code class="docutils literal notranslate"><span class="pre">compute_environment_retention()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.compute_multi_environment_retention"><code class="docutils literal notranslate"><span class="pre">compute_multi_environment_retention()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.retention_curve"><code class="docutils literal notranslate"><span class="pre">retention_curve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.compute_environment_cumulative_retention"><code class="docutils literal notranslate"><span class="pre">compute_environment_cumulative_retention()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/hosts.html#gwGenealogy.hosts.host_retention.compute_multi_environment_cumulative_retention"><code class="docutils literal notranslate"><span class="pre">compute_multi_environment_cumulative_retention()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/core.html">Core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.hierarchical.HierarchicalMergersInClusters"><code class="docutils literal notranslate"><span class="pre">HierarchicalMergersInClusters</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.hierarchical.HierarchicalMergersInClusters.simulate"><code class="docutils literal notranslate"><span class="pre">HierarchicalMergersInClusters.simulate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.hierarchical.HierarchicalMergersInClusters.plot_generations"><code class="docutils literal notranslate"><span class="pre">HierarchicalMergersInClusters.plot_generations()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.seed_growth.MonteCarloBHSeedGrowth"><code class="docutils literal notranslate"><span class="pre">MonteCarloBHSeedGrowth</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.seed_growth.MonteCarloBHSeedGrowth.simulate"><code class="docutils literal notranslate"><span class="pre">MonteCarloBHSeedGrowth.simulate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.seed_growth.MonteCarloBHSeedGrowth.simulate_grid"><code class="docutils literal notranslate"><span class="pre">MonteCarloBHSeedGrowth.simulate_grid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability.compute"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability.compute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability.plot_heatmap"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability.plot_heatmap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability.plot_heatmap_all_vesc"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability.plot_heatmap_all_vesc()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G.compute"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G.compute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G.plot_heatmap"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G.plot_heatmap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G.plot_heatmap_all_vesc"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G.plot_heatmap_all_vesc()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notebooks/index.html">Tutorials</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citation.html">Citation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../citation.html#papers-using-gwgenealogy">Papers using gwGenealogy</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">gwGenealogy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">gwGenealogy.utils.coordinates</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for gwGenealogy.utils.coordinates</h1><div class="highlight"><pre>
+<span></span><span class="ch">#! /usr/bin/env python</span>
+<span class="c1">#-*- coding: utf-8 -*-</span>
+<span class="c1">#==============================================================================</span>
+<span class="c1">#</span>
+<span class="c1">#    FILE: coordinates.py</span>
+<span class="c1">#</span>
+<span class="c1">#    AUTHOR: Tousif Islam</span>
+<span class="c1">#    CREATED: 08-11-2025</span>
+<span class="c1">#    LAST MODIFIED:</span>
+<span class="c1">#    REVISION: ---</span>
+<span class="c1">#==============================================================================</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Tousif Islam&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+
+<span class="c1"># ---- Generic coordinate transforms ----</span>
+
+<div class="viewcode-block" id="polar_to_cartesian">
+<a class="viewcode-back" href="../../../api/utils.html#gwGenealogy.utils.coordinates.polar_to_cartesian">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">polar_to_cartesian</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert spherical polar coordinates to Cartesian.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    r : float or array</span>
+<span class="sd">        Radial coordinate (e.g. spin magnitude)</span>
+<span class="sd">    theta : float or array</span>
+<span class="sd">        Polar angle in radians (0 = +z axis)</span>
+<span class="sd">    phi : float or array</span>
+<span class="sd">        Azimuthal angle in radians</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    x, y, z : float or array</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="n">sin_theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">sin_theta</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">sin_theta</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span></div>
+
+
+
+<div class="viewcode-block" id="cartesian_to_polar">
+<a class="viewcode-back" href="../../../api/utils.html#gwGenealogy.utils.coordinates.cartesian_to_polar">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">cartesian_to_polar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert Cartesian coordinates to spherical polar.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x, y, z : float or array</span>
+<span class="sd">        Cartesian coordinates</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    r : float or array</span>
+<span class="sd">        Radial coordinate (&gt;= 0)</span>
+<span class="sd">    theta : float or array</span>
+<span class="sd">        Polar angle in radians [0, pi]</span>
+<span class="sd">    phi : float or array</span>
+<span class="sd">        Azimuthal angle in radians [0, 2*pi)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">z</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="c1"># guard against r=0 (zero vector) and floating-point overshoot outside [-1,1]</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">z</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mf">1e-30</span><span class="p">),</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
+    <span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">r</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span></div>
+
+
+
+<span class="c1"># ---- Spin-specific coordinate transforms ----</span>
+
+<div class="viewcode-block" id="spins_polar_to_cartesian_vectors">
+<a class="viewcode-back" href="../../../api/utils.html#gwGenealogy.utils.coordinates.spins_polar_to_cartesian_vectors">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">spins_polar_to_cartesian_vectors</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">theta1</span><span class="p">,</span> <span class="n">theta2</span><span class="p">,</span> <span class="n">phi1</span><span class="p">,</span> <span class="n">phi2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert spin magnitudes and angles to 3D Cartesian spin vectors.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a1, a2 : array</span>
+<span class="sd">        Dimensionless spin magnitudes</span>
+<span class="sd">    theta1, theta2 : array</span>
+<span class="sd">        Polar (tilt) angles in radians</span>
+<span class="sd">    phi1, phi2 : array</span>
+<span class="sd">        Azimuthal angles in radians</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    chi1 : array of shape (n_samples, 3)</span>
+<span class="sd">        3D spin vectors for the primary black hole</span>
+<span class="sd">    chi2 : array of shape (n_samples, 3)</span>
+<span class="sd">        3D spin vectors for the secondary black hole</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">z1</span> <span class="o">=</span> <span class="n">polar_to_cartesian</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">theta1</span><span class="p">,</span> <span class="n">phi1</span><span class="p">)</span>
+    <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">z2</span> <span class="o">=</span> <span class="n">polar_to_cartesian</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">theta2</span><span class="p">,</span> <span class="n">phi2</span><span class="p">)</span>
+
+    <span class="n">chi1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">z1</span><span class="p">])</span>
+    <span class="n">chi2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">z2</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">chi1</span><span class="p">,</span> <span class="n">chi2</span></div>
+
+
+
+<div class="viewcode-block" id="spins_cartesian_vectors_to_polar">
+<a class="viewcode-back" href="../../../api/utils.html#gwGenealogy.utils.coordinates.spins_cartesian_vectors_to_polar">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">spins_cartesian_vectors_to_polar</span><span class="p">(</span><span class="n">chi1_vec</span><span class="p">,</span> <span class="n">chi2_vec</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert 3D Cartesian spin vectors to magnitudes and angles.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    chi1_vec : array of shape (n_samples, 3) or (3,)</span>
+<span class="sd">        3D spin vectors for the primary black hole</span>
+<span class="sd">    chi2_vec : array of shape (n_samples, 3) or (3,)</span>
+<span class="sd">        3D spin vectors for the secondary black hole</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    a1, a2 : array</span>
+<span class="sd">        Dimensionless spin magnitudes</span>
+<span class="sd">    theta1, theta2 : array</span>
+<span class="sd">        Polar (tilt) angles in radians</span>
+<span class="sd">    phi1, phi2 : array</span>
+<span class="sd">        Azimuthal angles in radians</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">chi1_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">chi1_vec</span><span class="p">)</span>
+    <span class="n">chi2_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">chi2_vec</span><span class="p">)</span>
+
+    <span class="n">a1</span><span class="p">,</span> <span class="n">theta1</span><span class="p">,</span> <span class="n">phi1</span> <span class="o">=</span> <span class="n">cartesian_to_polar</span><span class="p">(</span><span class="n">chi1_vec</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">chi1_vec</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">chi1_vec</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="n">a2</span><span class="p">,</span> <span class="n">theta2</span><span class="p">,</span> <span class="n">phi2</span> <span class="o">=</span> <span class="n">cartesian_to_polar</span><span class="p">(</span><span class="n">chi2_vec</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">chi2_vec</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">chi2_vec</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">theta1</span><span class="p">,</span> <span class="n">theta2</span><span class="p">,</span> <span class="n">phi1</span><span class="p">,</span> <span class="n">phi2</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Tousif Islam.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

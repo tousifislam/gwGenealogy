@@ -1,0 +1,323 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Citation &mdash; gwGenealogy 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Tutorials" href="notebooks/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            gwGenealogy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#from-source">From source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#building-the-documentation">Building the documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#sample-a-bbh-population">Sample a BBH population</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#compute-remnant-properties">Compute remnant properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#hierarchical-mergers">Hierarchical mergers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#bh-seed-growth">BH seed growth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#retention-probability-grids">Retention probability grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#gwtc-population-sampling">GWTC population sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#host-environment-retention">Host environment retention</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/utils.html">Utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.distributions.sample_uniform_1d"><code class="docutils literal notranslate"><span class="pre">sample_uniform_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.distributions.sample_loguniform_1d"><code class="docutils literal notranslate"><span class="pre">sample_loguniform_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.distributions.sample_gaussian_1d"><code class="docutils literal notranslate"><span class="pre">sample_gaussian_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.distributions.sample_lognormal_1d"><code class="docutils literal notranslate"><span class="pre">sample_lognormal_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.distributions.sample_powerlaw_1d"><code class="docutils literal notranslate"><span class="pre">sample_powerlaw_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.distributions.sample_maxwellian_1d"><code class="docutils literal notranslate"><span class="pre">sample_maxwellian_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.distributions.sample_beta_1d"><code class="docutils literal notranslate"><span class="pre">sample_beta_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.conversions.m1_m2_to_mchirp"><code class="docutils literal notranslate"><span class="pre">m1_m2_to_mchirp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.conversions.m1_m2_to_q"><code class="docutils literal notranslate"><span class="pre">m1_m2_to_q()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.conversions.m1_m2_to_eta"><code class="docutils literal notranslate"><span class="pre">m1_m2_to_eta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.conversions.source_frame_to_detector_frame_mass"><code class="docutils literal notranslate"><span class="pre">source_frame_to_detector_frame_mass()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.conversions.detector_frame_to_source_frame_mass"><code class="docutils literal notranslate"><span class="pre">detector_frame_to_source_frame_mass()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.conversions.chi_eff"><code class="docutils literal notranslate"><span class="pre">chi_eff()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.conversions.chi_p"><code class="docutils literal notranslate"><span class="pre">chi_p()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.conversions.delta_parallel"><code class="docutils literal notranslate"><span class="pre">delta_parallel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.conversions.delta_perp"><code class="docutils literal notranslate"><span class="pre">delta_perp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.conversions.chi_tilde_parallel"><code class="docutils literal notranslate"><span class="pre">chi_tilde_parallel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.conversions.chi_tilde_perp"><code class="docutils literal notranslate"><span class="pre">chi_tilde_perp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.coordinates.polar_to_cartesian"><code class="docutils literal notranslate"><span class="pre">polar_to_cartesian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.coordinates.cartesian_to_polar"><code class="docutils literal notranslate"><span class="pre">cartesian_to_polar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.coordinates.spins_polar_to_cartesian_vectors"><code class="docutils literal notranslate"><span class="pre">spins_polar_to_cartesian_vectors()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.coordinates.spins_cartesian_vectors_to_polar"><code class="docutils literal notranslate"><span class="pre">spins_cartesian_vectors_to_polar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.statistics.compute_kullback_leibler_divergence"><code class="docutils literal notranslate"><span class="pre">compute_kullback_leibler_divergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.statistics.compute_jensen_shannon_divergence"><code class="docutils literal notranslate"><span class="pre">compute_jensen_shannon_divergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/utils.html#gwGenealogy.utils.rcparams.set_rcparams"><code class="docutils literal notranslate"><span class="pre">set_rcparams()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/binaries.html">Binaries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/binaries.html#gwGenealogy.binaries.bbh.BBHs"><code class="docutils literal notranslate"><span class="pre">BBHs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/binaries.html#gwGenealogy.binaries.bbh_masses.sample_masses"><code class="docutils literal notranslate"><span class="pre">sample_masses()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/binaries.html#gwGenealogy.binaries.bbh_spins.sample_spins"><code class="docutils literal notranslate"><span class="pre">sample_spins()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/binaries.html#gwGenealogy.binaries.bbh_spins.sample_spin_magnitudes"><code class="docutils literal notranslate"><span class="pre">sample_spin_magnitudes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/binaries.html#gwGenealogy.binaries.bbh_spins.sample_spin_angles"><code class="docutils literal notranslate"><span class="pre">sample_spin_angles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/binaries.html#gwGenealogy.binaries.bbh_redshifts.E"><code class="docutils literal notranslate"><span class="pre">E()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/binaries.html#gwGenealogy.binaries.bbh_redshifts.comoving_volume_element"><code class="docutils literal notranslate"><span class="pre">comoving_volume_element()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/binaries.html#gwGenealogy.binaries.bbh_redshifts.luminosity_distance"><code class="docutils literal notranslate"><span class="pre">luminosity_distance()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/binaries.html#gwGenealogy.binaries.bbh_redshifts.redshift_probability_density"><code class="docutils literal notranslate"><span class="pre">redshift_probability_density()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/binaries.html#gwGenealogy.binaries.bbh_redshifts.sample_redshift"><code class="docutils literal notranslate"><span class="pre">sample_redshift()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/binaries.html#gwGenealogy.binaries.bbh_redshifts.powerlaw_redshift_pdf"><code class="docutils literal notranslate"><span class="pre">powerlaw_redshift_pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/binaries.html#gwGenealogy.binaries.bbh_redshifts.sample_redshift_powerlaw"><code class="docutils literal notranslate"><span class="pre">sample_redshift_powerlaw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/binaries.html#gwGenealogy.binaries.bbh_redshifts.madau_dickinson_redshift_pdf"><code class="docutils literal notranslate"><span class="pre">madau_dickinson_redshift_pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/binaries.html#gwGenealogy.binaries.bbh_redshifts.sample_redshift_madau_dickinson"><code class="docutils literal notranslate"><span class="pre">sample_redshift_madau_dickinson()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/binaries.html#gwGenealogy.binaries.bbh_remnant.BBHRemnant"><code class="docutils literal notranslate"><span class="pre">BBHRemnant</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/binaries.html#gwGenealogy.binaries.bbh_gwtc.sample_gwtc_population"><code class="docutils literal notranslate"><span class="pre">sample_gwtc_population()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/binaries.html#gwGenealogy.binaries.bbh_gwtc.available_catalogs"><code class="docutils literal notranslate"><span class="pre">available_catalogs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/binaries.html#gwGenealogy.binaries.smbbh.sample_smbbh"><code class="docutils literal notranslate"><span class="pre">sample_smbbh()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/stellar.html">Stellar</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/stellar.html#gwGenealogy.stellar.stellar_evolution.IMF_kroupa"><code class="docutils literal notranslate"><span class="pre">IMF_kroupa()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/stellar.html#gwGenealogy.stellar.stellar_evolution.sample_kroupa_masses"><code class="docutils literal notranslate"><span class="pre">sample_kroupa_masses()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/stellar.html#gwGenealogy.stellar.stellar_evolution.sample_zams_masses"><code class="docutils literal notranslate"><span class="pre">sample_zams_masses()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/stellar.html#gwGenealogy.stellar.stellar_evolution.evolve_stars"><code class="docutils literal notranslate"><span class="pre">evolve_stars()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/stellar.html#gwGenealogy.stellar.stellar_evolution.sample_1g_bh_masses_from_stellar_collapse"><code class="docutils literal notranslate"><span class="pre">sample_1g_bh_masses_from_stellar_collapse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/stellar.html#gwGenealogy.stellar.collapse.compute_Mrem_Fryer12_delayed_rapster"><code class="docutils literal notranslate"><span class="pre">compute_Mrem_Fryer12_delayed_rapster()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/stellar.html#gwGenealogy.stellar.collapse.compute_Mrem_SEVN_delayed_rapster"><code class="docutils literal notranslate"><span class="pre">compute_Mrem_SEVN_delayed_rapster()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/stellar.html#gwGenealogy.stellar.natal_kick.sample_maxwellian_kick"><code class="docutils literal notranslate"><span class="pre">sample_maxwellian_kick()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/hosts.html">Hosts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster"><code class="docutils literal notranslate"><span class="pre">PlummerCluster</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.potential"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.potential()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.density"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.density()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.sigma"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.sigma()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.merger_analysis"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.merger_analysis()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.plummer.plummer_scale_radius"><code class="docutils literal notranslate"><span class="pre">plummer_scale_radius()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.plummer.plummer_potential"><code class="docutils literal notranslate"><span class="pre">plummer_potential()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.plummer.plummer_density"><code class="docutils literal notranslate"><span class="pre">plummer_density()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.plummer.plummer_velocity_dispersion"><code class="docutils literal notranslate"><span class="pre">plummer_velocity_dispersion()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.plummer.plummer_escape_speed"><code class="docutils literal notranslate"><span class="pre">plummer_escape_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.plummer.plummer_core_speed"><code class="docutils literal notranslate"><span class="pre">plummer_core_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.plummer.plummer_tidal_radius"><code class="docutils literal notranslate"><span class="pre">plummer_tidal_radius()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.plummer.plummer_apocentre"><code class="docutils literal notranslate"><span class="pre">plummer_apocentre()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.plummer.chandrasekhar_F"><code class="docutils literal notranslate"><span class="pre">chandrasekhar_F()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.plummer.orbit_shape_factor"><code class="docutils literal notranslate"><span class="pre">orbit_shape_factor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.plummer.dynamical_friction_time"><code class="docutils literal notranslate"><span class="pre">dynamical_friction_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.plummer.retained_mask"><code class="docutils literal notranslate"><span class="pre">retained_mask()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.star_clusters.Mcl_rh_to_vescape"><code class="docutils literal notranslate"><span class="pre">Mcl_rh_to_vescape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.star_clusters.Mcl_rho_to_vescape"><code class="docutils literal notranslate"><span class="pre">Mcl_rho_to_vescape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.star_clusters.sample_star_clusters_mapelli2021"><code class="docutils literal notranslate"><span class="pre">sample_star_clusters_mapelli2021()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.star_clusters.sample_star_clusters"><code class="docutils literal notranslate"><span class="pre">sample_star_clusters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.host_retention.sample_escape_speed"><code class="docutils literal notranslate"><span class="pre">sample_escape_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.host_retention.sample_multi_escape_speed"><code class="docutils literal notranslate"><span class="pre">sample_multi_escape_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.host_retention.escape_speed_cdf"><code class="docutils literal notranslate"><span class="pre">escape_speed_cdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.host_retention.compute_environment_retention"><code class="docutils literal notranslate"><span class="pre">compute_environment_retention()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.host_retention.compute_multi_environment_retention"><code class="docutils literal notranslate"><span class="pre">compute_multi_environment_retention()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.host_retention.retention_curve"><code class="docutils literal notranslate"><span class="pre">retention_curve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.host_retention.compute_environment_cumulative_retention"><code class="docutils literal notranslate"><span class="pre">compute_environment_cumulative_retention()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/hosts.html#gwGenealogy.hosts.host_retention.compute_multi_environment_cumulative_retention"><code class="docutils literal notranslate"><span class="pre">compute_multi_environment_cumulative_retention()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/core.html">Core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/core.html#gwGenealogy.core.hierarchical.HierarchicalMergersInClusters"><code class="docutils literal notranslate"><span class="pre">HierarchicalMergersInClusters</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/core.html#gwGenealogy.core.hierarchical.HierarchicalMergersInClusters.simulate"><code class="docutils literal notranslate"><span class="pre">HierarchicalMergersInClusters.simulate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/core.html#gwGenealogy.core.hierarchical.HierarchicalMergersInClusters.plot_generations"><code class="docutils literal notranslate"><span class="pre">HierarchicalMergersInClusters.plot_generations()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/core.html#gwGenealogy.core.seed_growth.MonteCarloBHSeedGrowth"><code class="docutils literal notranslate"><span class="pre">MonteCarloBHSeedGrowth</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/core.html#gwGenealogy.core.seed_growth.MonteCarloBHSeedGrowth.simulate"><code class="docutils literal notranslate"><span class="pre">MonteCarloBHSeedGrowth.simulate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/core.html#gwGenealogy.core.seed_growth.MonteCarloBHSeedGrowth.simulate_grid"><code class="docutils literal notranslate"><span class="pre">MonteCarloBHSeedGrowth.simulate_grid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability.compute"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability.compute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability.plot_heatmap"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability.plot_heatmap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability.plot_heatmap_all_vesc"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability.plot_heatmap_all_vesc()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G.compute"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G.compute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G.plot_heatmap"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G.plot_heatmap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G.plot_heatmap_all_vesc"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G.plot_heatmap_all_vesc()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/index.html">Tutorials</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Citation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#papers-using-gwgenealogy">Papers using gwGenealogy</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">gwGenealogy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Citation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/citation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="citation">
+<h1>Citation<a class="headerlink" href="#citation" title="Link to this heading"></a></h1>
+<p>If you use <code class="docutils literal notranslate"><span class="pre">gwGenealogy</span></code> in your research, please cite the relevant papers:</p>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@article</span><span class="p">{</span><span class="nl">Islam:2025drw</span><span class="p">,</span>
+<span class="w">    </span><span class="na">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;Islam, Tousif and Wadekar, Digvijay&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">title</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;{Accurate models for recoil velocity distribution in black hole</span>
+<span class="s">              mergers with comparable to extreme mass-ratios and their</span>
+<span class="s">              astrophysical implications}&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">eprint</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;2511.11536&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">archivePrefix</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;arXiv&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">primaryClass</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;gr-qc&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">doi</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;10.1103/4jvv-qg4h&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">journal</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;Phys. Rev. D&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">volume</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;113&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">number</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;10&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">pages</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;104017&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">year</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;2026&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@article</span><span class="p">{</span><span class="nl">Islam:2026yxx</span><span class="p">,</span>
+<span class="w">    </span><span class="na">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;Islam, Tousif and Wadekar, Digvijay and Kritos, Konstantinos&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">title</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;{Kick matters: The impact of a new recoil model on the retention</span>
+<span class="s">              of hierarchical black-hole remnants in globular clusters}&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">eprint</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;2603.10170&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">archivePrefix</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;arXiv&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">primaryClass</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;astro-ph.HE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">month</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;3&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">year</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;2026&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@article</span><span class="p">{</span><span class="nl">Islam:2026iyn</span><span class="p">,</span>
+<span class="w">    </span><span class="na">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;Islam, Tousif&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">title</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;{Inference of recoil kicks from binary black hole mergers up to</span>
+<span class="s">              GWTC--4 and their astrophysical implications}&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">eprint</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;2604.04546&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">archivePrefix</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;arXiv&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">primaryClass</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;astro-ph.HE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">month</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;4&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">year</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;2026&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@article</span><span class="p">{</span><span class="nl">Islam:2026sjl</span><span class="p">,</span>
+<span class="w">    </span><span class="na">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;Islam, Tousif and Venumadhav, Tejaswi and Wadekar, Digvijay&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">title</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;{Progenitor of the recoiling super-massive black hole RBH-1</span>
+<span class="s">              identified using HST/JWST imaging}&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">eprint</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;2601.18986&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">archivePrefix</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;arXiv&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">primaryClass</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;astro-ph.HE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">month</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="na">year</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;2026&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="papers-using-gwgenealogy">
+<h2>Papers using gwGenealogy<a class="headerlink" href="#papers-using-gwgenealogy" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><em>Accurate models for recoil velocity distribution in black hole mergers with comparable to extreme mass-ratios and their astrophysical implications</em>;
+Tousif Islam, Digvijay Wadekar;
+<a class="reference external" href="https://arxiv.org/abs/2511.11536">arXiv:2511.11536</a>, Phys. Rev. D 113, 104017 (2026)</p></li>
+<li><p><em>Progenitor of the recoiling super-massive black hole RBH-1 identified using HST/JWST imaging</em>;
+Tousif Islam, Tejaswi Venumadhav, Digvijay Wadekar;
+<a class="reference external" href="https://arxiv.org/abs/2601.18986">arXiv:2601.18986</a></p></li>
+<li><p><em>Kick matters: The impact of a new recoil model on the retention of hierarchical black-hole remnants in globular clusters</em>;
+Tousif Islam, Digvijay Wadekar, Konstantinos Kritos;
+<a class="reference external" href="https://arxiv.org/abs/2603.10170">arXiv:2603.10170</a></p></li>
+<li><p><em>Inference of recoil kicks from binary black hole mergers up to GWTC-4 and their astrophysical implications</em>;
+Tousif Islam;
+<a class="reference external" href="https://arxiv.org/abs/2604.04546">arXiv:2604.04546</a></p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="notebooks/index.html" class="btn btn-neutral float-left" title="Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Tousif Islam.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

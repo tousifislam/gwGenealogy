@@ -1,0 +1,846 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hosts &mdash; gwGenealogy 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Core" href="core.html" />
+    <link rel="prev" title="Stellar" href="stellar.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            gwGenealogy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#from-source">From source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#building-the-documentation">Building the documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#sample-a-bbh-population">Sample a BBH population</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#compute-remnant-properties">Compute remnant properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#hierarchical-mergers">Hierarchical mergers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#bh-seed-growth">BH seed growth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#retention-probability-grids">Retention probability grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#gwtc-population-sampling">GWTC population sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#host-environment-retention">Host environment retention</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.distributions.sample_uniform_1d"><code class="docutils literal notranslate"><span class="pre">sample_uniform_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.distributions.sample_loguniform_1d"><code class="docutils literal notranslate"><span class="pre">sample_loguniform_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.distributions.sample_gaussian_1d"><code class="docutils literal notranslate"><span class="pre">sample_gaussian_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.distributions.sample_lognormal_1d"><code class="docutils literal notranslate"><span class="pre">sample_lognormal_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.distributions.sample_powerlaw_1d"><code class="docutils literal notranslate"><span class="pre">sample_powerlaw_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.distributions.sample_maxwellian_1d"><code class="docutils literal notranslate"><span class="pre">sample_maxwellian_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.distributions.sample_beta_1d"><code class="docutils literal notranslate"><span class="pre">sample_beta_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.m1_m2_to_mchirp"><code class="docutils literal notranslate"><span class="pre">m1_m2_to_mchirp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.m1_m2_to_q"><code class="docutils literal notranslate"><span class="pre">m1_m2_to_q()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.m1_m2_to_eta"><code class="docutils literal notranslate"><span class="pre">m1_m2_to_eta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.source_frame_to_detector_frame_mass"><code class="docutils literal notranslate"><span class="pre">source_frame_to_detector_frame_mass()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.detector_frame_to_source_frame_mass"><code class="docutils literal notranslate"><span class="pre">detector_frame_to_source_frame_mass()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.chi_eff"><code class="docutils literal notranslate"><span class="pre">chi_eff()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.chi_p"><code class="docutils literal notranslate"><span class="pre">chi_p()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.delta_parallel"><code class="docutils literal notranslate"><span class="pre">delta_parallel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.delta_perp"><code class="docutils literal notranslate"><span class="pre">delta_perp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.chi_tilde_parallel"><code class="docutils literal notranslate"><span class="pre">chi_tilde_parallel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.chi_tilde_perp"><code class="docutils literal notranslate"><span class="pre">chi_tilde_perp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.coordinates.polar_to_cartesian"><code class="docutils literal notranslate"><span class="pre">polar_to_cartesian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.coordinates.cartesian_to_polar"><code class="docutils literal notranslate"><span class="pre">cartesian_to_polar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.coordinates.spins_polar_to_cartesian_vectors"><code class="docutils literal notranslate"><span class="pre">spins_polar_to_cartesian_vectors()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.coordinates.spins_cartesian_vectors_to_polar"><code class="docutils literal notranslate"><span class="pre">spins_cartesian_vectors_to_polar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.statistics.compute_kullback_leibler_divergence"><code class="docutils literal notranslate"><span class="pre">compute_kullback_leibler_divergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.statistics.compute_jensen_shannon_divergence"><code class="docutils literal notranslate"><span class="pre">compute_jensen_shannon_divergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.rcparams.set_rcparams"><code class="docutils literal notranslate"><span class="pre">set_rcparams()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="binaries.html">Binaries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh.BBHs"><code class="docutils literal notranslate"><span class="pre">BBHs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_masses.sample_masses"><code class="docutils literal notranslate"><span class="pre">sample_masses()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_spins.sample_spins"><code class="docutils literal notranslate"><span class="pre">sample_spins()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_spins.sample_spin_magnitudes"><code class="docutils literal notranslate"><span class="pre">sample_spin_magnitudes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_spins.sample_spin_angles"><code class="docutils literal notranslate"><span class="pre">sample_spin_angles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_redshifts.E"><code class="docutils literal notranslate"><span class="pre">E()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_redshifts.comoving_volume_element"><code class="docutils literal notranslate"><span class="pre">comoving_volume_element()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_redshifts.luminosity_distance"><code class="docutils literal notranslate"><span class="pre">luminosity_distance()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_redshifts.redshift_probability_density"><code class="docutils literal notranslate"><span class="pre">redshift_probability_density()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_redshifts.sample_redshift"><code class="docutils literal notranslate"><span class="pre">sample_redshift()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_redshifts.powerlaw_redshift_pdf"><code class="docutils literal notranslate"><span class="pre">powerlaw_redshift_pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_redshifts.sample_redshift_powerlaw"><code class="docutils literal notranslate"><span class="pre">sample_redshift_powerlaw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_redshifts.madau_dickinson_redshift_pdf"><code class="docutils literal notranslate"><span class="pre">madau_dickinson_redshift_pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_redshifts.sample_redshift_madau_dickinson"><code class="docutils literal notranslate"><span class="pre">sample_redshift_madau_dickinson()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_remnant.BBHRemnant"><code class="docutils literal notranslate"><span class="pre">BBHRemnant</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_gwtc.sample_gwtc_population"><code class="docutils literal notranslate"><span class="pre">sample_gwtc_population()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_gwtc.available_catalogs"><code class="docutils literal notranslate"><span class="pre">available_catalogs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.smbbh.sample_smbbh"><code class="docutils literal notranslate"><span class="pre">sample_smbbh()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="stellar.html">Stellar</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.stellar_evolution.IMF_kroupa"><code class="docutils literal notranslate"><span class="pre">IMF_kroupa()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.stellar_evolution.sample_kroupa_masses"><code class="docutils literal notranslate"><span class="pre">sample_kroupa_masses()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.stellar_evolution.sample_zams_masses"><code class="docutils literal notranslate"><span class="pre">sample_zams_masses()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.stellar_evolution.evolve_stars"><code class="docutils literal notranslate"><span class="pre">evolve_stars()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.stellar_evolution.sample_1g_bh_masses_from_stellar_collapse"><code class="docutils literal notranslate"><span class="pre">sample_1g_bh_masses_from_stellar_collapse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.collapse.compute_Mrem_Fryer12_delayed_rapster"><code class="docutils literal notranslate"><span class="pre">compute_Mrem_Fryer12_delayed_rapster()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.collapse.compute_Mrem_SEVN_delayed_rapster"><code class="docutils literal notranslate"><span class="pre">compute_Mrem_SEVN_delayed_rapster()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.natal_kick.sample_maxwellian_kick"><code class="docutils literal notranslate"><span class="pre">sample_maxwellian_kick()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Hosts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.plummer.PlummerCluster"><code class="docutils literal notranslate"><span class="pre">PlummerCluster</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gwGenealogy.hosts.plummer.PlummerCluster.potential"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.potential()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gwGenealogy.hosts.plummer.PlummerCluster.density"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.density()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gwGenealogy.hosts.plummer.PlummerCluster.sigma"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.sigma()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gwGenealogy.hosts.plummer.PlummerCluster.merger_analysis"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.merger_analysis()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.plummer.plummer_scale_radius"><code class="docutils literal notranslate"><span class="pre">plummer_scale_radius()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.plummer.plummer_potential"><code class="docutils literal notranslate"><span class="pre">plummer_potential()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.plummer.plummer_density"><code class="docutils literal notranslate"><span class="pre">plummer_density()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.plummer.plummer_velocity_dispersion"><code class="docutils literal notranslate"><span class="pre">plummer_velocity_dispersion()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.plummer.plummer_escape_speed"><code class="docutils literal notranslate"><span class="pre">plummer_escape_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.plummer.plummer_core_speed"><code class="docutils literal notranslate"><span class="pre">plummer_core_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.plummer.plummer_tidal_radius"><code class="docutils literal notranslate"><span class="pre">plummer_tidal_radius()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.plummer.plummer_apocentre"><code class="docutils literal notranslate"><span class="pre">plummer_apocentre()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.plummer.chandrasekhar_F"><code class="docutils literal notranslate"><span class="pre">chandrasekhar_F()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.plummer.orbit_shape_factor"><code class="docutils literal notranslate"><span class="pre">orbit_shape_factor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.plummer.dynamical_friction_time"><code class="docutils literal notranslate"><span class="pre">dynamical_friction_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.plummer.retained_mask"><code class="docutils literal notranslate"><span class="pre">retained_mask()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.star_clusters.Mcl_rh_to_vescape"><code class="docutils literal notranslate"><span class="pre">Mcl_rh_to_vescape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.star_clusters.Mcl_rho_to_vescape"><code class="docutils literal notranslate"><span class="pre">Mcl_rho_to_vescape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.star_clusters.sample_star_clusters_mapelli2021"><code class="docutils literal notranslate"><span class="pre">sample_star_clusters_mapelli2021()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.star_clusters.sample_star_clusters"><code class="docutils literal notranslate"><span class="pre">sample_star_clusters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.host_retention.sample_escape_speed"><code class="docutils literal notranslate"><span class="pre">sample_escape_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.host_retention.sample_multi_escape_speed"><code class="docutils literal notranslate"><span class="pre">sample_multi_escape_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.host_retention.escape_speed_cdf"><code class="docutils literal notranslate"><span class="pre">escape_speed_cdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.host_retention.compute_environment_retention"><code class="docutils literal notranslate"><span class="pre">compute_environment_retention()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.host_retention.compute_multi_environment_retention"><code class="docutils literal notranslate"><span class="pre">compute_multi_environment_retention()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.host_retention.retention_curve"><code class="docutils literal notranslate"><span class="pre">retention_curve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.host_retention.compute_environment_cumulative_retention"><code class="docutils literal notranslate"><span class="pre">compute_environment_cumulative_retention()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.hosts.host_retention.compute_multi_environment_cumulative_retention"><code class="docutils literal notranslate"><span class="pre">compute_multi_environment_cumulative_retention()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="core.html">Core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="core.html#gwGenealogy.core.hierarchical.HierarchicalMergersInClusters"><code class="docutils literal notranslate"><span class="pre">HierarchicalMergersInClusters</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.hierarchical.HierarchicalMergersInClusters.simulate"><code class="docutils literal notranslate"><span class="pre">HierarchicalMergersInClusters.simulate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.hierarchical.HierarchicalMergersInClusters.plot_generations"><code class="docutils literal notranslate"><span class="pre">HierarchicalMergersInClusters.plot_generations()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="core.html#gwGenealogy.core.seed_growth.MonteCarloBHSeedGrowth"><code class="docutils literal notranslate"><span class="pre">MonteCarloBHSeedGrowth</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.seed_growth.MonteCarloBHSeedGrowth.simulate"><code class="docutils literal notranslate"><span class="pre">MonteCarloBHSeedGrowth.simulate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.seed_growth.MonteCarloBHSeedGrowth.simulate_grid"><code class="docutils literal notranslate"><span class="pre">MonteCarloBHSeedGrowth.simulate_grid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability.compute"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability.compute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability.plot_heatmap"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability.plot_heatmap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability.plot_heatmap_all_vesc"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability.plot_heatmap_all_vesc()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G.compute"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G.compute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G.plot_heatmap"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G.plot_heatmap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G.plot_heatmap_all_vesc"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G.plot_heatmap_all_vesc()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/index.html">Tutorials</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../citation.html">Citation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../citation.html#papers-using-gwgenealogy">Papers using gwGenealogy</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">gwGenealogy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">API Reference</a></li>
+      <li class="breadcrumb-item active">Hosts</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/hosts.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-gwGenealogy.hosts.plummer">
+<span id="hosts"></span><h1>Hosts<a class="headerlink" href="#module-gwGenealogy.hosts.plummer" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.plummer.PlummerCluster">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.plummer.</span></span><span class="sig-name descname"><span class="pre">PlummerCluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Mcl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_gyr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rt_over_rh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ln_lambda</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/plummer.html#PlummerCluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.plummer.PlummerCluster" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Plummer sphere cluster model with merger retention analysis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Mcl</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Cluster mass [Msun]</p></li>
+<li><p><strong>r_h</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Half-mass radius [pc]</p></li>
+<li><p><strong>cluster_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – ‘GC’ or ‘NSC’. Sets epsilon, tau_gyr, rt_over_rh defaults.</p></li>
+<li><p><strong>epsilon</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>optional</em>) – Repeat-merger efficiency. Overrides cluster_type default.</p></li>
+<li><p><strong>tau_gyr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>optional</em>) – Repeat-merger timescale [Gyr]. Overrides cluster_type default.</p></li>
+<li><p><strong>rt_over_rh</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>optional</em>) – Tidal radius in units of r_h. Overrides cluster_type default.</p></li>
+<li><p><strong>ln_lambda</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Coulomb logarithm (default: 2.5)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.plummer.PlummerCluster.potential">
+<span class="sig-name descname"><span class="pre">potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/plummer.html#PlummerCluster.potential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.plummer.PlummerCluster.potential" title="Link to this definition"></a></dt>
+<dd><p>Gravitational potential at distance r [pc]. Returns (km/s)^2.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.plummer.PlummerCluster.density">
+<span class="sig-name descname"><span class="pre">density</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/plummer.html#PlummerCluster.density"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.plummer.PlummerCluster.density" title="Link to this definition"></a></dt>
+<dd><p>Density at distance r [pc]. Returns Msun/pc^3.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.plummer.PlummerCluster.sigma">
+<span class="sig-name descname"><span class="pre">sigma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/plummer.html#PlummerCluster.sigma"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.plummer.PlummerCluster.sigma" title="Link to this definition"></a></dt>
+<dd><p>1-D velocity dispersion at distance r [pc]. Returns km/s.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.plummer.PlummerCluster.merger_analysis">
+<span class="sig-name descname"><span class="pre">merger_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v_kick</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M_bh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/plummer.html#PlummerCluster.merger_analysis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.plummer.PlummerCluster.merger_analysis" title="Link to this definition"></a></dt>
+<dd><p>Run full merger retention analysis for a set of kicks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v_kick</strong> (<em>array</em>) – Kick velocity samples [km/s]</p></li>
+<li><p><strong>M_bh</strong> (<em>array</em>) – Remnant BH masses [Msun]</p></li>
+<li><p><strong>attributes</strong> (<em>Sets</em>)</p></li>
+<li><p><strong>---------------</strong></p></li>
+<li><p><strong>v_kick</strong></p></li>
+<li><p><strong>M_bh</strong></p></li>
+<li><p><strong>retained</strong> (<em>boolean array</em>)</p></li>
+<li><p><strong>r_max</strong> (<em>array</em><em> (</em><em>NaN for unbound kicks</em><em>)</em>)</p></li>
+<li><p><strong>t_df</strong> (<em>array</em><em> (</em><em>NaN for ejected kicks</em><em>) </em><em>[</em><em>Myr</em><em>]</em>)</p></li>
+<li><p><strong>P_ret</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>P_core</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>P_hier</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.plummer.plummer_scale_radius">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.plummer.</span></span><span class="sig-name descname"><span class="pre">plummer_scale_radius</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r_h</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/plummer.html#plummer_scale_radius"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.plummer.plummer_scale_radius" title="Link to this definition"></a></dt>
+<dd><p>Convert half-mass radius to Plummer scale radius: a = r_h / 1.305.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>r_h</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Half-mass radius [pc]</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>a</strong> – Scale radius [pc]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a> or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.plummer.plummer_potential">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.plummer.</span></span><span class="sig-name descname"><span class="pre">plummer_potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mcl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/plummer.html#plummer_potential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.plummer.plummer_potential" title="Link to this definition"></a></dt>
+<dd><p>Plummer gravitational potential Phi(r).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Radial distance [pc]</p></li>
+<li><p><strong>Mcl</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Cluster mass [Msun]</p></li>
+<li><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Scale radius [pc]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Phi</strong> – Potential [(km/s)^2]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a> or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.plummer.plummer_density">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.plummer.</span></span><span class="sig-name descname"><span class="pre">plummer_density</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mcl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/plummer.html#plummer_density"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.plummer.plummer_density" title="Link to this definition"></a></dt>
+<dd><p>Plummer density profile rho(r).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Radial distance [pc]</p></li>
+<li><p><strong>Mcl</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Cluster mass [Msun]</p></li>
+<li><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Scale radius [pc]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>rho</strong> – Density [Msun / pc^3]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a> or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.plummer.plummer_velocity_dispersion">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.plummer.</span></span><span class="sig-name descname"><span class="pre">plummer_velocity_dispersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mcl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/plummer.html#plummer_velocity_dispersion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.plummer.plummer_velocity_dispersion" title="Link to this definition"></a></dt>
+<dd><p>Isotropic 1-D velocity dispersion sigma(r) for a Plummer sphere.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Radial distance [pc]</p></li>
+<li><p><strong>Mcl</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Cluster mass [Msun]</p></li>
+<li><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Scale radius [pc]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>sigma</strong> – Velocity dispersion [km/s]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a> or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.plummer.plummer_escape_speed">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.plummer.</span></span><span class="sig-name descname"><span class="pre">plummer_escape_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Mcl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/plummer.html#plummer_escape_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.plummer.plummer_escape_speed" title="Link to this definition"></a></dt>
+<dd><p>Central escape speed v_esc = sqrt(2 G Mcl / a).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Mcl</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Cluster mass [Msun]</p></li>
+<li><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Scale radius [pc]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>v_esc</strong> – Escape speed [km/s]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a> or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.plummer.plummer_core_speed">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.plummer.</span></span><span class="sig-name descname"><span class="pre">plummer_core_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Mcl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/plummer.html#plummer_core_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.plummer.plummer_core_speed" title="Link to this definition"></a></dt>
+<dd><p>Core-crossing speed v_c ~ 0.54 v_esc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Mcl</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Cluster mass [Msun]</p></li>
+<li><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Scale radius [pc]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>v_c</strong> – Core-crossing speed [km/s]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a> or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.plummer.plummer_tidal_radius">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.plummer.</span></span><span class="sig-name descname"><span class="pre">plummer_tidal_radius</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r_h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rt_over_rh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/plummer.html#plummer_tidal_radius"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.plummer.plummer_tidal_radius" title="Link to this definition"></a></dt>
+<dd><p>Tidal truncation radius r_t = rt_over_rh * r_h.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r_h</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Half-mass radius [pc]</p></li>
+<li><p><strong>rt_over_rh</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Tidal radius in units of r_h (default: 5.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>r_t</strong> – Tidal radius [pc]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a> or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.plummer.plummer_apocentre">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.plummer.</span></span><span class="sig-name descname"><span class="pre">plummer_apocentre</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v_kick</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_esc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/plummer.html#plummer_apocentre"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.plummer.plummer_apocentre" title="Link to this definition"></a></dt>
+<dd><p>Radial-orbit apocentre r_max in a Plummer potential.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v_kick</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Kick velocity (must be &lt; v_esc for bound orbits) [km/s]</p></li>
+<li><p><strong>v_esc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Central escape speed [km/s]</p></li>
+<li><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Scale radius [pc]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>r_max</strong> – Apocentre distance [pc]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a> or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.plummer.chandrasekhar_F">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.plummer.</span></span><span class="sig-name descname"><span class="pre">chandrasekhar_F</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/plummer.html#chandrasekhar_F"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.plummer.chandrasekhar_F" title="Link to this definition"></a></dt>
+<dd><p>Chandrasekhar velocity term F(X) = erf(X) - (2X/sqrt(pi)) exp(-X^2).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Velocity ratio v / (sqrt(2) sigma)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>F</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a> or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.plummer.orbit_shape_factor">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.plummer.</span></span><span class="sig-name descname"><span class="pre">orbit_shape_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_xi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">400</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/plummer.html#orbit_shape_factor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.plummer.orbit_shape_factor" title="Link to this definition"></a></dt>
+<dd><p>Dimensionless orbit-shape factor R(u) for a radial Plummer orbit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Ratio v_kick / v_esc (0 &lt; u &lt; 1)</p></li>
+<li><p><strong>n_xi</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Number of quadrature points (default: 400)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>R</strong> – Dimensionless orbit-shape factor</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.plummer.dynamical_friction_time">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.plummer.</span></span><span class="sig-name descname"><span class="pre">dynamical_friction_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v_kick</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_esc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Mcl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M_bh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ln_lambda</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/plummer.html#dynamical_friction_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.plummer.dynamical_friction_time" title="Link to this definition"></a></dt>
+<dd><p>Orbit-averaged Chandrasekhar dynamical-friction return time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v_kick</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Kick velocities of RETAINED remnants (v_kick &lt; v_esc) [km/s]</p></li>
+<li><p><strong>v_esc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Central escape speed [km/s]</p></li>
+<li><p><strong>Mcl</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Cluster mass [Msun]</p></li>
+<li><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Plummer scale radius [pc]</p></li>
+<li><p><strong>M_bh</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em><em> (</em><em>matching v_kick</em><em>)</em>) – Remnant BH mass(es) [Msun]</p></li>
+<li><p><strong>ln_lambda</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Coulomb logarithm (default: 2.5)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>t_DF</strong> – Return time [Myr]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a> or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.plummer.retained_mask">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.plummer.</span></span><span class="sig-name descname"><span class="pre">retained_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v_kick</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_esc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/plummer.html#retained_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.plummer.retained_mask" title="Link to this definition"></a></dt>
+<dd><p>Boolean mask: bound (v_kick &lt; v_esc) AND apocentre within tidal radius.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v_kick</strong> (<em>array</em>) – Kick velocities [km/s]</p></li>
+<li><p><strong>v_esc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Central escape speed [km/s]</p></li>
+<li><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Plummer scale radius [pc]</p></li>
+<li><p><strong>r_t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Tidal truncation radius [pc]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>mask</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>boolean array (same shape as v_kick)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="module-gwGenealogy.hosts.star_clusters">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.star_clusters.Mcl_rh_to_vescape">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.star_clusters.</span></span><span class="sig-name descname"><span class="pre">Mcl_rh_to_vescape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Mcl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_h</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/star_clusters.html#Mcl_rh_to_vescape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.star_clusters.Mcl_rh_to_vescape" title="Link to this definition"></a></dt>
+<dd><p>Escape velocity from cluster mass and half-mass radius (virial theorem).</p>
+<p>v_esc = 2 * sqrt(0.4 G M_cl / r_h)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Mcl</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Total cluster mass [Msun]</p></li>
+<li><p><strong>r_h</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Half-mass radius [pc]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>v_esc</strong> (<em>float or array</em>) – Escape velocity [km/s]</p></li>
+<li><p><strong>Reference</strong> (<em>https://arxiv.org/pdf/2210.10055, Equation 1</em>)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.star_clusters.Mcl_rho_to_vescape">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.star_clusters.</span></span><span class="sig-name descname"><span class="pre">Mcl_rho_to_vescape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Mcl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/star_clusters.html#Mcl_rho_to_vescape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.star_clusters.Mcl_rho_to_vescape" title="Link to this definition"></a></dt>
+<dd><p>Escape velocity from cluster mass and half-mass density (scaling relation).</p>
+<p>v_esc = 40 km/s * (M_tot / 1e5 Msun)^(1/3) * (rho / 1e5 Msun pc^-3)^(1/6)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Mcl</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Total cluster mass [Msun]</p></li>
+<li><p><strong>rho</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Density at the half-mass radius [Msun pc^-3]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>v_esc</strong> (<em>float or array</em>) – Escape velocity [km/s]</p></li>
+<li><p><strong>References</strong> (<em>Georgiev et al. (2009a,b), Fragione &amp; Silk (2020),</em>)</p></li>
+<li><p><strong>https</strong> (<em>//arxiv.org/pdf/2103.05016 Equation 22</em>)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.star_clusters.sample_star_clusters_mapelli2021">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.star_clusters.</span></span><span class="sig-name descname"><span class="pre">sample_star_clusters_mapelli2021</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_M</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/star_clusters.html#sample_star_clusters_mapelli2021"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.star_clusters.sample_star_clusters_mapelli2021" title="Link to this definition"></a></dt>
+<dd><p>Sample star cluster properties following Mapelli et al. (2021) Sec 2.5.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Number of clusters to draw.</p></li>
+<li><p><strong>cluster_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – ‘NSC’, ‘GC’, or ‘YSC’.</p></li>
+<li><p><strong>sigma_M</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Std dev of log10(M_cluster/Msun) distribution (default: 0.4).</p></li>
+<li><p><strong>sigma_rho</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Std dev of log10(rho/(Msun pc^-3)) distribution (default: 0.4).</p></li>
+<li><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> or </em><em>None</em>) – Random seed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>M_cluster : total mass [Msun]
+rho : half-mass density [Msun pc^-3]
+rho_c : core density = 20*rho [Msun pc^-3]
+v_esc : escape velocity [km/s]
+t_SC : cluster lifetime [Gyr]
+f_bin : binary fraction</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.star_clusters.sample_star_clusters">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.star_clusters.</span></span><span class="sig-name descname"><span class="pre">sample_star_clusters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M_cluster_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M_cluster_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_h_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_h_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Z_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Z_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/star_clusters.html#sample_star_clusters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.star_clusters.sample_star_clusters" title="Link to this definition"></a></dt>
+<dd><p>Sample generic star cluster properties from log-uniform priors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Number of clusters to draw.</p></li>
+<li><p><strong>M_cluster_min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Minimum cluster mass [Msun] (default: 1e3).</p></li>
+<li><p><strong>M_cluster_max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Maximum cluster mass [Msun] (default: 1e8).</p></li>
+<li><p><strong>r_h_min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Minimum half-mass radius [pc] (default: 0.1).</p></li>
+<li><p><strong>r_h_max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Maximum half-mass radius [pc] (default: 100).</p></li>
+<li><p><strong>Z_min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Minimum metallicity (default: 1e-4).</p></li>
+<li><p><strong>Z_max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Maximum metallicity (default: 0.02).</p></li>
+<li><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> or </em><em>None</em>) – Random seed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>M_cluster : cluster mass [Msun]
+r_h : half-mass radius [pc]
+Z : metallicity
+v_esc : escape velocity [km/s]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="module-gwGenealogy.hosts.host_retention">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.host_retention.sample_escape_speed">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.host_retention.</span></span><span class="sig-name descname"><span class="pre">sample_escape_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/host_retention.html#sample_escape_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.host_retention.sample_escape_speed" title="Link to this definition"></a></dt>
+<dd><p>Draw escape velocity samples from an environment’s distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Number of samples to draw.</p></li>
+<li><p><strong>environment</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a>) – Environment specification (see <code class="docutils literal notranslate"><span class="pre">escape_speed_cdf</span></code>).</p></li>
+<li><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> or </em><em>None</em>) – Random seed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>v_esc</strong> – Escape velocity samples [km/s]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.host_retention.sample_multi_escape_speed">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.host_retention.</span></span><span class="sig-name descname"><span class="pre">sample_multi_escape_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/host_retention.html#sample_multi_escape_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.host_retention.sample_multi_escape_speed" title="Link to this definition"></a></dt>
+<dd><p>Draw escape velocity samples for multiple environments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Number of samples per environment.</p></li>
+<li><p><strong>environments</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em> of </em><em>{name: environment_dict}</em><em>, </em><em>optional</em>) – Defaults to all predefined environments.</p></li>
+<li><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> or </em><em>None</em>) – Random seed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>dict of {name</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy array of v_esc}</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.host_retention.escape_speed_cdf">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.host_retention.</span></span><span class="sig-name descname"><span class="pre">escape_speed_cdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environment</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/host_retention.html#escape_speed_cdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.host_retention.escape_speed_cdf" title="Link to this definition"></a></dt>
+<dd><p>CDF of the escape-speed distribution for a given environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Escape speed value(s) [km/s]</p></li>
+<li><p><strong>environment</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a>) – <p>Environment specification with ‘kind’ key:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'kind':</span> <span class="pre">'lognormal',</span> <span class="pre">'mu':</span> <span class="pre">float,</span> <span class="pre">'sig':</span> <span class="pre">float}</span></code>
+mu and sig are base-10 log mean and std dev
+(v_esc ~ 10^N(mu, sig))</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'kind':</span> <span class="pre">'uniform',</span> <span class="pre">'vmin':</span> <span class="pre">float,</span> <span class="pre">'vmax':</span> <span class="pre">float}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'kind':</span> <span class="pre">'gaussian',</span> <span class="pre">'mean':</span> <span class="pre">float,</span> <span class="pre">'std':</span> <span class="pre">float}</span></code></p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>cdf</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a> or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.host_retention.compute_environment_retention">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.host_retention.</span></span><span class="sig-name descname"><span class="pre">compute_environment_retention</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v_kick</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environment</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/host_retention.html#compute_environment_retention"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.host_retention.compute_environment_retention" title="Link to this definition"></a></dt>
+<dd><p>Per-kick retention probability for a given environment.</p>
+<p>p_ret_i = 1 - CDF(v_kick_i)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v_kick</strong> (<em>array</em>) – Kick velocity samples [km/s]</p></li>
+<li><p><strong>environment</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a>) – Environment specification (see <code class="docutils literal notranslate"><span class="pre">escape_speed_cdf</span></code>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>p_ret</strong> – Individual retention probability for each kick sample</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.host_retention.compute_multi_environment_retention">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.host_retention.</span></span><span class="sig-name descname"><span class="pre">compute_multi_environment_retention</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v_kick</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/host_retention.html#compute_multi_environment_retention"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.host_retention.compute_multi_environment_retention" title="Link to this definition"></a></dt>
+<dd><p>Per-kick retention probabilities across multiple environments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v_kick</strong> (<em>array</em>) – Kick velocity samples [km/s]</p></li>
+<li><p><strong>environments</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em> of </em><em>{name: environment_dict}</em><em>, </em><em>optional</em>) – Defaults to all predefined environments (GC, NSC, EG, DG)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>dict of {name</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy array of p_ret}</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.host_retention.retention_curve">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.host_retention.</span></span><span class="sig-name descname"><span class="pre">retention_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v_kick</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_esc_array</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/host_retention.html#retention_curve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.host_retention.retention_curve" title="Link to this definition"></a></dt>
+<dd><p>Retention probability as a function of escape speed.</p>
+<p>p_ret(v_esc) = P(v_kick &lt; v_esc), the empirical CDF of kick samples
+evaluated on v_esc_array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v_kick</strong> (<em>array</em>) – Kick velocity samples [km/s]</p></li>
+<li><p><strong>v_esc_array</strong> (<em>array</em>) – Escape speed values at which to evaluate retention [km/s]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>p_ret</strong> – Retention probability at each v_esc value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.host_retention.compute_environment_cumulative_retention">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.host_retention.</span></span><span class="sig-name descname"><span class="pre">compute_environment_cumulative_retention</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v_kick</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'kde'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngrid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/host_retention.html#compute_environment_cumulative_retention"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.host_retention.compute_environment_cumulative_retention" title="Link to this definition"></a></dt>
+<dd><p>Integrated retention fraction P_ret for a given environment.</p>
+<p>P_ret = ∫ p_kick(v) [1 - CDF_esc(v)] dv</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v_kick</strong> (<em>array</em>) – Kick velocity samples [km/s]</p></li>
+<li><p><strong>environment</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a>) – Environment specification (see <code class="docutils literal notranslate"><span class="pre">escape_speed_cdf</span></code>)</p></li>
+<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – ‘kde’ (default): fit a KDE to the kick samples and integrate
+analytically. More accurate for posterior/MCMC samples.
+‘mc’: Monte Carlo mean (1/N) Σ p_ret_i. Exact when samples
+are iid draws from the kick distribution.</p></li>
+<li><p><strong>vmax</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Upper integration limit for KDE method [km/s] (default: 5000).</p></li>
+<li><p><strong>ngrid</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Number of grid points for KDE integration (default: 5000).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>P_ret</strong> – Integrated retention fraction</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.hosts.host_retention.compute_multi_environment_cumulative_retention">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.hosts.host_retention.</span></span><span class="sig-name descname"><span class="pre">compute_multi_environment_cumulative_retention</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v_kick</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'kde'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/hosts/host_retention.html#compute_multi_environment_cumulative_retention"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.hosts.host_retention.compute_multi_environment_cumulative_retention" title="Link to this definition"></a></dt>
+<dd><p>Integrated retention fraction P_ret across multiple environments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v_kick</strong> (<em>array</em>) – Kick velocity samples [km/s]</p></li>
+<li><p><strong>environments</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em> of </em><em>{name: environment_dict}</em><em>, </em><em>optional</em>) – Defaults to all predefined environments.</p></li>
+<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – ‘kde’ (default) or ‘mc’. See <code class="docutils literal notranslate"><span class="pre">compute_environment_cumulative_retention</span></code>.</p></li>
+<li><p><strong>**kwargs</strong> – Additional keyword arguments passed to
+<code class="docutils literal notranslate"><span class="pre">compute_environment_cumulative_retention</span></code> (vmax, ngrid).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>dict of {name</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>P_ret}</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="stellar.html" class="btn btn-neutral float-left" title="Stellar" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="core.html" class="btn btn-neutral float-right" title="Core" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Tousif Islam.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

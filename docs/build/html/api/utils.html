@@ -1,0 +1,719 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Utils &mdash; gwGenealogy 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Binaries" href="binaries.html" />
+    <link rel="prev" title="API Reference" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            gwGenealogy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#from-source">From source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#building-the-documentation">Building the documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#sample-a-bbh-population">Sample a BBH population</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#compute-remnant-properties">Compute remnant properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#hierarchical-mergers">Hierarchical mergers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#bh-seed-growth">BH seed growth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#retention-probability-grids">Retention probability grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#gwtc-population-sampling">GWTC population sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#host-environment-retention">Host environment retention</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.distributions.sample_uniform_1d"><code class="docutils literal notranslate"><span class="pre">sample_uniform_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.distributions.sample_loguniform_1d"><code class="docutils literal notranslate"><span class="pre">sample_loguniform_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.distributions.sample_gaussian_1d"><code class="docutils literal notranslate"><span class="pre">sample_gaussian_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.distributions.sample_lognormal_1d"><code class="docutils literal notranslate"><span class="pre">sample_lognormal_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.distributions.sample_powerlaw_1d"><code class="docutils literal notranslate"><span class="pre">sample_powerlaw_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.distributions.sample_maxwellian_1d"><code class="docutils literal notranslate"><span class="pre">sample_maxwellian_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.distributions.sample_beta_1d"><code class="docutils literal notranslate"><span class="pre">sample_beta_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.conversions.m1_m2_to_mchirp"><code class="docutils literal notranslate"><span class="pre">m1_m2_to_mchirp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.conversions.m1_m2_to_q"><code class="docutils literal notranslate"><span class="pre">m1_m2_to_q()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.conversions.m1_m2_to_eta"><code class="docutils literal notranslate"><span class="pre">m1_m2_to_eta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.conversions.source_frame_to_detector_frame_mass"><code class="docutils literal notranslate"><span class="pre">source_frame_to_detector_frame_mass()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.conversions.detector_frame_to_source_frame_mass"><code class="docutils literal notranslate"><span class="pre">detector_frame_to_source_frame_mass()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.conversions.chi_eff"><code class="docutils literal notranslate"><span class="pre">chi_eff()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.conversions.chi_p"><code class="docutils literal notranslate"><span class="pre">chi_p()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.conversions.delta_parallel"><code class="docutils literal notranslate"><span class="pre">delta_parallel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.conversions.delta_perp"><code class="docutils literal notranslate"><span class="pre">delta_perp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.conversions.chi_tilde_parallel"><code class="docutils literal notranslate"><span class="pre">chi_tilde_parallel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.conversions.chi_tilde_perp"><code class="docutils literal notranslate"><span class="pre">chi_tilde_perp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.coordinates.polar_to_cartesian"><code class="docutils literal notranslate"><span class="pre">polar_to_cartesian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.coordinates.cartesian_to_polar"><code class="docutils literal notranslate"><span class="pre">cartesian_to_polar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.coordinates.spins_polar_to_cartesian_vectors"><code class="docutils literal notranslate"><span class="pre">spins_polar_to_cartesian_vectors()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.coordinates.spins_cartesian_vectors_to_polar"><code class="docutils literal notranslate"><span class="pre">spins_cartesian_vectors_to_polar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.statistics.compute_kullback_leibler_divergence"><code class="docutils literal notranslate"><span class="pre">compute_kullback_leibler_divergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.statistics.compute_jensen_shannon_divergence"><code class="docutils literal notranslate"><span class="pre">compute_jensen_shannon_divergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.utils.rcparams.set_rcparams"><code class="docutils literal notranslate"><span class="pre">set_rcparams()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="binaries.html">Binaries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh.BBHs"><code class="docutils literal notranslate"><span class="pre">BBHs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_masses.sample_masses"><code class="docutils literal notranslate"><span class="pre">sample_masses()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_spins.sample_spins"><code class="docutils literal notranslate"><span class="pre">sample_spins()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_spins.sample_spin_magnitudes"><code class="docutils literal notranslate"><span class="pre">sample_spin_magnitudes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_spins.sample_spin_angles"><code class="docutils literal notranslate"><span class="pre">sample_spin_angles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_redshifts.E"><code class="docutils literal notranslate"><span class="pre">E()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_redshifts.comoving_volume_element"><code class="docutils literal notranslate"><span class="pre">comoving_volume_element()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_redshifts.luminosity_distance"><code class="docutils literal notranslate"><span class="pre">luminosity_distance()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_redshifts.redshift_probability_density"><code class="docutils literal notranslate"><span class="pre">redshift_probability_density()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_redshifts.sample_redshift"><code class="docutils literal notranslate"><span class="pre">sample_redshift()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_redshifts.powerlaw_redshift_pdf"><code class="docutils literal notranslate"><span class="pre">powerlaw_redshift_pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_redshifts.sample_redshift_powerlaw"><code class="docutils literal notranslate"><span class="pre">sample_redshift_powerlaw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_redshifts.madau_dickinson_redshift_pdf"><code class="docutils literal notranslate"><span class="pre">madau_dickinson_redshift_pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_redshifts.sample_redshift_madau_dickinson"><code class="docutils literal notranslate"><span class="pre">sample_redshift_madau_dickinson()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_remnant.BBHRemnant"><code class="docutils literal notranslate"><span class="pre">BBHRemnant</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_gwtc.sample_gwtc_population"><code class="docutils literal notranslate"><span class="pre">sample_gwtc_population()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.bbh_gwtc.available_catalogs"><code class="docutils literal notranslate"><span class="pre">available_catalogs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="binaries.html#gwGenealogy.binaries.smbbh.sample_smbbh"><code class="docutils literal notranslate"><span class="pre">sample_smbbh()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="stellar.html">Stellar</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.stellar_evolution.IMF_kroupa"><code class="docutils literal notranslate"><span class="pre">IMF_kroupa()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.stellar_evolution.sample_kroupa_masses"><code class="docutils literal notranslate"><span class="pre">sample_kroupa_masses()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.stellar_evolution.sample_zams_masses"><code class="docutils literal notranslate"><span class="pre">sample_zams_masses()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.stellar_evolution.evolve_stars"><code class="docutils literal notranslate"><span class="pre">evolve_stars()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.stellar_evolution.sample_1g_bh_masses_from_stellar_collapse"><code class="docutils literal notranslate"><span class="pre">sample_1g_bh_masses_from_stellar_collapse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.collapse.compute_Mrem_Fryer12_delayed_rapster"><code class="docutils literal notranslate"><span class="pre">compute_Mrem_Fryer12_delayed_rapster()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.collapse.compute_Mrem_SEVN_delayed_rapster"><code class="docutils literal notranslate"><span class="pre">compute_Mrem_SEVN_delayed_rapster()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.natal_kick.sample_maxwellian_kick"><code class="docutils literal notranslate"><span class="pre">sample_maxwellian_kick()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hosts.html">Hosts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.PlummerCluster"><code class="docutils literal notranslate"><span class="pre">PlummerCluster</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.potential"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.potential()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.density"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.density()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.sigma"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.sigma()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.merger_analysis"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.merger_analysis()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.plummer_scale_radius"><code class="docutils literal notranslate"><span class="pre">plummer_scale_radius()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.plummer_potential"><code class="docutils literal notranslate"><span class="pre">plummer_potential()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.plummer_density"><code class="docutils literal notranslate"><span class="pre">plummer_density()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.plummer_velocity_dispersion"><code class="docutils literal notranslate"><span class="pre">plummer_velocity_dispersion()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.plummer_escape_speed"><code class="docutils literal notranslate"><span class="pre">plummer_escape_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.plummer_core_speed"><code class="docutils literal notranslate"><span class="pre">plummer_core_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.plummer_tidal_radius"><code class="docutils literal notranslate"><span class="pre">plummer_tidal_radius()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.plummer_apocentre"><code class="docutils literal notranslate"><span class="pre">plummer_apocentre()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.chandrasekhar_F"><code class="docutils literal notranslate"><span class="pre">chandrasekhar_F()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.orbit_shape_factor"><code class="docutils literal notranslate"><span class="pre">orbit_shape_factor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.dynamical_friction_time"><code class="docutils literal notranslate"><span class="pre">dynamical_friction_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.retained_mask"><code class="docutils literal notranslate"><span class="pre">retained_mask()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.star_clusters.Mcl_rh_to_vescape"><code class="docutils literal notranslate"><span class="pre">Mcl_rh_to_vescape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.star_clusters.Mcl_rho_to_vescape"><code class="docutils literal notranslate"><span class="pre">Mcl_rho_to_vescape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.star_clusters.sample_star_clusters_mapelli2021"><code class="docutils literal notranslate"><span class="pre">sample_star_clusters_mapelli2021()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.star_clusters.sample_star_clusters"><code class="docutils literal notranslate"><span class="pre">sample_star_clusters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.host_retention.sample_escape_speed"><code class="docutils literal notranslate"><span class="pre">sample_escape_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.host_retention.sample_multi_escape_speed"><code class="docutils literal notranslate"><span class="pre">sample_multi_escape_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.host_retention.escape_speed_cdf"><code class="docutils literal notranslate"><span class="pre">escape_speed_cdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.host_retention.compute_environment_retention"><code class="docutils literal notranslate"><span class="pre">compute_environment_retention()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.host_retention.compute_multi_environment_retention"><code class="docutils literal notranslate"><span class="pre">compute_multi_environment_retention()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.host_retention.retention_curve"><code class="docutils literal notranslate"><span class="pre">retention_curve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.host_retention.compute_environment_cumulative_retention"><code class="docutils literal notranslate"><span class="pre">compute_environment_cumulative_retention()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.host_retention.compute_multi_environment_cumulative_retention"><code class="docutils literal notranslate"><span class="pre">compute_multi_environment_cumulative_retention()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="core.html">Core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="core.html#gwGenealogy.core.hierarchical.HierarchicalMergersInClusters"><code class="docutils literal notranslate"><span class="pre">HierarchicalMergersInClusters</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.hierarchical.HierarchicalMergersInClusters.simulate"><code class="docutils literal notranslate"><span class="pre">HierarchicalMergersInClusters.simulate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.hierarchical.HierarchicalMergersInClusters.plot_generations"><code class="docutils literal notranslate"><span class="pre">HierarchicalMergersInClusters.plot_generations()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="core.html#gwGenealogy.core.seed_growth.MonteCarloBHSeedGrowth"><code class="docutils literal notranslate"><span class="pre">MonteCarloBHSeedGrowth</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.seed_growth.MonteCarloBHSeedGrowth.simulate"><code class="docutils literal notranslate"><span class="pre">MonteCarloBHSeedGrowth.simulate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.seed_growth.MonteCarloBHSeedGrowth.simulate_grid"><code class="docutils literal notranslate"><span class="pre">MonteCarloBHSeedGrowth.simulate_grid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability.compute"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability.compute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability.plot_heatmap"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability.plot_heatmap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability.plot_heatmap_all_vesc"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability.plot_heatmap_all_vesc()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G.compute"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G.compute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G.plot_heatmap"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G.plot_heatmap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G.plot_heatmap_all_vesc"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G.plot_heatmap_all_vesc()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/index.html">Tutorials</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../citation.html">Citation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../citation.html#papers-using-gwgenealogy">Papers using gwGenealogy</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">gwGenealogy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">API Reference</a></li>
+      <li class="breadcrumb-item active">Utils</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/utils.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-gwGenealogy.utils.distributions">
+<span id="utils"></span><h1>Utils<a class="headerlink" href="#module-gwGenealogy.utils.distributions" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.utils.distributions.sample_uniform_1d">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.distributions.</span></span><span class="sig-name descname"><span class="pre">sample_uniform_1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/distributions.html#sample_uniform_1d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.distributions.sample_uniform_1d" title="Link to this definition"></a></dt>
+<dd><p>Sample using NumPy’s recommended random generator</p>
+<p>Parameters:
+- n_samples: Number of samples to generate
+- low: Lower bound of the uniform distribution (default: 0.0)
+- high: Upper bound of the uniform distribution (default: 1.0)
+- seed: Random seed for reproducibility (default: None)
+- plot: Whether to plot the distribution (default: False)
+- bins: Number of histogram bins for plotting (default: 50)</p>
+<p>Returns:
+- Array of sampled points</p>
+<p>samples = sample_uniform_rng(1000, seed=42)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.utils.distributions.sample_loguniform_1d">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.distributions.</span></span><span class="sig-name descname"><span class="pre">sample_loguniform_1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/distributions.html#sample_loguniform_1d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.distributions.sample_loguniform_1d" title="Link to this definition"></a></dt>
+<dd><p>Sample uniformly in log-space (log-uniform distribution)</p>
+<p>Parameters:
+- n_samples: Number of samples to generate
+- low: Lower bound of the distribution (default: 1.0, must be &gt; 0)
+- high: Upper bound of the distribution (default: 10.0)
+- seed: Random seed for reproducibility (default: None)
+- plot: Whether to plot the distribution (default: False)
+- bins: Number of histogram bins for plotting (default: 50)
+- base: Logarithm base (default: 10)</p>
+<p>Returns:
+- Array of sampled points</p>
+<p>Note: low must be &gt; 0 for log-uniform sampling</p>
+<p>Example:
+samples = sample_loguniform_1d(1000, low=1, high=100, seed=42)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.utils.distributions.sample_gaussian_1d">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.distributions.</span></span><span class="sig-name descname"><span class="pre">sample_gaussian_1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/distributions.html#sample_gaussian_1d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.distributions.sample_gaussian_1d" title="Link to this definition"></a></dt>
+<dd><p>Sample from a Gaussian (normal) distribution</p>
+<p>Parameters:
+- n_samples: Number of samples to generate
+- mean: Mean of the Gaussian distribution (default: 0.0)
+- std: Standard deviation of the Gaussian distribution (default: 1.0)
+- seed: Random seed for reproducibility (default: None)
+- plot: Whether to plot the distribution (default: False)
+- bins: Number of histogram bins for plotting (default: 50)</p>
+<p>Returns:
+- Array of sampled points</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.utils.distributions.sample_lognormal_1d">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.distributions.</span></span><span class="sig-name descname"><span class="pre">sample_lognormal_1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/distributions.html#sample_lognormal_1d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.distributions.sample_lognormal_1d" title="Link to this definition"></a></dt>
+<dd><p>Sample from a log-normal distribution</p>
+<p>Parameters:
+- n_samples: Number of samples to generate
+- mean: Mean of the underlying normal distribution (default: 0.0)
+- sigma: Standard deviation of the underlying normal distribution (default: 1.0)
+- seed: Random seed for reproducibility (default: None)
+- plot: Whether to plot the distribution (default: False)
+- bins: Number of histogram bins for plotting (default: 50)</p>
+<p>Returns:
+- Array of sampled points</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.utils.distributions.sample_powerlaw_1d">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.distributions.</span></span><span class="sig-name descname"><span class="pre">sample_powerlaw_1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/distributions.html#sample_powerlaw_1d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.distributions.sample_powerlaw_1d" title="Link to this definition"></a></dt>
+<dd><p>Sample from a power-law distribution with PDF ∝ x^β</p>
+<p>Parameters:
+- n_samples: Number of samples to generate
+- beta: Power-law exponent (β in x^β)
+- xmin: Minimum value of the distribution (default: 1.0)
+- xmax: Maximum value of the distribution (default: 10.0)
+- seed: Random seed for reproducibility (default: None)
+- plot: Whether to plot the distribution (default: False)
+- bins: Number of histogram bins for plotting (default: 50)</p>
+<p>Returns:
+- Array of sampled points</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.utils.distributions.sample_maxwellian_1d">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.distributions.</span></span><span class="sig-name descname"><span class="pre">sample_maxwellian_1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/distributions.html#sample_maxwellian_1d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.distributions.sample_maxwellian_1d" title="Link to this definition"></a></dt>
+<dd><p>Sample from a Maxwell (speed) distribution.</p>
+<p>The Maxwell distribution describes the magnitude of a 3D isotropic
+Gaussian velocity vector with per-component dispersion sigma:</p>
+<blockquote>
+<div><p>f(v) = sqrt(2/pi) * (v^2 / sigma^3) * exp(-v^2 / (2*sigma^2))</p>
+</div></blockquote>
+<p>Mean: sigma * sqrt(8/pi).</p>
+<p>Parameters:
+- n_samples: Number of samples to generate
+- sigma: 1D velocity dispersion (default: 1.0)
+- seed: Random seed for reproducibility (default: None)
+- plot: Whether to plot the distribution (default: False)
+- bins: Number of histogram bins for plotting (default: 50)</p>
+<p>Returns:
+- Array of sampled speeds (&gt;= 0)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.utils.distributions.sample_beta_1d">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.distributions.</span></span><span class="sig-name descname"><span class="pre">sample_beta_1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/distributions.html#sample_beta_1d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.distributions.sample_beta_1d" title="Link to this definition"></a></dt>
+<dd><p>Sample from a Beta distribution</p>
+<p>For spin magnitudes (<a class="reference external" href="https://arxiv.org/abs/2111.03634">https://arxiv.org/abs/2111.03634</a>)</p>
+<p>Parameters:
+- n_samples: Number of samples to generate
+- a: Alpha parameter of the Beta distribution (default: 1.4)
+- b: Beta parameter of the Beta distribution (default: 3.6)
+- seed: Random seed for reproducibility (default: None)
+- plot: Whether to plot the distribution (default: False)
+- bins: Number of histogram bins for plotting (default: 50)</p>
+<p>Returns:
+- Array of sampled points (values between 0 and 1)</p>
+</dd></dl>
+
+<dl class="py function" id="module-gwGenealogy.utils.conversions">
+<dt class="sig sig-object py" id="gwGenealogy.utils.conversions.m1_m2_to_mchirp">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.conversions.</span></span><span class="sig-name descname"><span class="pre">m1_m2_to_mchirp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/conversions.html#m1_m2_to_mchirp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.conversions.m1_m2_to_mchirp" title="Link to this definition"></a></dt>
+<dd><p>Chirp mass from component masses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Mass of the heavier object</p></li>
+<li><p><strong>m2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Mass of the lighter object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Chirp mass of the binary</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a> or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.utils.conversions.m1_m2_to_q">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.conversions.</span></span><span class="sig-name descname"><span class="pre">m1_m2_to_q</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/conversions.html#m1_m2_to_q"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.conversions.m1_m2_to_q" title="Link to this definition"></a></dt>
+<dd><p>Mass ratio q = m1/m2 &gt;= 1.</p>
+<p>If m1 &lt; m2 for any element, the masses are swapped so that q &gt;= 1.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.utils.conversions.m1_m2_to_eta">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.conversions.</span></span><span class="sig-name descname"><span class="pre">m1_m2_to_eta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/conversions.html#m1_m2_to_eta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.conversions.m1_m2_to_eta" title="Link to this definition"></a></dt>
+<dd><p>Symmetric mass ratio eta = m1*m2 / (m1+m2)^2.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.utils.conversions.source_frame_to_detector_frame_mass">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.conversions.</span></span><span class="sig-name descname"><span class="pre">source_frame_to_detector_frame_mass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m_source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/conversions.html#source_frame_to_detector_frame_mass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.conversions.source_frame_to_detector_frame_mass" title="Link to this definition"></a></dt>
+<dd><p>Convert source-frame mass to detector-frame mass.</p>
+<p>m_detector = (1 + z) * m_source</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m_source</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Source-frame mass in solar masses</p></li>
+<li><p><strong>z</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Redshift</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Detector-frame mass in solar masses</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a> or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.utils.conversions.detector_frame_to_source_frame_mass">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.conversions.</span></span><span class="sig-name descname"><span class="pre">detector_frame_to_source_frame_mass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m_detector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/conversions.html#detector_frame_to_source_frame_mass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.conversions.detector_frame_to_source_frame_mass" title="Link to this definition"></a></dt>
+<dd><p>Convert detector-frame mass to source-frame mass.</p>
+<p>m_source = m_detector / (1 + z)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m_detector</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Detector-frame mass in solar masses</p></li>
+<li><p><strong>z</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Redshift</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Source-frame mass in solar masses</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a> or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.utils.conversions.chi_eff">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.conversions.</span></span><span class="sig-name descname"><span class="pre">chi_eff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi1z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi2z</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/conversions.html#chi_eff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.conversions.chi_eff" title="Link to this definition"></a></dt>
+<dd><p>Effective inspiral spin parameter.</p>
+<p>chi_eff = (q * chi1z + chi2z) / (1 + q)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Mass ratio q = m1/m2 &gt;= 1</p></li>
+<li><p><strong>chi1z</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – z-component of primary dimensionless spin</p></li>
+<li><p><strong>chi2z</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – z-component of secondary dimensionless spin</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a> or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.utils.conversions.chi_p">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.conversions.</span></span><span class="sig-name descname"><span class="pre">chi_p</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi1_perp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi2_perp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/conversions.html#chi_p"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.conversions.chi_p" title="Link to this definition"></a></dt>
+<dd><p>Effective precession spin parameter.</p>
+<p>chi_p = max(chi1_perp, (4 + 3q) / (q(4q + 3)) * chi2_perp)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Mass ratio q = m1/m2 &gt;= 1</p></li>
+<li><p><strong>chi1_perp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – In-plane spin magnitude of primary</p></li>
+<li><p><strong>chi2_perp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – In-plane spin magnitude of secondary</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a> or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.utils.conversions.delta_parallel">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.conversions.</span></span><span class="sig-name descname"><span class="pre">delta_parallel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/conversions.html#delta_parallel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.conversions.delta_parallel" title="Link to this definition"></a></dt>
+<dd><p>Parallel component of the asymmetric spin combination Delta.</p>
+<p>Delta_parallel = <a href="#id3"><span class="problematic" id="id4">|q * chi1 * cos(theta1) - chi2 * cos(theta2)|</span></a> / (1 + q)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Mass ratio q = m1/m2 &gt;= 1</p></li>
+<li><p><strong>chi1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Dimensionless spin magnitudes</p></li>
+<li><p><strong>chi2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Dimensionless spin magnitudes</p></li>
+<li><p><strong>theta1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Tilt angles in radians</p></li>
+<li><p><strong>theta2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Tilt angles in radians</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a> or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.utils.conversions.delta_perp">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.conversions.</span></span><span class="sig-name descname"><span class="pre">delta_perp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_phi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/conversions.html#delta_perp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.conversions.delta_perp" title="Link to this definition"></a></dt>
+<dd><p>Perpendicular component of the asymmetric spin combination Delta.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Mass ratio q = m1/m2 &gt;= 1</p></li>
+<li><p><strong>chi1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Dimensionless spin magnitudes</p></li>
+<li><p><strong>chi2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Dimensionless spin magnitudes</p></li>
+<li><p><strong>theta1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Tilt angles in radians</p></li>
+<li><p><strong>theta2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Tilt angles in radians</p></li>
+<li><p><strong>delta_phi</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Azimuthal angle difference phi1 - phi2 in radians</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a> or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.utils.conversions.chi_tilde_parallel">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.conversions.</span></span><span class="sig-name descname"><span class="pre">chi_tilde_parallel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/conversions.html#chi_tilde_parallel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.conversions.chi_tilde_parallel" title="Link to this definition"></a></dt>
+<dd><p>Parallel component of the symmetric spin combination chi-tilde.</p>
+<p>chi_tilde_parallel = (q^2 * chi1 * cos(theta1) + chi2 * cos(theta2)) / (1 + q)^2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Mass ratio q = m1/m2 &gt;= 1</p></li>
+<li><p><strong>chi1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Dimensionless spin magnitudes</p></li>
+<li><p><strong>chi2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Dimensionless spin magnitudes</p></li>
+<li><p><strong>theta1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Tilt angles in radians</p></li>
+<li><p><strong>theta2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Tilt angles in radians</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a> or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.utils.conversions.chi_tilde_perp">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.conversions.</span></span><span class="sig-name descname"><span class="pre">chi_tilde_perp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_phi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/conversions.html#chi_tilde_perp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.conversions.chi_tilde_perp" title="Link to this definition"></a></dt>
+<dd><p>Perpendicular component of the symmetric spin combination chi-tilde.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Mass ratio q = m1/m2 &gt;= 1</p></li>
+<li><p><strong>chi1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Dimensionless spin magnitudes</p></li>
+<li><p><strong>chi2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Dimensionless spin magnitudes</p></li>
+<li><p><strong>theta1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Tilt angles in radians</p></li>
+<li><p><strong>theta2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Tilt angles in radians</p></li>
+<li><p><strong>delta_phi</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Azimuthal angle difference phi1 - phi2 in radians</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a> or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="module-gwGenealogy.utils.coordinates">
+<dt class="sig sig-object py" id="gwGenealogy.utils.coordinates.polar_to_cartesian">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.coordinates.</span></span><span class="sig-name descname"><span class="pre">polar_to_cartesian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/coordinates.html#polar_to_cartesian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.coordinates.polar_to_cartesian" title="Link to this definition"></a></dt>
+<dd><p>Convert spherical polar coordinates to Cartesian.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Radial coordinate (e.g. spin magnitude)</p></li>
+<li><p><strong>theta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Polar angle in radians (0 = +z axis)</p></li>
+<li><p><strong>phi</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Azimuthal angle in radians</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>x, y, z</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a> or array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.utils.coordinates.cartesian_to_polar">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.coordinates.</span></span><span class="sig-name descname"><span class="pre">cartesian_to_polar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/coordinates.html#cartesian_to_polar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.coordinates.cartesian_to_polar" title="Link to this definition"></a></dt>
+<dd><p>Convert Cartesian coordinates to spherical polar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Cartesian coordinates</p></li>
+<li><p><strong>y</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Cartesian coordinates</p></li>
+<li><p><strong>z</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Cartesian coordinates</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>r</strong> (<em>float or array</em>) – Radial coordinate (&gt;= 0)</p></li>
+<li><p><strong>theta</strong> (<em>float or array</em>) – Polar angle in radians [0, pi]</p></li>
+<li><p><strong>phi</strong> (<em>float or array</em>) – Azimuthal angle in radians [0, 2*pi)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.utils.coordinates.spins_polar_to_cartesian_vectors">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.coordinates.</span></span><span class="sig-name descname"><span class="pre">spins_polar_to_cartesian_vectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/coordinates.html#spins_polar_to_cartesian_vectors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.coordinates.spins_polar_to_cartesian_vectors" title="Link to this definition"></a></dt>
+<dd><p>Convert spin magnitudes and angles to 3D Cartesian spin vectors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a1</strong> (<em>array</em>) – Dimensionless spin magnitudes</p></li>
+<li><p><strong>a2</strong> (<em>array</em>) – Dimensionless spin magnitudes</p></li>
+<li><p><strong>theta1</strong> (<em>array</em>) – Polar (tilt) angles in radians</p></li>
+<li><p><strong>theta2</strong> (<em>array</em>) – Polar (tilt) angles in radians</p></li>
+<li><p><strong>phi1</strong> (<em>array</em>) – Azimuthal angles in radians</p></li>
+<li><p><strong>phi2</strong> (<em>array</em>) – Azimuthal angles in radians</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>chi1</strong> (<em>array of shape (n_samples, 3)</em>) – 3D spin vectors for the primary black hole</p></li>
+<li><p><strong>chi2</strong> (<em>array of shape (n_samples, 3)</em>) – 3D spin vectors for the secondary black hole</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.utils.coordinates.spins_cartesian_vectors_to_polar">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.coordinates.</span></span><span class="sig-name descname"><span class="pre">spins_cartesian_vectors_to_polar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chi1_vec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi2_vec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/coordinates.html#spins_cartesian_vectors_to_polar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.coordinates.spins_cartesian_vectors_to_polar" title="Link to this definition"></a></dt>
+<dd><p>Convert 3D Cartesian spin vectors to magnitudes and angles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chi1_vec</strong> (<em>array</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>3</em><em>) or </em><em>(</em><em>3</em><em>,</em><em>)</em>) – 3D spin vectors for the primary black hole</p></li>
+<li><p><strong>chi2_vec</strong> (<em>array</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>3</em><em>) or </em><em>(</em><em>3</em><em>,</em><em>)</em>) – 3D spin vectors for the secondary black hole</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>a1, a2</strong> (<em>array</em>) – Dimensionless spin magnitudes</p></li>
+<li><p><strong>theta1, theta2</strong> (<em>array</em>) – Polar (tilt) angles in radians</p></li>
+<li><p><strong>phi1, phi2</strong> (<em>array</em>) – Azimuthal angles in radians</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="module-gwGenealogy.utils.statistics">
+<dt class="sig sig-object py" id="gwGenealogy.utils.statistics.compute_kullback_leibler_divergence">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.statistics.</span></span><span class="sig-name descname"><span class="pre">compute_kullback_leibler_divergence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samples_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/statistics.html#compute_kullback_leibler_divergence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.statistics.compute_kullback_leibler_divergence" title="Link to this definition"></a></dt>
+<dd><p>Compute the Kullback-Leibler divergence KL(P || Q) from two sets of samples.</p>
+<p>Note: KL divergence is asymmetric — KL(P||Q) != KL(Q||P).</p>
+<section id="parameters">
+<h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>samples_a<span class="classifier">array</span></dt><dd><p>Samples from distribution P</p>
+</dd>
+<dt>samples_b<span class="classifier">array</span></dt><dd><p>Samples from distribution Q</p>
+</dd>
+<dt>n_bins<span class="classifier">int</span></dt><dd><p>Number of histogram bins (default: 100)</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>kl<span class="classifier">float</span></dt><dd><p>KL divergence (&gt;= 0; 0 iff P == Q)</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.utils.statistics.compute_jensen_shannon_divergence">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.statistics.</span></span><span class="sig-name descname"><span class="pre">compute_jensen_shannon_divergence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samples_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/statistics.html#compute_jensen_shannon_divergence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.statistics.compute_jensen_shannon_divergence" title="Link to this definition"></a></dt>
+<dd><p>Compute the Jensen-Shannon divergence between two sets of samples.</p>
+<p>JSD is a symmetric, bounded measure of the similarity between two
+probability distributions, based on the KL divergence.</p>
+<section id="id1">
+<h2>Parameters:<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>samples_a<span class="classifier">array</span></dt><dd><p>First set of samples</p>
+</dd>
+<dt>samples_b<span class="classifier">array</span></dt><dd><p>Second set of samples</p>
+</dd>
+<dt>n_bins<span class="classifier">int</span></dt><dd><p>Number of histogram bins (default: 100)</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h2>Returns:<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>jsd<span class="classifier">float</span></dt><dd><p>Jensen-Shannon divergence (0 = identical, ln(2) = maximally different)</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function" id="module-gwGenealogy.utils.rcparams">
+<dt class="sig sig-object py" id="gwGenealogy.utils.rcparams.set_rcparams">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.utils.rcparams.</span></span><span class="sig-name descname"><span class="pre">set_rcparams</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/utils/rcparams.html#set_rcparams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.utils.rcparams.set_rcparams" title="Link to this definition"></a></dt>
+<dd><p>Apply gwGenealogy matplotlib style settings.</p>
+<p>Call this explicitly to configure matplotlib for publication-quality plots.
+Requires a LaTeX installation for text.usetex.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="binaries.html" class="btn btn-neutral float-right" title="Binaries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Tousif Islam.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

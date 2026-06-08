@@ -1,0 +1,687 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Binaries &mdash; gwGenealogy 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Stellar" href="stellar.html" />
+    <link rel="prev" title="Utils" href="utils.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            gwGenealogy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#from-source">From source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#building-the-documentation">Building the documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#sample-a-bbh-population">Sample a BBH population</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#compute-remnant-properties">Compute remnant properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#hierarchical-mergers">Hierarchical mergers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#bh-seed-growth">BH seed growth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#retention-probability-grids">Retention probability grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#gwtc-population-sampling">GWTC population sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#host-environment-retention">Host environment retention</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.distributions.sample_uniform_1d"><code class="docutils literal notranslate"><span class="pre">sample_uniform_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.distributions.sample_loguniform_1d"><code class="docutils literal notranslate"><span class="pre">sample_loguniform_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.distributions.sample_gaussian_1d"><code class="docutils literal notranslate"><span class="pre">sample_gaussian_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.distributions.sample_lognormal_1d"><code class="docutils literal notranslate"><span class="pre">sample_lognormal_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.distributions.sample_powerlaw_1d"><code class="docutils literal notranslate"><span class="pre">sample_powerlaw_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.distributions.sample_maxwellian_1d"><code class="docutils literal notranslate"><span class="pre">sample_maxwellian_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.distributions.sample_beta_1d"><code class="docutils literal notranslate"><span class="pre">sample_beta_1d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.m1_m2_to_mchirp"><code class="docutils literal notranslate"><span class="pre">m1_m2_to_mchirp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.m1_m2_to_q"><code class="docutils literal notranslate"><span class="pre">m1_m2_to_q()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.m1_m2_to_eta"><code class="docutils literal notranslate"><span class="pre">m1_m2_to_eta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.source_frame_to_detector_frame_mass"><code class="docutils literal notranslate"><span class="pre">source_frame_to_detector_frame_mass()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.detector_frame_to_source_frame_mass"><code class="docutils literal notranslate"><span class="pre">detector_frame_to_source_frame_mass()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.chi_eff"><code class="docutils literal notranslate"><span class="pre">chi_eff()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.chi_p"><code class="docutils literal notranslate"><span class="pre">chi_p()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.delta_parallel"><code class="docutils literal notranslate"><span class="pre">delta_parallel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.delta_perp"><code class="docutils literal notranslate"><span class="pre">delta_perp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.chi_tilde_parallel"><code class="docutils literal notranslate"><span class="pre">chi_tilde_parallel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.conversions.chi_tilde_perp"><code class="docutils literal notranslate"><span class="pre">chi_tilde_perp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.coordinates.polar_to_cartesian"><code class="docutils literal notranslate"><span class="pre">polar_to_cartesian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.coordinates.cartesian_to_polar"><code class="docutils literal notranslate"><span class="pre">cartesian_to_polar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.coordinates.spins_polar_to_cartesian_vectors"><code class="docutils literal notranslate"><span class="pre">spins_polar_to_cartesian_vectors()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.coordinates.spins_cartesian_vectors_to_polar"><code class="docutils literal notranslate"><span class="pre">spins_cartesian_vectors_to_polar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.statistics.compute_kullback_leibler_divergence"><code class="docutils literal notranslate"><span class="pre">compute_kullback_leibler_divergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.statistics.compute_jensen_shannon_divergence"><code class="docutils literal notranslate"><span class="pre">compute_jensen_shannon_divergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#gwGenealogy.utils.rcparams.set_rcparams"><code class="docutils literal notranslate"><span class="pre">set_rcparams()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Binaries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.binaries.bbh.BBHs"><code class="docutils literal notranslate"><span class="pre">BBHs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.binaries.bbh_masses.sample_masses"><code class="docutils literal notranslate"><span class="pre">sample_masses()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.binaries.bbh_spins.sample_spins"><code class="docutils literal notranslate"><span class="pre">sample_spins()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.binaries.bbh_spins.sample_spin_magnitudes"><code class="docutils literal notranslate"><span class="pre">sample_spin_magnitudes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.binaries.bbh_spins.sample_spin_angles"><code class="docutils literal notranslate"><span class="pre">sample_spin_angles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.binaries.bbh_redshifts.E"><code class="docutils literal notranslate"><span class="pre">E()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.binaries.bbh_redshifts.comoving_volume_element"><code class="docutils literal notranslate"><span class="pre">comoving_volume_element()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.binaries.bbh_redshifts.luminosity_distance"><code class="docutils literal notranslate"><span class="pre">luminosity_distance()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.binaries.bbh_redshifts.redshift_probability_density"><code class="docutils literal notranslate"><span class="pre">redshift_probability_density()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.binaries.bbh_redshifts.sample_redshift"><code class="docutils literal notranslate"><span class="pre">sample_redshift()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.binaries.bbh_redshifts.powerlaw_redshift_pdf"><code class="docutils literal notranslate"><span class="pre">powerlaw_redshift_pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.binaries.bbh_redshifts.sample_redshift_powerlaw"><code class="docutils literal notranslate"><span class="pre">sample_redshift_powerlaw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.binaries.bbh_redshifts.madau_dickinson_redshift_pdf"><code class="docutils literal notranslate"><span class="pre">madau_dickinson_redshift_pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.binaries.bbh_redshifts.sample_redshift_madau_dickinson"><code class="docutils literal notranslate"><span class="pre">sample_redshift_madau_dickinson()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.binaries.bbh_remnant.BBHRemnant"><code class="docutils literal notranslate"><span class="pre">BBHRemnant</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.binaries.bbh_gwtc.sample_gwtc_population"><code class="docutils literal notranslate"><span class="pre">sample_gwtc_population()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.binaries.bbh_gwtc.available_catalogs"><code class="docutils literal notranslate"><span class="pre">available_catalogs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwGenealogy.binaries.smbbh.sample_smbbh"><code class="docutils literal notranslate"><span class="pre">sample_smbbh()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="stellar.html">Stellar</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.stellar_evolution.IMF_kroupa"><code class="docutils literal notranslate"><span class="pre">IMF_kroupa()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.stellar_evolution.sample_kroupa_masses"><code class="docutils literal notranslate"><span class="pre">sample_kroupa_masses()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.stellar_evolution.sample_zams_masses"><code class="docutils literal notranslate"><span class="pre">sample_zams_masses()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.stellar_evolution.evolve_stars"><code class="docutils literal notranslate"><span class="pre">evolve_stars()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.stellar_evolution.sample_1g_bh_masses_from_stellar_collapse"><code class="docutils literal notranslate"><span class="pre">sample_1g_bh_masses_from_stellar_collapse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.collapse.compute_Mrem_Fryer12_delayed_rapster"><code class="docutils literal notranslate"><span class="pre">compute_Mrem_Fryer12_delayed_rapster()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.collapse.compute_Mrem_SEVN_delayed_rapster"><code class="docutils literal notranslate"><span class="pre">compute_Mrem_SEVN_delayed_rapster()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="stellar.html#gwGenealogy.stellar.natal_kick.sample_maxwellian_kick"><code class="docutils literal notranslate"><span class="pre">sample_maxwellian_kick()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hosts.html">Hosts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.PlummerCluster"><code class="docutils literal notranslate"><span class="pre">PlummerCluster</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.potential"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.potential()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.density"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.density()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.sigma"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.sigma()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.PlummerCluster.merger_analysis"><code class="docutils literal notranslate"><span class="pre">PlummerCluster.merger_analysis()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.plummer_scale_radius"><code class="docutils literal notranslate"><span class="pre">plummer_scale_radius()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.plummer_potential"><code class="docutils literal notranslate"><span class="pre">plummer_potential()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.plummer_density"><code class="docutils literal notranslate"><span class="pre">plummer_density()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.plummer_velocity_dispersion"><code class="docutils literal notranslate"><span class="pre">plummer_velocity_dispersion()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.plummer_escape_speed"><code class="docutils literal notranslate"><span class="pre">plummer_escape_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.plummer_core_speed"><code class="docutils literal notranslate"><span class="pre">plummer_core_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.plummer_tidal_radius"><code class="docutils literal notranslate"><span class="pre">plummer_tidal_radius()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.plummer_apocentre"><code class="docutils literal notranslate"><span class="pre">plummer_apocentre()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.chandrasekhar_F"><code class="docutils literal notranslate"><span class="pre">chandrasekhar_F()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.orbit_shape_factor"><code class="docutils literal notranslate"><span class="pre">orbit_shape_factor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.dynamical_friction_time"><code class="docutils literal notranslate"><span class="pre">dynamical_friction_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.plummer.retained_mask"><code class="docutils literal notranslate"><span class="pre">retained_mask()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.star_clusters.Mcl_rh_to_vescape"><code class="docutils literal notranslate"><span class="pre">Mcl_rh_to_vescape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.star_clusters.Mcl_rho_to_vescape"><code class="docutils literal notranslate"><span class="pre">Mcl_rho_to_vescape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.star_clusters.sample_star_clusters_mapelli2021"><code class="docutils literal notranslate"><span class="pre">sample_star_clusters_mapelli2021()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.star_clusters.sample_star_clusters"><code class="docutils literal notranslate"><span class="pre">sample_star_clusters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.host_retention.sample_escape_speed"><code class="docutils literal notranslate"><span class="pre">sample_escape_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.host_retention.sample_multi_escape_speed"><code class="docutils literal notranslate"><span class="pre">sample_multi_escape_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.host_retention.escape_speed_cdf"><code class="docutils literal notranslate"><span class="pre">escape_speed_cdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.host_retention.compute_environment_retention"><code class="docutils literal notranslate"><span class="pre">compute_environment_retention()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.host_retention.compute_multi_environment_retention"><code class="docutils literal notranslate"><span class="pre">compute_multi_environment_retention()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.host_retention.retention_curve"><code class="docutils literal notranslate"><span class="pre">retention_curve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.host_retention.compute_environment_cumulative_retention"><code class="docutils literal notranslate"><span class="pre">compute_environment_cumulative_retention()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="hosts.html#gwGenealogy.hosts.host_retention.compute_multi_environment_cumulative_retention"><code class="docutils literal notranslate"><span class="pre">compute_multi_environment_cumulative_retention()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="core.html">Core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="core.html#gwGenealogy.core.hierarchical.HierarchicalMergersInClusters"><code class="docutils literal notranslate"><span class="pre">HierarchicalMergersInClusters</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.hierarchical.HierarchicalMergersInClusters.simulate"><code class="docutils literal notranslate"><span class="pre">HierarchicalMergersInClusters.simulate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.hierarchical.HierarchicalMergersInClusters.plot_generations"><code class="docutils literal notranslate"><span class="pre">HierarchicalMergersInClusters.plot_generations()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="core.html#gwGenealogy.core.seed_growth.MonteCarloBHSeedGrowth"><code class="docutils literal notranslate"><span class="pre">MonteCarloBHSeedGrowth</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.seed_growth.MonteCarloBHSeedGrowth.simulate"><code class="docutils literal notranslate"><span class="pre">MonteCarloBHSeedGrowth.simulate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.seed_growth.MonteCarloBHSeedGrowth.simulate_grid"><code class="docutils literal notranslate"><span class="pre">MonteCarloBHSeedGrowth.simulate_grid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability.compute"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability.compute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability.plot_heatmap"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability.plot_heatmap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.seed_growth.IMBHFormationProbability.plot_heatmap_all_vesc"><code class="docutils literal notranslate"><span class="pre">IMBHFormationProbability.plot_heatmap_all_vesc()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G.compute"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G.compute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G.plot_heatmap"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G.plot_heatmap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="core.html#gwGenealogy.core.retention.BBHRetentionProbability1G1G.plot_heatmap_all_vesc"><code class="docutils literal notranslate"><span class="pre">BBHRetentionProbability1G1G.plot_heatmap_all_vesc()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/index.html">Tutorials</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../citation.html">Citation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../citation.html#papers-using-gwgenealogy">Papers using gwGenealogy</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">gwGenealogy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">API Reference</a></li>
+      <li class="breadcrumb-item active">Binaries</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/binaries.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-gwGenealogy.binaries.bbh">
+<span id="binaries"></span><h1>Binaries<a class="headerlink" href="#module-gwGenealogy.binaries.bbh" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="gwGenealogy.binaries.bbh.BBHs">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">gwGenealogy.binaries.bbh.</span></span><span class="sig-name descname"><span class="pre">BBHs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">small_q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/binaries/bbh.html#BBHs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.binaries.bbh.BBHs" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Container for binary black hole parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em><em>, </em><em>optional</em>) – Primary mass (m1 &gt;= m2). Provide with m2, OR provide M with q/small_q.</p></li>
+<li><p><strong>m2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em><em>, </em><em>optional</em>) – Secondary mass.</p></li>
+<li><p><strong>M</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em><em>, </em><em>optional</em>) – Total mass. Provide with q or small_q.</p></li>
+<li><p><strong>q</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em><em>, </em><em>optional</em>) – Mass ratio m1/m2 &gt;= 1.</p></li>
+<li><p><strong>small_q</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em><em>, </em><em>optional</em>) – Mass ratio m2/m1 in (0, 1].</p></li>
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Primary dimensionless spin magnitude.</p></li>
+<li><p><strong>a2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Secondary dimensionless spin magnitude.</p></li>
+<li><p><strong>theta1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Primary spin tilt angle [rad].</p></li>
+<li><p><strong>theta2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Secondary spin tilt angle [rad].</p></li>
+<li><p><strong>phi1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Primary azimuthal spin angle [rad].</p></li>
+<li><p><strong>phi2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em>) – Secondary azimuthal spin angle [rad].</p></li>
+<li><p><strong>z</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>array</em><em>, </em><em>optional</em>) – Redshift.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="module-gwGenealogy.binaries.bbh_masses">
+<dt class="sig sig-object py" id="gwGenealogy.binaries.bbh_masses.sample_masses">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.binaries.bbh_masses.</span></span><span class="sig-name descname"><span class="pre">sample_masses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m1_distribution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'random'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-2.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/binaries/bbh_masses.html#sample_masses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.binaries.bbh_masses.sample_masses" title="Link to this definition"></a></dt>
+<dd><p>Sample binary black hole masses with flexible m1 distribution and pairing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Number of binary systems to generate</p></li>
+<li><p><strong>m_min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Minimum mass in solar masses (default: 5.0)</p></li>
+<li><p><strong>m_max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Maximum mass in solar masses (default: 50.0)</p></li>
+<li><p><strong>m1_distribution</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Distribution for primary mass (default: ‘uniform’):
+- ‘uniform’: uniform in [m_min, m_max]
+- ‘loguniform’: uniform in log-space
+- ‘powerlaw’: p(m1) ∝ m1^alpha</p></li>
+<li><p><strong>pairing</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Pairing model for secondary mass (default: ‘random’):
+- ‘random’: m2 from same distribution as m1, then sort m1 &gt; m2
+- ‘secondary_mass_power_law’: p(m2|m1) ∝ m2^beta on [m_min, m1]
+- ‘total_mass_power_law’: p(m2|m1) ∝ (m1+m2)^4 on [m_min, m1]</p></li>
+<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Power-law index for m1 when m1_distribution=’powerlaw’ (default: -2.5)</p></li>
+<li><p><strong>beta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Power-law index for secondary_mass_power_law pairing (default: 6.7)</p></li>
+<li><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> or </em><em>None</em>) – Random seed for reproducibility (default: None)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>m1</strong> (<em>array</em>) – Primary masses in solar masses (m1 &gt;= m2)</p></li>
+<li><p><strong>m2</strong> (<em>array</em>) – Secondary masses in solar masses</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p>Flat/log/powerlaw models: Abbott et al. (2017), <a class="reference external" href="https://arxiv.org/abs/1703.06223">https://arxiv.org/abs/1703.06223</a>
+secondary_mass_power_law: Fragione &amp; Silk (2020), <a class="reference external" href="https://arxiv.org/abs/1906.05295">https://arxiv.org/abs/1906.05295</a>
+total_mass_power_law: O’Leary et al. (2016), <a class="reference external" href="https://arxiv.org/abs/1602.02809">https://arxiv.org/abs/1602.02809</a></p>
+</dd></dl>
+
+<dl class="py function" id="module-gwGenealogy.binaries.bbh_spins">
+<dt class="sig sig-object py" id="gwGenealogy.binaries.bbh_spins.sample_spins">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.binaries.bbh_spins.</span></span><span class="sig-name descname"><span class="pre">sample_spins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_magnitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_angles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'isotropic'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilt_beta_a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilt_beta_b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/binaries/bbh_spins.html#sample_spins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.binaries.bbh_spins.sample_spins" title="Link to this definition"></a></dt>
+<dd><p>Sample spin vectors for binary black hole systems with flexible distributions.</p>
+<section id="parameters">
+<h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>n_samples<span class="classifier">int</span></dt><dd><p>Number of spin pairs to generate</p>
+</dd>
+<dt>chi_min<span class="classifier">float</span></dt><dd><p>Minimum dimensionless spin magnitude (default: 0)</p>
+</dd>
+<dt>chi_max<span class="classifier">float</span></dt><dd><p>Maximum dimensionless spin magnitude (default: 1)</p>
+</dd>
+<dt>spin_magnitude<span class="classifier">str</span></dt><dd><p>Distribution for spin magnitudes. Options:
+- ‘uniform’: Uniform distribution between chi_min and chi_max
+- ‘beta’: Beta distribution with parameters beta_a and beta_b</p>
+</dd>
+<dt>spin_angles<span class="classifier">str</span></dt><dd><p>Distribution for spin orientations. Options:
+- ‘isotropic’: Uniform distribution on the sphere (physically motivated)
+- ‘uniform’: Uniform distribution in theta angle
+- ‘beta’: Beta(tilt_beta_a, tilt_beta_b) on [0, 1] radian</p>
+</dd>
+<dt>beta_a<span class="classifier">float</span></dt><dd><p>Alpha parameter for spin magnitude Beta distribution (default: 1.4)
+Only used when spin_magnitude=’beta’</p>
+</dd>
+<dt>beta_b<span class="classifier">float</span></dt><dd><p>Beta parameter for spin magnitude Beta distribution (default: 3.6)
+Only used when spin_magnitude=’beta’
+Default values are based on <a class="reference external" href="https://arxiv.org/abs/2111.03634">https://arxiv.org/abs/2111.03634</a></p>
+</dd>
+<dt>tilt_beta_a<span class="classifier">float or None</span></dt><dd><p>Alpha parameter for tilt Beta distribution.
+Required when spin_angles=’beta’</p>
+</dd>
+<dt>tilt_beta_b<span class="classifier">float or None</span></dt><dd><p>Beta parameter for tilt Beta distribution.
+Required when spin_angles=’beta’</p>
+</dd>
+<dt>seed<span class="classifier">int or None</span></dt><dd><p>Random seed for reproducibility (default: None)</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>chi1<span class="classifier">numpy array of shape (n_samples, 3)</span></dt><dd><p>3D spin vectors for the primary black hole</p>
+</dd>
+<dt>chi2<span class="classifier">numpy array of shape (n_samples, 3)</span></dt><dd><p>3D spin vectors for the secondary black hole</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.binaries.bbh_spins.sample_spin_magnitudes">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.binaries.bbh_spins.</span></span><span class="sig-name descname"><span class="pre">sample_spin_magnitudes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_magnitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/binaries/bbh_spins.html#sample_spin_magnitudes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.binaries.bbh_spins.sample_spin_magnitudes" title="Link to this definition"></a></dt>
+<dd><p>Sample spin magnitudes based on specified distribution.</p>
+<section id="id1">
+<h2>Parameters:<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>n_samples<span class="classifier">int</span></dt><dd><p>Number of samples to generate</p>
+</dd>
+<dt>chi_min<span class="classifier">float</span></dt><dd><p>Minimum spin magnitude</p>
+</dd>
+<dt>chi_max<span class="classifier">float</span></dt><dd><p>Maximum spin magnitude</p>
+</dd>
+<dt>spin_magnitude<span class="classifier">str</span></dt><dd><p>Distribution type: ‘uniform’ or ‘beta’</p>
+</dd>
+<dt>beta_a<span class="classifier">float</span></dt><dd><p>Alpha parameter for Beta distribution</p>
+</dd>
+<dt>beta_b<span class="classifier">float</span></dt><dd><p>Beta parameter for Beta distribution</p>
+</dd>
+<dt>seed<span class="classifier">int or None</span></dt><dd><p>Random seed for reproducibility (default: None)</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h2>Returns:<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>a1<span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p>Spin magnitudes for primary black hole</p>
+</dd>
+<dt>a2<span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p>Spin magnitudes for secondary black hole</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.binaries.bbh_spins.sample_spin_angles">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.binaries.bbh_spins.</span></span><span class="sig-name descname"><span class="pre">sample_spin_angles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin_angles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'isotropic'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilt_beta_a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilt_beta_b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/binaries/bbh_spins.html#sample_spin_angles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.binaries.bbh_spins.sample_spin_angles" title="Link to this definition"></a></dt>
+<dd><p>Sample spin orientation angles.</p>
+<section id="id3">
+<h2>Parameters:<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>n_samples<span class="classifier">int</span></dt><dd><p>Number of samples to generate</p>
+</dd>
+<dt>spin_angles<span class="classifier">str</span></dt><dd><p>Distribution type (default: ‘isotropic’):
+- ‘isotropic’: uniform on the sphere (uniform in cos theta)
+- ‘uniform’: uniform in theta on [0, pi]
+- ‘beta’: Beta(a, b) on [0, 1] radian (preferentially aligned)</p>
+</dd>
+<dt>tilt_beta_a<span class="classifier">float or None</span></dt><dd><p>Alpha parameter for Beta tilt distribution (required when spin_angles=’beta’)</p>
+</dd>
+<dt>tilt_beta_b<span class="classifier">float or None</span></dt><dd><p>Beta parameter for Beta tilt distribution (required when spin_angles=’beta’)</p>
+</dd>
+<dt>seed<span class="classifier">int or None</span></dt><dd><p>Random seed for reproducibility (default: None)</p>
+</dd>
+</dl>
+</section>
+<section id="id4">
+<h2>Returns:<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>theta1, theta2<span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p>Polar (tilt) angles in radians</p>
+</dd>
+<dt>phi1, phi2<span class="classifier">numpy array of shape (n_samples,)</span></dt><dd><p>Azimuthal angles in radians</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function" id="module-gwGenealogy.binaries.bbh_redshifts">
+<dt class="sig sig-object py" id="gwGenealogy.binaries.bbh_redshifts.E">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.binaries.bbh_redshifts.</span></span><span class="sig-name descname"><span class="pre">E</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Om0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.315</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">OL0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.685</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/binaries/bbh_redshifts.html#E"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.binaries.bbh_redshifts.E" title="Link to this definition"></a></dt>
+<dd><p>Dimensionless Hubble parameter E(z) = H(z)/H0</p>
+<p>For flat ΛCDM: E(z) = sqrt(Ωm(1+z)^3 + ΩΛ)</p>
+<p>Parameters:
+- z: Redshift
+- Om0: Matter density parameter (default: 0.315)
+- OL0: Dark energy density parameter (default: 0.685)</p>
+<p>Returns:
+- E(z): Dimensionless Hubble parameter</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.binaries.bbh_redshifts.comoving_volume_element">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.binaries.bbh_redshifts.</span></span><span class="sig-name descname"><span class="pre">comoving_volume_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">67.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Om0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.315</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">OL0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.685</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/binaries/bbh_redshifts.html#comoving_volume_element"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.binaries.bbh_redshifts.comoving_volume_element" title="Link to this definition"></a></dt>
+<dd><p>Differential comoving volume element dV_c/dz</p>
+<p>dV_c/dz = (4π c / H0) * (d_L(z) / (1+z))^2 / E(z)</p>
+<p>where d_L(z) is the luminosity distance</p>
+<p>Parameters:
+- z: Redshift
+- H0: Hubble constant in km/s/Mpc (default: 67.4)
+- Om0: Matter density parameter (default: 0.315)
+- OL0: Dark energy density parameter (default: 0.685)</p>
+<p>Returns:
+- dV_c/dz: Comoving volume element in Gpc^3</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.binaries.bbh_redshifts.luminosity_distance">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.binaries.bbh_redshifts.</span></span><span class="sig-name descname"><span class="pre">luminosity_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">67.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Om0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.315</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">OL0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.685</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/binaries/bbh_redshifts.html#luminosity_distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.binaries.bbh_redshifts.luminosity_distance" title="Link to this definition"></a></dt>
+<dd><p>Luminosity distance as a function of redshift</p>
+<p>d_L(z) = (1+z) * (c/H0) * ∫[0 to z] dz’/E(z’)</p>
+<p>Parameters:
+- z: Redshift (can be array)
+- H0: Hubble constant in km/s/Mpc (default: 67.4)
+- Om0: Matter density parameter (default: 0.315)
+- OL0: Dark energy density parameter (default: 0.685)</p>
+<p>Returns:
+- d_L: Luminosity distance in Mpc</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.binaries.bbh_redshifts.redshift_probability_density">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.binaries.bbh_redshifts.</span></span><span class="sig-name descname"><span class="pre">redshift_probability_density</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/binaries/bbh_redshifts.html#redshift_probability_density"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.binaries.bbh_redshifts.redshift_probability_density" title="Link to this definition"></a></dt>
+<dd><p>Probability density for redshift distribution</p>
+<p>p(z) ∝ (dV_c/dz) / (1+z)</p>
+<p>The (1+z) factor accounts for cosmological time dilation, converting
+source-frame time to observer-frame time.</p>
+<p>Parameters:
+- z: Redshift (can be array)
+- z_max: Maximum redshift to consider (default: 10.0)</p>
+<p>Returns:
+- p(z): Unnormalized probability density</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.binaries.bbh_redshifts.sample_redshift">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.binaries.bbh_redshifts.</span></span><span class="sig-name descname"><span class="pre">sample_redshift</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/binaries/bbh_redshifts.html#sample_redshift"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.binaries.bbh_redshifts.sample_redshift" title="Link to this definition"></a></dt>
+<dd><p>Sample redshifts from the uniform-rate distribution:</p>
+<p>p(z) ∝ dVc/dz / (1+z)</p>
+<p>i.e. R(z) = const (uniform in comoving volume and source-frame time).</p>
+<p>Parameters:
+- n_samples: Number of redshift values to sample
+- z_min: Minimum redshift (default: 0.0)
+- z_max: Maximum redshift (default: 10.0)
+- seed: Random seed for reproducibility (default: None)</p>
+<p>Returns:
+- z_samples: Array of sampled redshifts</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.binaries.bbh_redshifts.powerlaw_redshift_pdf">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.binaries.bbh_redshifts.</span></span><span class="sig-name descname"><span class="pre">powerlaw_redshift_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lamb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/binaries/bbh_redshifts.html#powerlaw_redshift_pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.binaries.bbh_redshifts.powerlaw_redshift_pdf" title="Link to this definition"></a></dt>
+<dd><p>Unnormalized probability density for the PowerLaw merger-rate model.</p>
+<p>p(z) ∝ (1+z)^lambda * dVc/dz / (1+z)</p>
+<p>Parameters:
+- z: Redshift (scalar or array)
+- lamb: Power-law index lambda (lamb &gt; 0 = rate increases with z)
+- z_max: Maximum redshift (default: 10.0)</p>
+<p>Returns:
+- p(z): Unnormalized probability density</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.binaries.bbh_redshifts.sample_redshift_powerlaw">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.binaries.bbh_redshifts.</span></span><span class="sig-name descname"><span class="pre">sample_redshift_powerlaw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lamb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/binaries/bbh_redshifts.html#sample_redshift_powerlaw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.binaries.bbh_redshifts.sample_redshift_powerlaw" title="Link to this definition"></a></dt>
+<dd><p>Sample redshifts from the PowerLaw merger-rate model:</p>
+<p>p(z) ∝ (1+z)^lambda * dVc/dz / (1+z)</p>
+<p>Parameters:
+- n_samples: Number of redshift values to sample
+- lamb: Power-law index lambda
+- z_min: Minimum redshift (default: 0.0)
+- z_max: Maximum redshift (default: 10.0)
+- seed: Random seed for reproducibility (default: None)</p>
+<p>Returns:
+- z_samples: Array of sampled redshifts</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.binaries.bbh_redshifts.madau_dickinson_redshift_pdf">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.binaries.bbh_redshifts.</span></span><span class="sig-name descname"><span class="pre">madau_dickinson_redshift_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_peak</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/binaries/bbh_redshifts.html#madau_dickinson_redshift_pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.binaries.bbh_redshifts.madau_dickinson_redshift_pdf" title="Link to this definition"></a></dt>
+<dd><p>Unnormalized probability density for the Madau-Dickinson merger-rate model.</p>
+<p>R(z) = (1+z)^gamma / [1 + ((1+z)/(1+z_peak))^kappa]
+p(z) ∝ R(z) * dVc/dz / (1+z)</p>
+<p>Parameters:
+- z: Redshift (scalar or array)
+- gamma: Low-z power-law slope
+- kappa: High-z turnover steepness
+- z_peak: Peak redshift of the merger rate
+- z_max: Maximum redshift (default: 10.0)</p>
+<p>Returns:
+- p(z): Unnormalized probability density</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.binaries.bbh_redshifts.sample_redshift_madau_dickinson">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.binaries.bbh_redshifts.</span></span><span class="sig-name descname"><span class="pre">sample_redshift_madau_dickinson</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_peak</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/binaries/bbh_redshifts.html#sample_redshift_madau_dickinson"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.binaries.bbh_redshifts.sample_redshift_madau_dickinson" title="Link to this definition"></a></dt>
+<dd><p>Sample redshifts from the Madau-Dickinson merger-rate model:</p>
+<p>R(z) = (1+z)^gamma / [1 + ((1+z)/(1+z_peak))^kappa]
+p(z) ∝ R(z) * dVc/dz / (1+z)</p>
+<p>Parameters:
+- n_samples: Number of redshift values to sample
+- gamma: Low-z power-law slope
+- kappa: High-z turnover steepness
+- z_peak: Peak redshift of the merger rate
+- z_min: Minimum redshift (default: 0.0)
+- z_max: Maximum redshift (default: 10.0)
+- seed: Random seed for reproducibility (default: None)</p>
+<p>Returns:
+- z_samples: Array of sampled redshifts</p>
+</dd></dl>
+
+<dl class="py class" id="module-gwGenealogy.binaries.bbh_remnant">
+<dt class="sig sig-object py" id="gwGenealogy.binaries.bbh_remnant.BBHRemnant">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">gwGenealogy.binaries.bbh_remnant.</span></span><span class="sig-name descname"><span class="pre">BBHRemnant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bbh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precessing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass_spin_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kick_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/binaries/bbh_remnant.html#BBHRemnant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.binaries.bbh_remnant.BBHRemnant" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Compute remnant properties for BBH mergers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bbh</strong> (<em>BBHs instance</em><em>, </em><em>optional</em>) – A gwGenealogy.binaries.BBHs object. If provided, all binary
+parameters are taken from it.</p></li>
+<li><p><strong>m1</strong> (<em>array</em><em>, </em><em>optional</em>) – Component masses [Msun]. Required if bbh is not given.</p></li>
+<li><p><strong>m2</strong> (<em>array</em><em>, </em><em>optional</em>) – Component masses [Msun]. Required if bbh is not given.</p></li>
+<li><p><strong>a1</strong> (<em>array</em><em>, </em><em>optional</em>) – Spin magnitudes [0, 1].</p></li>
+<li><p><strong>a2</strong> (<em>array</em><em>, </em><em>optional</em>) – Spin magnitudes [0, 1].</p></li>
+<li><p><strong>theta1</strong> (<em>array</em><em>, </em><em>optional</em>) – Spin tilt angles [rad].</p></li>
+<li><p><strong>theta2</strong> (<em>array</em><em>, </em><em>optional</em>) – Spin tilt angles [rad].</p></li>
+<li><p><strong>phi1</strong> (<em>array</em><em>, </em><em>optional</em>) – Spin azimuthal angles [rad].</p></li>
+<li><p><strong>phi2</strong> (<em>array</em><em>, </em><em>optional</em>) – Spin azimuthal angles [rad].</p></li>
+<li><p><strong>precessing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – True (default) for precessing models, False for nonprecessing.</p></li>
+<li><p><strong>mass_spin_model</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> or </em><em>None</em>) – Model for remnant mass and spin. None uses the default.
+Precessing: ‘hbr’ (default), ‘sur7dq4remnant’, ‘sur7dq4emri’
+Nonprecessing: ‘uib’ (default), ‘hbr’, ‘sur7dq4remnant’, ‘sur7dq4emri’</p></li>
+<li><p><strong>kick_model</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> or </em><em>None</em>) – Model for kick velocity. None uses the default.
+Precessing: ‘gwmodel’ (default), ‘hlz’ (-&gt; CLZM2007), ‘sur7dq4remnant’
+Nonprecessing: ‘gwmodel_kick_q200’ (default), ‘hlz’ (-&gt; HLZ2014), ‘sur3dq8remnant’</p></li>
+<li><p><strong>construction</strong><strong>)</strong> (<em>Attributes</em><em> (</em><em>after</em>)</p></li>
+<li><p><strong>----------</strong></p></li>
+<li><p><strong>Mf</strong> (<em>array</em>) – Remnant mass [Msun]</p></li>
+<li><p><strong>af</strong> (<em>array</em>) – Remnant spin magnitude</p></li>
+<li><p><strong>vkick</strong> (<em>array</em>) – Kick velocity [km/s]</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function" id="module-gwGenealogy.binaries.bbh_gwtc">
+<dt class="sig sig-object py" id="gwGenealogy.binaries.bbh_gwtc.sample_gwtc_population">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.binaries.bbh_gwtc.</span></span><span class="sig-name descname"><span class="pre">sample_gwtc_population</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">catalog</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gwtc5'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'posterior'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ppd'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_hyper_draws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gwtc3_hyper_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/binaries/bbh_gwtc.html#sample_gwtc_population"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.binaries.bbh_gwtc.sample_gwtc_population" title="Link to this definition"></a></dt>
+<dd><p>Sample BBH parameters from GWTC default-family population models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Number of BBH systems to draw</p></li>
+<li><p><strong>catalog</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Population catalog (default: ‘gwtc5’):
+- ‘gwtc3’: Power Law + Peak, Beta spin, tilt peak fixed at +1
+- ‘gwtc4’: Broken PowerLaw + Two Peaks, Gaussian spin, free tilt peak
+- ‘gwtc5’: same model family as gwtc4, O3+O4 selection
+- ‘gwtc5_var4’: gwtc5 with looser selection-variance cut
+- ‘gwtc5_madau_dickinson’: gwtc5 mass/spin + Madau-Dickinson redshift</p></li>
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – ‘prior’ or ‘posterior’ (default: ‘posterior’)</p></li>
+<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Sampling mode (default: ‘ppd’):
+- ‘ppd’: posterior predictive (random hyper-draw per binary)
+- ‘mean’: hyper-posterior/prior-averaged distribution
+- int: single hyper-draw index</p></li>
+<li><p><strong>data_dir</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> or </em><em>Path</em><em> or </em><em>None</em>) – Directory containing popsummary HDF5 files. If None, searches the
+package data/ directory. Required for source=’posterior’ if files
+are not in the package data/ directory.</p></li>
+<li><p><strong>n_hyper_draws</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Number of hyper-prior draws for source=’prior’, or number of
+hyper-posterior draws to subsample for gwtc3 (default: 1000)</p></li>
+<li><p><strong>gwtc3_hyper_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em> or </em><em>None</em>) – Pre-loaded GWTC-3 hyper-posterior samples. If None and catalog=’gwtc3’
+with source=’posterior’, loads from gwtc3_default.json.</p></li>
+<li><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> or </em><em>None</em>) – Random seed for reproducibility</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with keys: mass_1, mass_2, q (=m1/m2 &gt;= 1), small_q (=m2/m1),
+a1, a2, cos_theta1, cos_theta2, theta1, theta2,
+redshift, chi_eff, chi_p (and hyper_draw_index if mode != ‘mean’)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gwGenealogy.binaries.bbh_gwtc.available_catalogs">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.binaries.bbh_gwtc.</span></span><span class="sig-name descname"><span class="pre">available_catalogs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/binaries/bbh_gwtc.html#available_catalogs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.binaries.bbh_gwtc.available_catalogs" title="Link to this definition"></a></dt>
+<dd><p>Return list of available catalog keys.</p>
+</dd></dl>
+
+<dl class="py function" id="module-gwGenealogy.binaries.smbbh">
+<dt class="sig sig-object py" id="gwGenealogy.binaries.smbbh.sample_smbbh">
+<span class="sig-prename descclassname"><span class="pre">gwGenealogy.binaries.smbbh.</span></span><span class="sig-name descname"><span class="pre">sample_smbbh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accretion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hot'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m_total_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m_total_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000000000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gwGenealogy/binaries/smbbh.html#sample_smbbh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gwGenealogy.binaries.smbbh.sample_smbbh" title="Link to this definition"></a></dt>
+<dd><p>Sample supermassive BBH binary parameters for a given accretion model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Number of binary systems to generate</p></li>
+<li><p><strong>accretion</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Accretion type (default: ‘hot’):
+- ‘agnostic’: uniform spins on [0,1], isotropic orientations
+- ‘hot’:  hot wet accretion (high spins, preferentially aligned)
+- ‘cold’: cold wet accretion (very high spins, strongly aligned)
+- ‘dry’:  dry merger (moderate spins, isotropic orientations)</p></li>
+<li><p><strong>m_total_min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Minimum total mass in Msun (default: 1e5)</p></li>
+<li><p><strong>m_total_max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Maximum total mass in Msun (default: 1e11)</p></li>
+<li><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> or </em><em>None</em>) – Random seed for reproducibility</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with keys:
+- m_total:   total mass in Msun
+- mass_1:    primary mass in Msun (m1 &gt;= m2)
+- mass_2:    secondary mass in Msun
+- q:         mass ratio m1/m2 &gt;= 1
+- small_q:   mass ratio m2/m1 in (0, 1]
+- a1:  primary spin magnitude
+- a2:  secondary spin magnitude
+- theta1:   primary spin tilt angle (rad)
+- theta2:   secondary spin tilt angle (rad)
+- cos_theta1, cos_theta2: cosines of tilt angles
+- phi1:     primary azimuthal angle (rad)
+- phi2:     secondary azimuthal angle (rad)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="utils.html" class="btn btn-neutral float-left" title="Utils" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="stellar.html" class="btn btn-neutral float-right" title="Stellar" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Tousif Islam.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

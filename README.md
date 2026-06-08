@@ -112,6 +112,7 @@ ret = compute_multi_environment_retention(v_kick_array)
 | 07 | [Host environments](tutorials/07_host_environments.ipynb) | Plummer clusters, escape velocities, environment retention |
 | 08 | [Hierarchical mergers](tutorials/08_hierarchical_mergers.ipynb) | Multi-generation mergers, pairing models, evolving v_esc |
 | 09 | [Seed growth](tutorials/09_seed_growth.ipynb) | BH seed growth chains, v_esc sweeps, evolving v_esc |
+| 10 | [Displacement & return times](tutorials/10_displacement_return_times.ipynb) | Apocentre displacement, dynamical friction return times, GC vs NSC |
 
 ## Citations
 
