@@ -1,3 +1,4 @@
+from .bbh import BBHs
 from .bbh_masses import sample_masses
 from .bbh_spins import sample_spins
 from .bbh_redshifts import *
