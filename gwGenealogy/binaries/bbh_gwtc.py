@@ -155,14 +155,14 @@ _PACKAGE_DATA_DIR = Path(__file__).parent / "data"
 
 # The large GWTC population files are NOT shipped with the package (they are
 # several hundred MB each). They are hosted on Google Drive and downloaded on
-# demand into a user data directory via download_gwtc_data(). Populate the
-# registry below with the Google Drive file IDs.
+# demand into a user data directory via download_gwtc_data().
+# Shared folder: https://drive.google.com/drive/folders/10xl6XW4PLA7LVYSwICptbVFqKW_tQzwX
 _GWTC_GDRIVE_IDS = {
-    # "gwtc5_default_var1.h5": "<google-drive-file-id>",
-    # "gwtc5_default_var4.h5": "<google-drive-file-id>",
-    # "gwtc5_default_madau_dickinson.h5": "<google-drive-file-id>",
-    # "gwtc4_default.h5": "<google-drive-file-id>",
-    # "gwtc3_default.json": "<google-drive-file-id>",
+    "gwtc5_default_var1.h5": "1M72eH7saDaP0PzWCt4ceFuiRwT5XFUOQ",
+    "gwtc5_default_var4.h5": "1ximzIGTrLg6EpZjMW_dw9iRmSz8kCX31",
+    "gwtc5_default_madau_dickinson.h5": "1IAHa4KBB3BJuhmHwaXxhoQw-dOetE22k",
+    "gwtc4_default.h5": "1ivQVb672V18r7XBHKHRviIkJo64q4e9G",
+    "gwtc3_default.json": "13Lx44pt3mzUjcOcqwRW2QBVYZ1_u27Ml",
 }
 
 
