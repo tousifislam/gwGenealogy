@@ -48,9 +48,9 @@ Hierarchical mergers
 
 .. code-block:: python
 
-   from gwGenealogy.core import HierarchicalMergersInClusters
+   from gwGenealogy.core import HierarchicalMergersInClusterPopulation
 
-   sim = HierarchicalMergersInClusters(
+   sim = HierarchicalMergersInClusterPopulation(
        n_samples=50000, chi_max=0.2, m_min=3, m_max=60,
        kick_model='gwmodel', seed=42)
    data = sim.simulate(verbose=True)
@@ -80,10 +80,10 @@ Retention probability grids
 
 .. code-block:: python
 
-   from gwGenealogy.core import BBHRetentionProbability1G1G
+   from gwGenealogy.core import BBHRetentionProbabilityOverChiq
    import numpy as np
 
-   grid = BBHRetentionProbability1G1G(
+   grid = BBHRetentionProbabilityOverChiq(
        q_values=np.linspace(1, 10, 50),
        chi_max_values=np.linspace(0.01, 1, 50),
        v_esc_values=[50, 100, 200, 500],

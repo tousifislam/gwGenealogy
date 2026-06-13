@@ -26,7 +26,7 @@ pip install -e .
 ### Dependencies
 
 - `numpy`, `scipy`, `matplotlib`, `h5py`
-- [`gwModels`](https://github.com/tousifislam/gwModels) — remnant mass, spin, and kick models (required)
+- [`gwModels`](https://github.com/tousifislam/gwModels) `>= 0.1.6` — remnant mass, spin, and kick models (required; 0.1.6 adds the batched `flow.sample`/`log_prob` the kick code relies on)
 - [`surfinBH`](https://github.com/vijayvarma392/surfinBH) — NR surrogate remnant models (optional)
 
 ## Quick start
@@ -47,10 +47,10 @@ rem = BBHRemnant(bbh=bbh, precessing=True)
 ### Hierarchical mergers across generations
 
 ```python
-from gwGenealogy.core import HierarchicalMergersInClusters
+from gwGenealogy.core import HierarchicalMergersInClusterPopulation
 
-sim = HierarchicalMergersInClusters(n_samples=50000, chi_max=0.2, m_min=3, m_max=60,
-                                     kick_model='gwmodel', seed=42)
+sim = HierarchicalMergersInClusterPopulation(n_samples=50000, chi_max=0.2, m_min=3, m_max=60,
+                                              kick_model='gwmodel', seed=42)
 data = sim.simulate(verbose=True)
 fig, axes = sim.plot_generations(data)
 ```
@@ -68,10 +68,10 @@ result = mc.simulate(n_experiments=10000, verbose=True)
 ### Retention probability grids
 
 ```python
-from gwGenealogy.core import BBHRetentionProbability1G1G
+from gwGenealogy.core import BBHRetentionProbabilityOverChiq
 import numpy as np
 
-grid = BBHRetentionProbability1G1G(
+grid = BBHRetentionProbabilityOverChiq(
     q_values=np.linspace(1, 10, 50),
     chi_max_values=np.linspace(0.01, 1, 50),
     v_esc_values=[50, 100, 200, 500],
@@ -113,6 +113,8 @@ ret = compute_multi_environment_retention(v_kick_array)
 | 08 | [Hierarchical mergers](tutorials/08_hierarchical_mergers.ipynb) | Multi-generation mergers, pairing models, evolving v_esc |
 | 09 | [Seed growth](tutorials/09_seed_growth.ipynb) | BH seed growth chains, v_esc sweeps, evolving v_esc |
 | 10 | [Displacement & return times](tutorials/10_displacement_return_times.ipynb) | Apocentre displacement, dynamical friction return times, GC vs NSC |
+| 11 | [Single-cluster mergers](tutorials/11_single_cluster_mergers.ipynb) | Hierarchical mergers in one cluster: mass/Z/pairing sweeps, evolving v_esc |
+| 12 | [Runaway SMBH progenitor](tutorials/12_runaway_smbh_progenitor.ipynb) | Inferring the progenitor of recoiling SMBH RBH-1 from its kick (flow `log_prob` inversion) |
 
 ## Citations
 

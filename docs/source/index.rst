@@ -18,9 +18,9 @@ Features
 * **Remnant properties** — mass, spin, and kick velocity for precessing and nonprecessing BBH mergers via :class:`~gwGenealogy.binaries.BBHRemnant`
 * **Stellar evolution** — Kroupa IMF, Fryer12/SEVN delayed remnant models, natal kicks via :mod:`gwGenealogy.stellar`
 * **Host environments** — Plummer clusters, escape velocities, environment-marginalised retention via :mod:`gwGenealogy.hosts`
-* **Hierarchical mergers** — multi-generation merger simulations via :class:`~gwGenealogy.core.HierarchicalMergersInClusters`
+* **Hierarchical mergers** — single-cluster (:class:`~gwGenealogy.core.HierarchicalMergersInCluster`) and population-averaged (:class:`~gwGenealogy.core.HierarchicalMergersInClusterPopulation`) multi-generation merger simulations
 * **BH seed growth** — Monte Carlo seed growth chains and IMBH formation probability via :class:`~gwGenealogy.core.MonteCarloBHSeedGrowth`
-* **Retention grids** — 1G+1G retention probability heatmaps via :class:`~gwGenealogy.core.BBHRetentionProbability1G1G`
+* **Retention grids** — retention probability heatmaps over the (chi, q) plane via :class:`~gwGenealogy.core.BBHRetentionProbabilityOverChiq`
 
 .. toctree::
    :maxdepth: 2

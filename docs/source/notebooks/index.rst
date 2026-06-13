@@ -14,3 +14,4 @@ Tutorials
    08_hierarchical_mergers
    09_seed_growth
    10_displacement_return_times
+   11_single_cluster_mergers
