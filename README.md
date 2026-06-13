@@ -2,7 +2,7 @@
 
 A Python toolkit for binary black hole (BBH) phenomenology: sampling BBH populations, computing remnant properties, modeling hierarchical mergers in dense star clusters, and analyzing retention across astrophysical environments.
 
-This package is a culmination of my works into understanding hierarchical mergers with my amazing collaborators Digvijay Wadekar and Konstantinos Kritos. Collaborations are always welcome!
+This package is a culmination of my works into understanding hierarchical mergers with my amazing collaborators Digvijay Wadekar and Konstantinos Kritos. Comments/suggestions/criticisms are always welcome!
 
 ## Package structure
 
