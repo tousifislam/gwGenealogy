@@ -5,6 +5,8 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2603.10170-b31b1b.svg)](https://arxiv.org/abs/2603.10170)
 [![arXiv](https://img.shields.io/badge/arXiv-2604.04546-b31b1b.svg)](https://arxiv.org/abs/2604.04546)
 [![arXiv](https://img.shields.io/badge/arXiv-2601.18986-b31b1b.svg)](https://arxiv.org/abs/2601.18986)
+[![PyPI](https://img.shields.io/pypi/v/gwGenealogy)](https://pypi.org/project/gwGenealogy/)
+[![Documentation](https://img.shields.io/badge/docs-online-brightgreen)](https://tousifislam.com/gwGenealogy/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](https://github.com/tousifislam/gwGenealogy/blob/main/LICENSE)
 
 # gwGenealogy
