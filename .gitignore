@@ -6,3 +6,9 @@ __pycache__/
 
 # Large GWTC population data files
 gwGenealogy/binaries/data/
+
+# Build / packaging / docs artifacts
+/dist/
+/build/
+*.egg-info/
+docs/_build/

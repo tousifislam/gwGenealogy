@@ -36,6 +36,9 @@ autodoc_default_options = {
     "show-inheritance": True,
     "private-members": False,
 }
+# Heavy / optional dependencies are mocked so autodoc can import the package
+# without installing them (they are lazy-imported at runtime anyway).
+autodoc_mock_imports = ["torch", "nflows", "surfinBH", "gdown"]
 
 # -- Options for Napoleon (NumPy/Google docstring support) -------------------
 
