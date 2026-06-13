@@ -8,7 +8,7 @@
 
 # gwGenealogy
 
-A Python toolkit for binary black hole (BBH) phenomenology: sampling BBH populations, computing remnant properties, modeling hierarchical mergers in dense star clusters, and analyzing retention across astrophysical environments.
+A Python toolkit for binary black hole (BBH) phenomenology: sampling BBH populations, computing remnant properties, modeling hierarchical mergers using simple back-of-the-envelope calculations in dense star clusters, and analyzing retention across astrophysical environments. For more detailed studies of hierarchical mergers in clusters, use [Rapster](https://github.com/Kkritos/Rapster/).
 
 This package is a culmination of my works into understanding hierarchical mergers with my amazing collaborators Digvijay Wadekar and Konstantinos Kritos. Comments/suggestions/criticisms are always welcome!
 
