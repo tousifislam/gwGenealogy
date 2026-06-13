@@ -31,10 +31,13 @@ classifiers = [
 [project.optional-dependencies]
 kicks = ["gwModels[kicks]>=0.1.6"]
 surrogates = ["surfinBH"]
+data = ["gdown"]
 test = ["pytest"]
 
 [tool.setuptools.packages.find]
 include = ["gwGenealogy*"]
 
 [tool.setuptools.package-data]
-gwGenealogy = ["binaries/data/*", "stellar/data/*"]
+# Large GWTC population files (binaries/data) are NOT shipped — they are
+# hosted on Google Drive and fetched on demand via download_gwtc_data().
+gwGenealogy = ["stellar/data/*"]

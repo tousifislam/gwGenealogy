@@ -153,6 +153,78 @@ GRID_KEYS = ["mass_1", "mass_ratio", "a_1", "a_2",
 
 _PACKAGE_DATA_DIR = Path(__file__).parent / "data"
 
+# The large GWTC population files are NOT shipped with the package (they are
+# several hundred MB each). They are hosted on Google Drive and downloaded on
+# demand into a user data directory via download_gwtc_data(). Populate the
+# registry below with the Google Drive file IDs.
+_GWTC_GDRIVE_IDS = {
+    # "gwtc5_default_var1.h5": "<google-drive-file-id>",
+    # "gwtc5_default_var4.h5": "<google-drive-file-id>",
+    # "gwtc5_default_madau_dickinson.h5": "<google-drive-file-id>",
+    # "gwtc4_default.h5": "<google-drive-file-id>",
+    # "gwtc3_default.json": "<google-drive-file-id>",
+}
+
+
+def _user_data_dir():
+    """Directory for downloaded GWTC data (override via $GWGENEALOGY_DATA)."""
+    import os
+    env = os.environ.get("GWGENEALOGY_DATA")
+    return Path(env) if env else Path.home() / ".gwGenealogy" / "data"
+
+
+def download_gwtc_data(catalog=None, dest=None, quiet=False):
+    """Download GWTC population data files from Google Drive.
+
+    These files are not shipped with the package (each is several hundred MB).
+    They are fetched into the user data directory (``~/.gwGenealogy/data``, or
+    ``$GWGENEALOGY_DATA``, or ``dest``) where the samplers look for them.
+
+    Parameters
+    ----------
+    catalog : str or None
+        Download only the file for this catalog (e.g. 'gwtc5', 'gwtc4',
+        'gwtc3'); None (default) downloads all catalogs.
+    dest : str or Path or None
+        Target directory. Defaults to the user data directory.
+    quiet : bool
+        Suppress gdown progress output.
+
+    Returns
+    -------
+    pathlib.Path : the directory the files were downloaded into.
+    """
+    try:
+        import gdown
+    except ImportError as exc:
+        raise ImportError(
+            "download_gwtc_data requires gdown — install with "
+            "`pip install gdown` (or `pip install gwGenealogy[data]`).") from exc
+
+    if catalog is not None:
+        if catalog not in _MODELS:
+            raise ValueError(f"Unknown catalog '{catalog}'. "
+                             f"Choose from {list(_MODELS)}.")
+        files = [_MODELS[catalog]["file"] or "gwtc3_default.json"]
+    else:
+        files = [m["file"] for m in _MODELS.values() if m["file"]]
+        files.append("gwtc3_default.json")
+
+    dest = Path(dest) if dest is not None else _user_data_dir()
+    dest.mkdir(parents=True, exist_ok=True)
+
+    for fname in files:
+        out = dest / fname
+        if out.exists():
+            continue
+        gid = _GWTC_GDRIVE_IDS.get(fname)
+        if not gid:
+            raise RuntimeError(
+                f"No Google Drive file ID configured for '{fname}'. "
+                "Populate _GWTC_GDRIVE_IDS in gwGenealogy/binaries/bbh_gwtc.py.")
+        gdown.download(id=gid, output=str(out), quiet=quiet)
+    return dest
+
 
 # ============================================================================
 # Functional forms: GWTC-4.0/5.0 default family
@@ -521,18 +593,21 @@ def _build_gwtc3_grids(positions, hyper_samples, n_draws=None, seed=0):
 # ============================================================================
 
 def _resolve_data_file(filename, data_dir=None):
-    """Find a data file, checking data_dir first then the package data/ dir."""
-    if data_dir is not None:
-        path = Path(data_dir) / filename
+    """Find a data file: data_dir, then the package data/ dir, then the
+    user download dir. Raises with download instructions if missing."""
+    search = ([Path(data_dir)] if data_dir is not None else []) + \
+             [_PACKAGE_DATA_DIR, _user_data_dir()]
+    for base in search:
+        path = base / filename
         if path.exists():
             return path
-    path = _PACKAGE_DATA_DIR / filename
-    if path.exists():
-        return path
     raise FileNotFoundError(
         f"Population file not found: '{filename}'\n"
-        f"Searched: {data_dir or '(not specified)'} and {_PACKAGE_DATA_DIR}\n"
-        f"Download from the GWTC data release (see docstring).")
+        f"This data is not shipped with gwGenealogy. Download it with:\n"
+        f"    from gwGenealogy.binaries import download_gwtc_data\n"
+        f"    download_gwtc_data()        # fetches GWTC files from Google Drive\n"
+        f"or pass data_dir=... pointing to a directory that contains it.\n"
+        f"Searched: {', '.join(str(b) for b in search)}")
 
 
 def _load_population_grids(fname, keys=None):
@@ -751,6 +826,7 @@ def _load_gwtc3_posterior_grids(data_dir, hyper_samples, n_draws, seed):
                 "o1o2o3_mass_c_iid_mag_iid_tilt_powerlaw_redshift_result.json")
             candidates.append(Path(data_dir) / "gwtc3_default.json")
         candidates.append(_PACKAGE_DATA_DIR / "gwtc3_default.json")
+        candidates.append(_user_data_dir() / "gwtc3_default.json")
 
         result_path = None
         for c in candidates:
@@ -761,7 +837,10 @@ def _load_gwtc3_posterior_grids(data_dir, hyper_samples, n_draws, seed):
             raise FileNotFoundError(
                 "GWTC-3 result file not found. Searched:\n"
                 + "\n".join(f"  {c}" for c in candidates)
-                + "\nDownload from Zenodo 5655785.")
+                + "\nDownload the bundled data with:\n"
+                "    from gwGenealogy.binaries import download_gwtc_data\n"
+                "    download_gwtc_data('gwtc3')\n"
+                "or pass gwtc3_hyper_samples / data_dir explicitly.")
 
         with open(result_path) as f:
             content = json.load(f)["posterior"]["content"]

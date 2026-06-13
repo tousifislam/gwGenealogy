@@ -98,8 +98,13 @@ fig, axes = grid.plot_heatmap_all_vesc()
 
 ### GWTC population sampling
 
+The GWTC population files are large (hundreds of MB) and are **not** bundled with
+the package; fetch them once from Google Drive (requires `pip install gdown`):
+
 ```python
-from gwGenealogy.binaries import sample_gwtc_population, available_catalogs
+from gwGenealogy.binaries import download_gwtc_data, sample_gwtc_population, available_catalogs
+
+download_gwtc_data()              # one-time: into ~/.gwGenealogy/data (or $GWGENEALOGY_DATA)
 
 available_catalogs()
 pop = sample_gwtc_population(50000, catalog='gwtc5', source='posterior', seed=42)
