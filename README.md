@@ -1,3 +1,11 @@
+![gwGenealogy](https://raw.githubusercontent.com/tousifislam/gwGenealogy/main/logo.png)
+
+[![arXiv](https://img.shields.io/badge/arXiv-2511.11536-b31b1b.svg)](https://arxiv.org/abs/2511.11536)
+[![arXiv](https://img.shields.io/badge/arXiv-2603.10170-b31b1b.svg)](https://arxiv.org/abs/2603.10170)
+[![arXiv](https://img.shields.io/badge/arXiv-2604.04546-b31b1b.svg)](https://arxiv.org/abs/2604.04546)
+[![arXiv](https://img.shields.io/badge/arXiv-2601.18986-b31b1b.svg)](https://arxiv.org/abs/2601.18986)
+[![License](https://img.shields.io/github/license/tousifislam/gwGenealogy)](https://github.com/tousifislam/gwGenealogy/blob/main/LICENSE)
+
 # gwGenealogy
 
 A Python toolkit for binary black hole (BBH) phenomenology: sampling BBH populations, computing remnant properties, modeling hierarchical mergers in dense star clusters, and analyzing retention across astrophysical environments.
