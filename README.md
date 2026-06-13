@@ -43,12 +43,19 @@ pip install -e .
 ### Sample a BBH population and compute remnants
 
 ```python
+import numpy as np
 from gwGenealogy.binaries import BBHs, BBHRemnant, sample_masses, sample_spins
 
 m1, m2 = sample_masses(5000, m_min=5, m_max=50, m1_distribution='powerlaw', alpha=-2.35, seed=42)
 chi1, chi2 = sample_spins(5000, chi_max=1.0, spin_magnitude='beta', spin_angles='isotropic', seed=43)
 
-bbh = BBHs(m1=m1, m2=m2, ...)
+# sample_spins returns Cartesian spin vectors; BBHs takes magnitudes + angles
+bbh = BBHs(m1=m1, m2=m2,
+           a1=np.linalg.norm(chi1, axis=1), a2=np.linalg.norm(chi2, axis=1),
+           theta1=np.arccos(chi1[:, 2] / np.linalg.norm(chi1, axis=1)),
+           theta2=np.arccos(chi2[:, 2] / np.linalg.norm(chi2, axis=1)),
+           phi1=np.arctan2(chi1[:, 1], chi1[:, 0]) % (2 * np.pi),
+           phi2=np.arctan2(chi2[:, 1], chi2[:, 0]) % (2 * np.pi))
 rem = BBHRemnant(bbh=bbh, precessing=True)
 # rem.Mf, rem.af, rem.vkick
 ```
@@ -96,7 +103,7 @@ from gwGenealogy.binaries import sample_gwtc_population, available_catalogs
 
 available_catalogs()
 pop = sample_gwtc_population(50000, catalog='gwtc5', source='posterior', seed=42)
-# pop['mass_1'], pop['a_1'], pop['chi_eff'], pop['redshift'], ...
+# pop['mass_1'], pop['a1'], pop['chi_eff'], pop['redshift'], ...
 ```
 
 ### Environment retention
