@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gwGenealogy"
+version = "0.1.0"
+description = "Binary black hole population phenomenology: remnants, recoil kicks, retention, and hierarchical mergers"
+readme = "README.md"
+license = "MIT"
+authors = [
+    {name = "Tousif Islam", email = "tousifislam24@gmail.com"},
+]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "h5py",
+    "gwModels>=0.1.6",
+]
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
+    "Programming Language :: Python",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Astronomy",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+
+[project.optional-dependencies]
+kicks = ["gwModels[kicks]>=0.1.6"]
+surrogates = ["surfinBH"]
+test = ["pytest"]
+
+[tool.setuptools.packages.find]
+include = ["gwGenealogy*"]
+
+[tool.setuptools.package-data]
+gwGenealogy = ["binaries/data/*", "stellar/data/*"]
