@@ -31,8 +31,8 @@ import matplotlib.pyplot as plt
 
 from ..stellar import sample_1g_bh_masses_from_stellar_collapse
 from ..binaries.bbh_spins import sample_spin_angles
-from ..binaries.bbh_remnant import BBHRemnant
-from ..utils.distributions import sample_uniform_1d
+from ..binaries.bbh_remnant import BBHRemnant, preload_kick_model
+from ..utils.distributions import sample_uniform_1d, seed_legacy_rng
 
 
 class MonteCarloBHSeedGrowth:
@@ -158,6 +158,10 @@ class MonteCarloBHSeedGrowth:
             else:
                 m1_ord, m2_ord, a1_ord, a2_ord = m2, m, chi2, chi
 
+            # Seed legacy RNG backends so kick models with internal randomness
+            # (CLZM2007 Theta, gwmodel flow) are reproducible from our rng chain.
+            seed_legacy_rng(rng)
+
             # Compute remnant mass, spin, and kick via BBHRemnant
             rem = BBHRemnant(m1=m1_ord, m2=m2_ord, a1=a1_ord, a2=a2_ord,
                              theta1=theta1, theta2=theta2, phi1=phi1, phi2=phi2,
@@ -229,6 +233,8 @@ class MonteCarloBHSeedGrowth:
             histories : list of list-of-dicts (only if store_history=True)
         """
         rng = np.random.default_rng(self.seed)
+        # Preload so the one-time lazy flow load can't perturb the seeded path.
+        preload_kick_model(self.kick_model)
 
         # Pre-allocate output arrays for all experiments
         final_masses = np.zeros(n_experiments)
@@ -317,6 +323,8 @@ class MonteCarloBHSeedGrowth:
         P_ret = np.zeros(n_v)
         P_target = {mt: np.zeros(n_v) for mt in self.m_targets}
         median_mass = np.full(n_v, np.nan)
+        # Preload so the one-time lazy flow load can't perturb the seeded path.
+        preload_kick_model(self.kick_model)
 
         # Loop over each escape velocity value
         for j, v_esc in enumerate(v_esc_values):

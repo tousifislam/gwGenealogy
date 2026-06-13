@@ -16,6 +16,41 @@ import matplotlib.pyplot as plt
 
 from .rcparams import set_rcparams
 
+
+def seed_legacy_rng(rng_or_seed):
+    """Seed the global (legacy) RNG backends reproducibly.
+
+    Some kick models draw from the global RNG rather than from a passed-in
+    Generator: the precessing CLZM2007 formula uses ``np.random.uniform``
+    for its azimuthal angle, and the IW2025 ``gwmodel`` flow samples via
+    torch. To keep results reproducible from our controlled RNG chain, this
+    seeds both ``np.random`` and torch (if installed).
+
+    Parameters
+    ----------
+    rng_or_seed : numpy.random.Generator or int
+        If a Generator, one integer seed is drawn from it (advancing its
+        state). If an int, it is used directly — useful to apply the *same*
+        legacy seed to several calls (e.g. evaluating multiple kick models
+        on an identical realization).
+
+    Returns
+    -------
+    int : the seed applied to the legacy backends.
+    """
+    if isinstance(rng_or_seed, np.random.Generator):
+        legacy_seed = int(rng_or_seed.integers(0, 2**31))
+    else:
+        legacy_seed = int(rng_or_seed)
+    np.random.seed(legacy_seed)
+    try:
+        import torch
+        torch.manual_seed(legacy_seed)
+    except ImportError:
+        pass
+    return legacy_seed
+
+
 def sample_uniform_1d(n_samples, low=0.0, high=1.0, seed=None, plot=False, bins=50):
     """
     Sample using NumPy's recommended random generator

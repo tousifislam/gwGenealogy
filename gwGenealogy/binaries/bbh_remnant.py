@@ -64,6 +64,23 @@ def _get_flow_model():
     return _FLOW_MODEL
 
 
+def preload_kick_model(kick_model):
+    """Trigger any one-time lazy model loading for a kick model.
+
+    The IW2025 ``gwmodel`` flow is lazy-loaded on first use, and that load
+    perturbs the global torch RNG state. Calling this once *before* seeding
+    the legacy RNG keeps the seeded sampling path reproducible even on the
+    first kick computation in a process. No-op for models without lazy state.
+
+    Parameters
+    ----------
+    kick_model : str
+        Kick model name, as passed to :class:`BBHRemnant`.
+    """
+    if kick_model == 'gwmodel':
+        _get_flow_model()
+
+
 def _get_surfin_fit(name):
     """Lazy-load and cache a surfinBH fit by name."""
     if not _HAS_SURFIN:
@@ -280,13 +297,14 @@ class BBHRemnant:
         self.vkick = vkick
 
     def _kick_gwmodel_flow(self):
-        """Compute vkick using the IW2025 normalizing-flow precessing kick model."""
+        """Compute vkick using the IW2025 normalizing-flow precessing kick model.
+
+        A single batched flow call (one kick per binary) — gwModels'
+        flow.sample vectorizes over array (q, a1, a2).
+        """
         flow = _get_flow_model()
-        vkick = np.zeros(len(self.m1))
-        for i in range(len(self.m1)):
-            samples = flow.sample(self.q[i], self.a1[i], self.a2[i], num_samples=1)
-            vkick[i] = samples[0]
-        self.vkick = vkick
+        self.vkick = np.atleast_1d(
+            flow.sample(self.q, self.a1, self.a2, num_samples=1))
 
     def _kick_gwmodel_q200(self):
         """Compute vkick using the gwModel aligned-spin kick fit (q <= 200)."""
@@ -297,11 +315,17 @@ class BBHRemnant:
 
         Dispatches to the precessing CLZM2007 formula when precessing=True,
         or the nonprecessing HLZ2014 formula when precessing=False.
+
+        The CLZM2007 formula samples a single scalar Theta when Theta=None,
+        which incorrectly gives all binaries in a batch the same azimuthal
+        kick angle. We sample one Theta per binary here to avoid that.
         """
         if self.precessing:
+            Theta = np.random.uniform(0, 2*np.pi, size=len(self.q))
             self.vkick = bbh_final_kick_precessing_CLZM2007(
                 self.q, self.a1, self.a2,
-                self.theta1, self.theta2, self.delta_phi)
+                self.theta1, self.theta2, self.delta_phi,
+                Theta=Theta)
         else:
             self.vkick = bbh_final_kick_nonprecessing_HLZ2014(
                 self.q, self.chi1z, self.chi2z)

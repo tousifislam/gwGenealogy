@@ -1,3 +1,5 @@
 from .seed_growth import MonteCarloBHSeedGrowth, IMBHFormationProbability
-from .hierarchical import HierarchicalMergersInClusters
-from .retention import BBHRetentionProbability1G1G
+from .hierarchical import (HierarchicalMergersInCluster,
+                           HierarchicalMergersInClusterPopulation)
+from .retention import BBHRetentionProbabilityOverChiq, BBHRetentionProbabilities
+from .progenitor import KickToProgenitor
