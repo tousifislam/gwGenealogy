@@ -6,6 +6,7 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2604.04546-b31b1b.svg)](https://arxiv.org/abs/2604.04546)
 [![arXiv](https://img.shields.io/badge/arXiv-2601.18986-b31b1b.svg)](https://arxiv.org/abs/2601.18986)
 [![PyPI](https://img.shields.io/pypi/v/gwGenealogy)](https://pypi.org/project/gwGenealogy/)
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://pypi.org/project/gwGenealogy/)
 [![Documentation](https://img.shields.io/badge/docs-online-brightgreen)](https://tousifislam.com/gwGenealogy/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](https://github.com/tousifislam/gwGenealogy/blob/main/LICENSE)
 
@@ -29,6 +30,18 @@ gwGenealogy/
 ```
 
 ## Installation
+
+From PyPI:
+
+```bash
+pip install gwGenealogy
+```
+
+Optional extras: `gwGenealogy[kicks]` (precessing-kick flow via gwModels),
+`gwGenealogy[data]` (`gdown`, for downloading the GWTC population files),
+`gwGenealogy[surrogates]` (NR surrogate remnants).
+
+From source (development):
 
 ```bash
 git clone https://github.com/tousifislam/gwGenealogy.git
